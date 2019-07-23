@@ -1,0 +1,4 @@
+/vendor
+/docker/Dockerfile*
+/docker/docker-compose*.yml
+/*.ps1

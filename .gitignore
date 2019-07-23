@@ -1,0 +1,5 @@
+/dist
+/vendor
+/data/configs.test.json
+/data/device_configs.json
+/docker/id_rsa*

@@ -1,0 +1,20 @@
+# golang image where workspace (GOPATH) configured at /go.
+FROM golang:1.12
+
+# Command line argument
+ARG REPO
+
+# Install dependency management tool
+RUN curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
+
+# Setting up working directory
+WORKDIR /go/src/${REPO}
+
+# Copy project dependencies
+ADD ./Gopkg.* ./
+
+# Restore dependencies
+RUN dep ensure -vendor-only
+
+# Copy the local package files to the container's workspace
+ADD . .
