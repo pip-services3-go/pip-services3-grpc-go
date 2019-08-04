@@ -8,6 +8,7 @@ WORKDIR /app
 ADD ./go.* ./
 
 # Restore dependencies
+ENV GO111MODULE=on
 RUN go mod download
 
 # Copy the local package files to the container's workspace
