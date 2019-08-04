@@ -6,7 +6,5 @@ services:
     build:
       context: ..
       dockerfile: docker/Dockerfile.test
-      args:
-        REPO: ${REPO}
     image: ${IMAGE:-pip/test}
     command: ${TEST_CMD:-go test ./test/...}
