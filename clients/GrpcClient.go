@@ -28,7 +28,7 @@ type MyCommandableHttpClient {
 CommandableHttpClient
 
 }
-    func  (chcMyCommandableHttpClient) GetData(correlationId string, id string) (res interface{}, err error) {
+    func  (c *MyCommandableHttpClient) GetData(correlationId string, id string) (res interface{}, err error) {
 
        res, err = chc.callCommand(
            "get_data",
@@ -63,8 +63,8 @@ import (
 )
 
 type GrpcClient struct {
-	baseRoute string
-	address   string
+	address string
+	name    string
 
 	defaultConfig *cconf.ConfigParams
 	//	The GRPC client.
@@ -92,9 +92,9 @@ type GrpcClient struct {
 // 			- baseRoute string
 // 			a base route for remote service.
 // Returns *GrpcClient
-func NewGrpcClient(base string) *GrpcClient {
+func NewGrpcClient(name string) *GrpcClient {
 	gc := GrpcClient{
-		baseRoute: base,
+		name: name,
 	}
 	gc.defaultConfig = cconf.NewConfigParamsFromTuples(
 		"connection.protocol", "http",
@@ -205,7 +205,7 @@ func (c *GrpcClient) Open(correlationId string) error {
 	if connection.Protocol() == "https" {
 		//sslKeyFile := credential.GetAsString("ssl_key_file")
 		sslCrtFile := credential.GetAsString("ssl_crt_file")
-		transport, err := credentials.NewClientTLSFromFile(sslCrtFile, c.baseRoute)
+		transport, err := credentials.NewClientTLSFromFile(sslCrtFile, c.name)
 		if err != nil {
 			return err
 		}
@@ -219,7 +219,9 @@ func (c *GrpcClient) Open(correlationId string) error {
 		return err
 	}
 	c.connection = conn
+
 	c.Client = grpcproto.NewCommandableClient(conn)
+
 	return nil
 }
 
@@ -238,16 +240,20 @@ func (c *GrpcClient) Close(correlationId string) error {
 
 // Calls a remote method via gRPC protocol.
 // Parameters:
+// 		- method string
+// 		gRPC method name
 // 		- correlationId string
 // 		transaction id to trace execution through call chain.
-// 		- request
-// 		query parameters.
-// 		- response
-// 		 responce body object.
+// 		- request interface{}
+// 		 request query parameters.
+// 		- response interface{}
+// 		- response body object.
 // Returns error
-func (c *GrpcClient) Call(correlationId string, request *grpcproto.InvokeRequest) (response *grpcproto.InvokeReply, err error) {
+func (c *GrpcClient) Call(method string, correlationId string, request interface{}, response interface{}) error {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
-	response, err = c.Client.Invoke(ctx, request)
-	return response, err
+	method = "/" + c.name + "/" + method
+	err := c.connection.Invoke(ctx, method, request, response)
+	return err
+
 }

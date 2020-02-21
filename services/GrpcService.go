@@ -84,34 +84,30 @@ See GrpcClient
 
 type GrpcService struct {
 	IRegisterable
-	defaultConfig  *cconf.ConfigParams
-	serviceName    string
-	config         *cconf.ConfigParams
-	references     cref.IReferences
-	localEndpoint  bool
-	registerable   IRegisterable
-	implementation interface{}
-	interceptors   []interface{}
-	opened         bool
-
-	/*
-	  The GRPC endpoint that exposes c service.
-	*/
+	defaultConfig *cconf.ConfigParams
+	serviceName   string
+	//serviceDescriptor *grpc.ServiceDesc
+	config        *cconf.ConfigParams
+	references    cref.IReferences
+	localEndpoint bool
+	//registerable      IRegisterable
+	//implementation    interface{}
+	opened bool
+	//  The GRPC endpoint that exposes c service.
 	Endpoint *GrpcEndpoint
-	/*
-	  The dependency resolver.
-	*/
+	//  The dependency resolver.
 	DependencyResolver *cref.DependencyResolver
-	/*
-	  The logger.
-	*/
+	//  The logger.
 	Logger *clog.CompositeLogger
-	/*
-	  The performance counters.
-	*/
+	//  The performance counters.
 	Counters *ccount.CompositeCounters
 }
 
+// NewGrpcService creates new instance NewGrpcService
+// Parameters:
+//  - serviceName string
+//  service name from XYZ.pb.go, set "" for use default gRPC commandable protobuf
+// Return *GrpcService
 func NewGrpcService(serviceName string) *GrpcService {
 	gs := GrpcService{}
 	gs.serviceName = serviceName
@@ -121,14 +117,6 @@ func NewGrpcService(serviceName string) *GrpcService {
 	gs.DependencyResolver = cref.NewDependencyResolverWithParams(gs.defaultConfig, cref.NewEmptyReferences())
 	gs.Logger = clog.NewCompositeLogger()
 	gs.Counters = ccount.NewCompositeCounters()
-
-	gs.interceptors = make([]interface{}, 0)
-
-	// gs.registerable = {
-	//     register: () => {
-	//         c.registerService();
-	//     }
-	// }
 	return &gs
 }
 
@@ -166,7 +154,7 @@ func (c *GrpcService) setReferences(references cref.IReferences) {
 		c.localEndpoint = false
 	}
 	// Add registration callback to the endpoint
-	c.Endpoint.Register(c.registerable)
+	c.Endpoint.Register(c)
 }
 
 /*
@@ -175,7 +163,7 @@ Unsets (clears) previously set references to dependent components.
 func (c *GrpcService) unsetReferences() {
 	// Remove registration callback from endpoint
 	if c.Endpoint != nil {
-		c.Endpoint.Unregister(c.registerable)
+		c.Endpoint.Unregister(c)
 		c.Endpoint = nil
 	}
 }
@@ -199,7 +187,7 @@ It returns a Timing object that is used to end the time measurement.
 
 - correlationId     (optional) transaction id to trace execution through call chain.
 - name              a method name.
-@returns Timing object to end the time measurement.
+Return Timing object to end the time measurement.
 */
 func (c *GrpcService) Instrument(correlationId string, name string) *ccount.Timing {
 	c.Logger.Trace(correlationId, "Executing %s method", name)
@@ -228,8 +216,7 @@ func (c *GrpcService) InstrumentError(correlationId string, name string, errIn e
 
 /*
 Checks if the component is opened.
-
-@returns true if the component has been opened and false otherwise.
+Return true if the component has been opened and false otherwise.
 */
 func (c *GrpcService) IsOpen() bool {
 	return c.opened
@@ -237,7 +224,7 @@ func (c *GrpcService) IsOpen() bool {
 
 /*
 Opens the component.
-
+Parameters:
 - correlationId 	(optional) transaction id to trace execution through call chain.
 - callback 			callback function that receives error or null no errors occured.
 */
@@ -265,7 +252,7 @@ func (c *GrpcService) Open(correlationId string) (err error) {
 
 /*
 Closes component and frees used resources.
-
+Parameters:
 - correlationId 	(optional) transaction id to trace execution through call chain.
 - callback 			callback function that receives error or null no errors occured.
 */
@@ -290,108 +277,14 @@ func (c *GrpcService) Close(correlationId string) (err error) {
 
 }
 
-// private registerService() {
-//     // Register implementations
-//     c.implementation = {};
-//     c.interceptors = [];
-//     c.register();
-
-//     // Load service
-//     let grpc = require("grpc");
-//     let service = c.service;
-
-//     // Dynamically load service
-//     if (service == null && _.isString(c.protoPath)) {
-//         let protoLoader = require("@grpc/proto-loader");
-
-//         let options = c.packageOptions || {
-//             keepCase: true,
-//             longs: Number,
-//             enums: Number,
-//             defaults: true,
-//             oneofs: true
-//         };
-
-//         let packageDefinition = protoLoader.loadSync(c.protoPath, options);
-//         let packageObject = grpc.loadPackageDefinition(packageDefinition);
-//         service = c.getServiceByName(packageObject, c.serviceName);
-//     }
-//     // Statically load service
-//     else {
-//         service = c.getServiceByName(c.service, c.serviceName);
-//     }
-
-//     // Register service if it is set
-//     if (service) {
-//         c.Endpoint.registerService(service, c.implementation);
-//     }
-// }
-
-/*
-Registers a method in GRPC service.
-
-- name          a method name
-- schema        a validation schema to validate received parameters.
-- action        an action function that is called when operation is invoked.
-*/
-//  func (c *GrpcService)  RegisterMethod(name string, schema *cvalid.Schema,
-//     action func(call: any, callback: (err: any, message: any) => void) => void) {
-//     if (c.implementation == null) return;
-
-//     c.implementation[name] = (call, callback) => {
-//         async.each(c.interceptors, (interceptor, cb) => {
-//             interceptor(call, callback, cb);
-//         }, (err) => {
-//             // Validate object
-//             if (schema && call && call.request) {
-//                 let value = call.request;
-//                 if (_.isFunction(value.toObject))
-//                     value = value.toObject();
-
-//                 // Perform validation
-//                 let correlationId = value.correlation_id;
-//                 let err = schema.validateAndReturnException(correlationId, value, false);
-//                 if (err) {
-//                     callback(err, null);
-//                     return;
-//                 }
-//             }
-
-//             action.call(c, call, callback);
-//         });
-//     };
-// }
-
 /*
 Registers a commandable method in c objects GRPC server (service) by the given name.,
-
+Parameters:
 - method        the GRPC method name.
 - schema        the schema to use for parameter validation.
 - action        the action to perform at the given route.
 */
 func (c *GrpcService) RegisterCommadableMethod(method string, schema *cvalid.Schema,
 	action func(correlationId string, data *crun.Parameters) (result interface{}, err error)) {
-
 	c.Endpoint.RegisterCommadableMethod(method, schema, action)
 }
-
-/*
-Registers a middleware for methods in GRPC endpoint.
-
-- action        an action function that is called when middleware is invoked.
-*/
-//  func (c *GrpcService) RegisterInterceptor(
-//     action func(call: any, callback: (err: any, result: any) => void, next: () => void) => void) {
-//     if (c.Endpoint == null) return;
-
-//     c.interceptors.push((call, callback, next) => {
-//         action.call(c, call, callback, next);
-//     });
-// }
-
-// /*
-// Registers all service routes in gRPC endpoint.
-// c method is called by the service and must be overriden
-// in child classes.
-//  */
-// func (c*GrpcService) abstract register();

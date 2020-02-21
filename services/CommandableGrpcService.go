@@ -76,7 +76,7 @@ func NewCommandableGrpcService(name string) *CommandableGrpcService {
 	//super(nil);
 	cgs := CommandableGrpcService{}
 	cgs.GrpcService = NewGrpcService("")
-	cgs.GrpcService.IRegistrable = &cgs
+	cgs.GrpcService.IRegisterable = &cgs
 	cgs.name = name
 	cgs.DependencyResolver.Put("controller", "none")
 	return &cgs
@@ -110,7 +110,7 @@ func (c *CommandableGrpcService) Register() {
 				timing := c.Instrument(correlationId, method)
 				res, err := command.Execute(correlationId, args)
 				timing.EndTiming()
-				return c.InstrumentError(correlationId, method, res, err)
+				return c.InstrumentError(correlationId, method, err, res)
 			})
 	}
 }

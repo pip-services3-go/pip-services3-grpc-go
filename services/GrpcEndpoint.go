@@ -81,6 +81,7 @@ type GrpcEndpoint struct {
 	registrations      []IRegisterable
 	commandableMethods map[string]func(correlationId string, args *crun.Parameters) (result interface{}, err error)
 	commandableSchemas map[string]*cvalid.Schema
+	interceptors       []grpc.ServerOption
 }
 
 func NewGrpcEndpoint() *GrpcEndpoint {
@@ -109,6 +110,7 @@ func NewGrpcEndpoint() *GrpcEndpoint {
 	ge.registrations = make([]IRegisterable, 0)
 	ge.commandableMethods = make(map[string]func(correlationId string, args *crun.Parameters) (result interface{}, err error), 0)
 	ge.commandableSchemas = make(map[string]*cvalid.Schema, 0)
+	ge.interceptors = make([]grpc.ServerOption, 0, 0)
 	return &ge
 }
 
@@ -164,7 +166,6 @@ func (c *GrpcEndpoint) IsOpen() bool {
 	return c.server != nil
 }
 
-//TODO: check for correct understanding.
 /*
    Opens a connection using the parameters resolved by the referenced connection
    resolver and creates a GRPC server (service) using the set options and parameters.
@@ -186,6 +187,11 @@ func (c *GrpcEndpoint) Open(correlationId string) (err error) {
 	c.uri = connection.Host() + ":" + strconv.FormatInt(int64(connection.Port()), 16)
 
 	opts := []grpc.ServerOption{}
+
+	if len(c.interceptors) > 0 {
+		// Add interceptors
+		opts = append(opts, c.interceptors...)
+	}
 
 	if connection.Protocol() == "https" {
 		sslKeyFile := credential.GetAsString("ssl_key_file")
@@ -243,6 +249,21 @@ func (c *GrpcEndpoint) Close(correlationId string) (err error) {
 
 }
 
+// GetServer return working gRPC server for register services
+// Retruns *grpc.Server
+func (c *GrpcEndpoint) GetServer() *grpc.Server {
+	return c.server
+}
+
+// AddUnaryInterceptor Registers a middleware for methods in GRPC endpoint.
+// See https://github.com/grpc/grpc-go/tree/master/examples/features/interceptor
+// Parameters:
+// - interceptors ...grpc.ServerOption
+// interceptor functions (Stream or Unary use grpc.UnaryInterceptor() or grpc.StreamInterceptor() for inflate in grpc.ServerOption)
+func (c *GrpcEndpoint) AddInterceptors(interceptors ...grpc.ServerOption) {
+	c.interceptors = append(c.interceptors, interceptors...)
+}
+
 /*
    Registers a registerable object for dynamic endpoint discovery.
 
@@ -287,11 +308,22 @@ func (c *GrpcEndpoint) registerCommandableService() {
 	if len(c.commandableMethods) == 0 {
 		return
 	}
-	grpcproto.RegisterCommandableServer(c.server, c)
+	invokeMediator := InvokeComandMediator{InvokeFunc: c.invoke}
+	grpcproto.RegisterCommandableServer(c.server, &invokeMediator)
+}
+
+/*
+   Registers a service with related implementation
+   - implementation the service implementation method Invoke.
+*/
+func (c *GrpcEndpoint) RegisterService(sd *grpc.ServiceDesc, implementation interface{}) {
+	if c.server != nil {
+		c.server.RegisterService(sd, implementation)
+	}
 }
 
 // Invoke method for implements interface grpcproto.CommandableServer
-func (c *GrpcEndpoint) Invoke(ctx context.Context, request *grpcproto.InvokeRequest) (response *grpcproto.InvokeReply, err error) {
+func (c *GrpcEndpoint) invoke(ctx context.Context, request *grpcproto.InvokeRequest) (response *grpcproto.InvokeReply, err error) {
 
 	method := request.Method
 
@@ -318,8 +350,6 @@ func (c *GrpcEndpoint) Invoke(ctx context.Context, request *grpcproto.InvokeRequ
 		}
 		return response, nil
 	}
-
-	//try {
 	// Convert arguments
 	argsEmpty := request.ArgsEmpty
 	argsJson := request.ArgsJson

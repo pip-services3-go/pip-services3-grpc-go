@@ -114,7 +114,8 @@ func (c *CommandableGrpcClient) CallCommand(name string, correlationId string, p
 		ArgsJson:      jsonArgs,
 	}
 
-	response, err := c.Call(correlationId, &request)
+	var response grpcproto.InvokeReply
+	err = c.Call("invoke", correlationId, request, &response)
 
 	timing.EndTiming()
 

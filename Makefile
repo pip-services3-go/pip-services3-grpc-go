@@ -11,3 +11,6 @@ test:
 
 protogen:
 	protoc --go_out=plugins=grpc:. protos/commandable.proto
+
+protogen_test:
+	protoc --go_out=plugins=grpc:. test/protos/dummies.proto 

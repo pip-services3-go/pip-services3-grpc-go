@@ -283,11 +283,11 @@ var fileDescriptor_73bcf444ba5101f6 = []byte{
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ context.Context
-var _ grpc.ClientConn
+var _ grpc.ClientConnInterface
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the grpc package it is being compiled against.
-const _ = grpc.SupportPackageIsVersion4
+const _ = grpc.SupportPackageIsVersion6
 
 // CommandableClient is the client API for Commandable service.
 //
@@ -297,10 +297,10 @@ type CommandableClient interface {
 }
 
 type commandableClient struct {
-	cc *grpc.ClientConn
+	cc grpc.ClientConnInterface
 }
 
-func NewCommandableClient(cc *grpc.ClientConn) CommandableClient {
+func NewCommandableClient(cc grpc.ClientConnInterface) CommandableClient {
 	return &commandableClient{cc}
 }
 
