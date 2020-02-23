@@ -136,7 +136,7 @@ Sets references to dependent components.
 
 - references 	references to locate the component dependencies.
 */
-func (c *GrpcService) setReferences(references cref.IReferences) {
+func (c *GrpcService) SetReferences(references cref.IReferences) {
 	c.references = references
 
 	c.Logger.SetReferences(references)
@@ -160,7 +160,7 @@ func (c *GrpcService) setReferences(references cref.IReferences) {
 /*
 Unsets (clears) previously set references to dependent components.
 */
-func (c *GrpcService) unsetReferences() {
+func (c *GrpcService) UnsetReferences() {
 	// Remove registration callback from endpoint
 	if c.Endpoint != nil {
 		c.Endpoint.Unregister(c)

@@ -69,11 +69,9 @@ type CommandableGrpcService struct {
 
 /*
    Creates a new instance of the service.
-
-   @param name a service name.
+   - name a service name.
 */
 func NewCommandableGrpcService(name string) *CommandableGrpcService {
-	//super(nil);
 	cgs := CommandableGrpcService{}
 	cgs.GrpcService = NewGrpcService("")
 	cgs.GrpcService.IRegisterable = &cgs
@@ -83,7 +81,7 @@ func NewCommandableGrpcService(name string) *CommandableGrpcService {
 }
 
 /*
-   Registers all service routes in HTTP endpoint.
+   Registers all service command in gRPC endpoint.
 */
 func (c *CommandableGrpcService) Register() {
 

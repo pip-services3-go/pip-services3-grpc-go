@@ -184,7 +184,7 @@ func (c *GrpcEndpoint) Open(correlationId string) (err error) {
 		return err
 	}
 
-	c.uri = connection.Host() + ":" + strconv.FormatInt(int64(connection.Port()), 16)
+	c.uri = connection.Host() + ":" + strconv.FormatInt(int64(connection.Port()), 10)
 
 	opts := []grpc.ServerOption{}
 
