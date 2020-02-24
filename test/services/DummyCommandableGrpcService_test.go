@@ -1,224 +1,154 @@
 package test_services
 
-// let assert = require('chai').assert;
-// let grpc = require('grpc');
-// var protoLoader = require('@grpc/proto-loader');
-// let async = require('async');
+import (
+	"context"
+	"encoding/json"
+	"testing"
 
-// let services = require('../../../src/protos/commandable_grpc_pb');
-// let messages = require('../../../src/protos/commandable_pb');
+	cconf "github.com/pip-services3-go/pip-services3-commons-go/config"
+	cref "github.com/pip-services3-go/pip-services3-commons-go/refer"
+	cmdproto "github.com/pip-services3-go/pip-services3-grpc-go/protos"
+	testgrpc "github.com/pip-services3-go/pip-services3-grpc-go/test"
+	"github.com/stretchr/testify/assert"
+	"google.golang.org/grpc"
+	"google.golang.org/grpc/grpclog"
+)
 
-// import { Descriptor } from 'pip-services3-commons-node';
-// import { ConfigParams } from 'pip-services3-commons-node';
-// import { References } from 'pip-services3-commons-node';
+func TestDummyCommandableGrpcService(t *testing.T) {
 
-// import { Dummy } from '../Dummy';
-// import { DummyController } from '../DummyController';
-// import { DummyCommandableGrpcService } from './DummyCommandableGrpcService';
+	grpcConfig := cconf.NewConfigParamsFromTuples(
+		"connection.protocol", "http",
+		"connection.host", "localhost",
+		"connection.port", "3001",
+	)
 
-// var grpcConfig = ConfigParams.fromTuples(
-//     "connection.protocol", "http",
-//     "connection.host", "localhost",
-//     "connection.port", 3001
-// );
+	var Dummy1 testgrpc.Dummy
+	var Dummy2 testgrpc.Dummy
+	var service *DummyCommandableGrpcService
+	var client cmdproto.CommandableClient
 
-// suite('DummyCommandableGrpcService', ()=> {
-//     var _dummy1: Dummy;
-//     var _dummy2: Dummy;
+	ctrl := testgrpc.NewDummyController()
+	service = NewDummyCommandableGrpcService()
+	service.Configure(grpcConfig)
 
-//     let service: DummyCommandableGrpcService;
+	references := cref.NewReferencesFromTuples(
+		cref.NewDescriptor("pip-services-dummies", "controller", "default", "default", "1.0"), ctrl,
+		cref.NewDescriptor("pip-services-dummies", "service", "grpc", "default", "1.0"), service,
+	)
+	service.SetReferences(references)
+	service.Open("")
+	defer service.Close("")
 
-//     let client: any;
+	opts := []grpc.DialOption{
+		grpc.WithInsecure(),
+	}
+	conn, err := grpc.Dial("localhost:3001", opts...)
+	if err != nil {
+		grpclog.Fatalf("fail to dial: %v", err)
+	}
+	defer conn.Close()
+	client = cmdproto.NewCommandableClient(conn)
 
-//     suiteSetup((done) => {
-//         let ctrl = new DummyController();
+	Dummy1 = testgrpc.Dummy{Id: "", Key: "Key 1", Content: "Content 1"}
+	Dummy2 = testgrpc.Dummy{Id: "", Key: "Key 2", Content: "Content 2"}
 
-//         service = new DummyCommandableGrpcService();
-//         service.configure(grpcConfig);
+	//     Test CRUD Operations
+	var dummy, dummy1 testgrpc.Dummy
 
-//         let references: References = References.fromTuples(
-//             new Descriptor('pip-services-dummies', 'controller', 'default', 'default', '1.0'), ctrl,
-//             new Descriptor('pip-services-dummies', 'service', 'grpc', 'default', '1.0'), service
-//         );
-//         service.setReferences(references);
+	request := cmdproto.InvokeRequest{}
 
-//         service.open(null, done);
-//     });
+	requestParams := make(map[string]interface{})
+	requestParams["dummy"] = Dummy1
+	jsonBuf, _ := json.Marshal(requestParams)
 
-//     suiteTeardown((done) => {
-//         service.close(null, done);
-//     });
+	request.Method = "dummy.create_dummy"
+	request.ArgsEmpty = false
+	request.ArgsJson = string(jsonBuf)
+	response, err := client.Invoke(context.TODO(), &request)
 
-//     setup(() => {
-//         let packageDefinition = protoLoader.loadSync(
-//             __dirname + "../../../../src/protos/commandable.proto",
-//             {
-//                 keepCase: true,
-//                 // longs: String,
-//                 // enums: String,
-//                 defaults: true,
-//                 oneofs: true
-//             }
-//         );
-//         let clientProto = grpc.loadPackageDefinition(packageDefinition).commandable.Commandable;
+	assert.Nil(t, err)
+	assert.False(t, response.ResultEmpty)
+	assert.NotEqual(t, response.ResultJson, "")
+	json.Unmarshal([]byte(response.ResultJson), &dummy)
+	assert.NotNil(t, dummy)
+	assert.Equal(t, dummy.Content, Dummy1.Content)
+	assert.Equal(t, dummy.Key, Dummy1.Key)
+	dummy1 = dummy
 
-//         client = new clientProto('localhost:3001', grpc.credentials.createInsecure());
+	// Create another dummy
+	requestParams["dummy"] = Dummy2
+	jsonBuf, _ = json.Marshal(requestParams)
 
-//         _dummy1 = { id: null, key: "Key 1", content: "Content 1"};
-//         _dummy2 = { id: null, key: "Key 2", content: "Content 2"};
-//     });
+	request.Method = "dummy.create_dummy"
+	request.ArgsEmpty = false
+	request.ArgsJson = string(jsonBuf)
+	response, err = client.Invoke(context.TODO(), &request)
 
-//     test('CRUD Operations', (done) => {
-//         var dummy1, dummy2;
+	assert.Nil(t, err)
+	assert.False(t, response.ResultEmpty)
+	assert.NotEqual(t, response.ResultJson, "")
+	json.Unmarshal([]byte(response.ResultJson), &dummy)
+	assert.NotNil(t, dummy)
+	assert.Equal(t, dummy.Content, Dummy2.Content)
+	assert.Equal(t, dummy.Key, Dummy2.Key)
+	//dummy2 = dummy
 
-//         async.series([
-//         // Create one dummy
-//             (callback) => {
-//                 client.invoke(
-//                     {
-//                         method: 'dummy.create_dummy',
-//                         args_empty: false,
-//                         args_json: JSON.stringify({
-//                             dummy: _dummy1
-//                         })
-//                     },
-//                     (err, response) => {
-//                         assert.isNull(err);
+	// Get all dummies
+	request.Method = "dummy.get_dummies"
+	request.ArgsEmpty = false
+	request.ArgsJson = "{}"
+	response, err = client.Invoke(context.TODO(), &request)
 
-//                         assert.isFalse(response.result_empty);
-//                         assert.isString(response.result_json);
-//                         let dummy = JSON.parse(response.result_json);
+	assert.Nil(t, err)
+	assert.False(t, response.ResultEmpty)
+	assert.NotEqual(t, response.ResultJson, "")
+	var dummies testgrpc.DummyDataPage
+	json.Unmarshal([]byte(response.ResultJson), &dummies)
 
-//                         assert.isObject(dummy);
-//                         assert.equal(dummy.content, _dummy1.content);
-//                         assert.equal(dummy.key, _dummy1.key);
+	assert.NotNil(t, dummies)
+	assert.Len(t, dummies.Data, 2)
 
-//                         dummy1 = dummy;
+	// Update the dummy
+	dummy1.Content = "Updated Content 1"
+	requestParams["dummy"] = dummy1
+	jsonBuf, _ = json.Marshal(requestParams)
 
-//                         callback();
-//                     }
-//                 );
-//             },
-//         // Create another dummy
-//             (callback) => {
-//                 client.invoke(
-//                     {
-//                         method: 'dummy.create_dummy',
-//                         args_empty: false,
-//                         args_json: JSON.stringify({
-//                             dummy: _dummy2
-//                         })
-//                     },
-//                     (err, response) => {
-//                         assert.isNull(err);
+	request.Method = "dummy.update_dummy"
+	request.ArgsEmpty = false
+	request.ArgsJson = string(jsonBuf)
+	response, err = client.Invoke(context.TODO(), &request)
 
-//                         assert.isFalse(response.result_empty);
-//                         assert.isString(response.result_json);
-//                         let dummy = JSON.parse(response.result_json);
+	assert.Nil(t, err)
+	assert.False(t, response.ResultEmpty)
+	assert.NotEqual(t, response.ResultJson, "")
+	json.Unmarshal([]byte(response.ResultJson), &dummy)
+	assert.NotNil(t, dummy)
+	assert.Equal(t, dummy.Content, "Updated Content 1")
+	assert.Equal(t, dummy.Key, Dummy1.Key)
 
-//                         assert.isObject(dummy);
-//                         assert.equal(dummy.content, _dummy2.content);
-//                         assert.equal(dummy.key, _dummy2.key);
+	dummy1 = dummy
 
-//                         dummy2 = dummy;
+	// Delete dummy
+	delParam := make(map[string]string, 0)
+	delParam["dummy_id"] = dummy1.Id
+	jsonBuf, _ = json.Marshal(delParam)
 
-//                         callback();
-//                     }
-//                 );
-//             },
-//         // Get all dummies
-//             (callback) => {
-//                 client.invoke(
-//                     {
-//                         method: 'dummy.get_dummies',
-//                         args_empty: false,
-//                         args_json: JSON.stringify({})
-//                     },
-//                     (err, response) => {
-//                         assert.isNull(err);
+	request.Method = "dummy.delete_dummy"
+	request.ArgsEmpty = false
+	request.ArgsJson = string(jsonBuf)
+	response, err = client.Invoke(context.TODO(), &request)
 
-//                         assert.isFalse(response.result_empty);
-//                         assert.isString(response.result_json);
-//                         let dummies = JSON.parse(response.result_json);
+	assert.Nil(t, err)
+	assert.Nil(t, response.Error)
 
-//                         assert.isObject(dummies);
-//                         assert.lengthOf(dummies.data, 2);
+	//         // Try to get delete dummy
+	request.Method = "dummy.get_dummy_by_id"
+	request.ArgsEmpty = false
+	request.ArgsJson = string(jsonBuf)
+	response, err = client.Invoke(context.TODO(), &request)
 
-//                         callback();
-//                     }
-//                 );
-//             },
-//         // Update the dummy
-//             (callback) => {
-//                 dummy1.content = 'Updated Content 1';
+	assert.Nil(t, err)
+	assert.Nil(t, response.Error)
+	assert.True(t, response.ResultEmpty)
 
-//                 client.invoke(
-//                     {
-//                         method: 'dummy.update_dummy',
-//                         args_empty: false,
-//                         args_json: JSON.stringify({
-//                             dummy: dummy1
-//                         })
-//                     },
-//                     (err, response) => {
-//                         assert.isNull(err);
-
-//                         assert.isFalse(response.result_empty);
-//                         assert.isString(response.result_json);
-//                         let dummy = JSON.parse(response.result_json);
-
-//                         assert.isObject(dummy);
-//                         assert.equal(dummy.content, 'Updated Content 1');
-//                         assert.equal(dummy.key, _dummy1.key);
-
-//                         dummy1 = dummy;
-
-//                         callback();
-//                     }
-//                 );
-//             },
-//         // Delete dummy
-//             (callback) => {
-//                 client.invoke(
-//                     {
-//                         method: 'dummy.delete_dummy',
-//                         args_empty: false,
-//                         args_json: JSON.stringify({
-//                             dummy_id: dummy1.id
-//                         })
-//                     },
-//                     (err, response) => {
-//                         assert.isNull(err);
-
-//                         assert.isNull(response.error);
-
-//                         callback();
-//                     }
-//                 );
-//             },
-//         // Try to get delete dummy
-//             (callback) => {
-//                 client.invoke(
-//                     {
-//                         method: 'dummy.get_dummy_by_id',
-//                         args_empty: false,
-//                         args_json: JSON.stringify({
-//                             dummy_id: dummy1.id
-//                         })
-//                     },
-//                     (err, response) => {
-//                         assert.isNull(err);
-
-//                         assert.isNull(response.error);
-//                         assert.isTrue(response.result_empty);
-
-//                         // assert.isObject(dummy);
-
-//                         callback();
-//                     }
-//                 );
-//             }
-//         ], done);
-//     });
-
-// });
+}

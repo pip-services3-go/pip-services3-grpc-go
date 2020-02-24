@@ -1,5 +1,21 @@
 package clients
 
+import (
+	"context"
+	"time"
+
+	cconf "github.com/pip-services3-go/pip-services3-commons-go/config"
+	cdata "github.com/pip-services3-go/pip-services3-commons-go/data"
+	cref "github.com/pip-services3-go/pip-services3-commons-go/refer"
+	ccount "github.com/pip-services3-go/pip-services3-components-go/count"
+	clog "github.com/pip-services3-go/pip-services3-components-go/log"
+	grpcproto "github.com/pip-services3-go/pip-services3-grpc-go/protos"
+	rpccon "github.com/pip-services3-go/pip-services3-rpc-go/connect"
+	"google.golang.org/grpc"
+	"google.golang.org/grpc/credentials"
+	"google.golang.org/grpc/keepalive"
+)
+
 /*
 Abstract client that calls commandable HTTP service.
 
@@ -47,20 +63,6 @@ client.GetData("123", "1", (err, result) => {
 ...
 });
 */
-import (
-	"context"
-	"time"
-
-	cconf "github.com/pip-services3-go/pip-services3-commons-go/config"
-	cref "github.com/pip-services3-go/pip-services3-commons-go/refer"
-	ccount "github.com/pip-services3-go/pip-services3-components-go/count"
-	clog "github.com/pip-services3-go/pip-services3-components-go/log"
-	grpcproto "github.com/pip-services3-go/pip-services3-grpc-go/protos"
-	rpccon "github.com/pip-services3-go/pip-services3-rpc-go/connect"
-	"google.golang.org/grpc"
-	"google.golang.org/grpc/credentials"
-	"google.golang.org/grpc/keepalive"
-)
 
 type GrpcClient struct {
 	address string
@@ -98,8 +100,8 @@ func NewGrpcClient(name string) *GrpcClient {
 	}
 	gc.defaultConfig = cconf.NewConfigParamsFromTuples(
 		"connection.protocol", "http",
-		"connection.host", "0.0.0.0",
-		"connection.port", 3000,
+		"connection.host", "localhost",
+		"connection.port", "8090",
 
 		"options.connect_timeout", 10000,
 		"options.timeout", 10000,
@@ -126,7 +128,7 @@ func (c *GrpcClient) Configure(config *cconf.ConfigParams) {
 
 	c.ConnectTimeout = time.Duration(config.GetAsIntegerWithDefault("connection.connect_timeout", 10000)) * time.Millisecond
 	c.Timeout = time.Duration(config.GetAsIntegerWithDefault("connection.timeout", 10000)) * time.Millisecond
-
+	c.ConnectionResolver.Configure(config)
 	c.address = host + ":" + port
 }
 
@@ -256,4 +258,48 @@ func (c *GrpcClient) Call(method string, correlationId string, request interface
 	err := c.connection.Invoke(ctx, method, request, response)
 	return err
 
+}
+
+/*
+   Adds filter parameters (with the same name as they defined)
+   to invocation parameter map.
+   - params        invocation parameters.
+   - filter        (optional) filter parameters
+   Return invocation parameters with added filter parameters.
+*/
+func (c *GrpcClient) AddFilterParams(params *cdata.StringValueMap, filter *cdata.FilterParams) *cdata.StringValueMap {
+
+	if params == nil {
+		params = cdata.NewEmptyStringValueMap()
+	}
+	if filter != nil {
+		for k, v := range filter.Value() {
+			params.Put(k, v)
+		}
+	}
+	return params
+}
+
+/*
+   Adds paging parameters (skip, take, total) to invocation parameter map.
+   - params        invocation parameters.
+   - paging        (optional) paging parameters
+   Return invocation parameters with added paging parameters.
+*/
+func (c *GrpcClient) AddPagingParams(params *cdata.StringValueMap, paging *cdata.PagingParams) *cdata.StringValueMap {
+	if params == nil {
+		params = cdata.NewEmptyStringValueMap()
+	}
+
+	if paging != nil {
+		params.Put("total", paging.Total)
+		if paging.Skip != nil {
+			params.Put("skip", *paging.Skip)
+		}
+		if paging.Take != nil {
+			params.Put("take", *paging.Take)
+		}
+	}
+
+	return params
 }

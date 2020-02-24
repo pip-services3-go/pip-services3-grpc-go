@@ -22,8 +22,6 @@ func TestGrpcEndpoint(t *testing.T) {
 	endpoint.Configure(grpcConfig)
 
 	endpoint.Open("")
-	defer endpoint.Close("")
-
 	assert.True(t, endpoint.IsOpen())
-
+	endpoint.Close("")
 }

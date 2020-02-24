@@ -357,17 +357,11 @@ func (c *GrpcEndpoint) invoke(ctx context.Context, request *grpcproto.InvokeRequ
 
 	if !argsEmpty && argsJson != "" {
 		var buf map[string]interface{}
-		err := json.Unmarshal([]byte(argsJson), buf)
+		err := json.Unmarshal([]byte(argsJson), &buf)
 		if err == nil {
 			args.Append(buf)
 		}
 	}
-
-	// Todo: Validate schema
-	// schema := c.commandableSchemas[method];
-	// if schema != nil {
-	//     //...
-	// }
 
 	// Call command action
 	result, err := action(correlationId, args)
@@ -388,7 +382,7 @@ func (c *GrpcEndpoint) invoke(ctx context.Context, request *grpcproto.InvokeRequ
 		resJson, _ := json.Marshal(result)
 		response = &grpcproto.InvokeReply{
 			Error:       nil,
-			ResultEmpty: result == nil,
+			ResultEmpty: result == nil || string(resJson) == "null",
 			ResultJson:  string(resJson),
 		}
 	}

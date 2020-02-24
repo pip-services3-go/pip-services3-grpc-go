@@ -1,104 +1,121 @@
 package test_clients
 
-import { FilterParams } from 'pip-services3-commons-node';
-import { PagingParams } from 'pip-services3-commons-node';
-import { DataPage } from 'pip-services3-commons-node';
+import (
+	cdata "github.com/pip-services3-go/pip-services3-commons-go/data"
+	grpcclients "github.com/pip-services3-go/pip-services3-grpc-go/clients"
+	testgrpc "github.com/pip-services3-go/pip-services3-grpc-go/test"
+	testproto "github.com/pip-services3-go/pip-services3-grpc-go/test/protos"
+)
 
-import { GrpcClient } from '../../src/clients/GrpcClient';
-import { IDummyClient } from './IDummyClient';
-import { Dummy } from '../Dummy';
+type DummyGrpcClient struct {
+	*grpcclients.GrpcClient
+}
 
-// export class DummyGrpcClient extends GrpcClient implements IDummyClient {
-        
-//     public constructor() {
-//         super(__dirname + "../../../../test/protos/dummies.proto", "dummies.Dummies")
-//     }
+func NewDummyGrpcClient() *DummyGrpcClient {
+	dgc := DummyGrpcClient{}
+	dgc.GrpcClient = grpcclients.NewGrpcClient("dummies.Dummies")
+	return &dgc
+}
 
-//     public getDummies(correlationId: string, filter: FilterParams, paging: PagingParams,
-//         callback: (err: any, result: DataPage<Dummy>) => void): void {
-//         this.call('get_dummies',
-//             correlationId, 
-//             { 
-//                 filter: filter,
-//                 paging: paging
-//             },
-//             (err, result) => {
-//                 this.instrument(correlationId, 'dummy.get_page_by_filter');
-//                 callback(err, result);
-//             }
-//         );
-//     }
+func (c *DummyGrpcClient) GetDummies(correlationId string, filter *cdata.FilterParams, paging *cdata.PagingParams) (result *testgrpc.DummyDataPage, err error) {
 
-//     public getDummyById(correlationId: string, dummyId: string,
-//         callback: (err: any, result: Dummy) => void): void {
-//         this.call('get_dummy_by_id',
-//             correlationId,
-//             {
-//                 dummy_id: dummyId
-//             }, 
-//             (err, result) => {
-//                 this.instrument(correlationId, 'dummy.get_one_by_id');
+	req := &testproto.DummiesPageRequest{
+		CorrelationId: correlationId,
+	}
+	if filter != nil {
+		req.Filter = filter.Value()
+	}
+	if paging != nil {
+		req.Paging = &testproto.PagingParams{
+			Skip:  paging.GetSkip(0),
+			Take:  (int32)(paging.GetTake(100)),
+			Total: paging.Total,
+		}
+	}
+	reply := new(testproto.DummiesPage)
+	err = c.Call("get_dummies", correlationId, req, reply)
+	c.Instrument(correlationId, "dummy.get_page_by_filter")
+	if err != nil {
+		return nil, err
+	}
+	result = toDummiesPage(reply)
+	return result, nil
+}
 
-//                 if (result && result.id == "" && result.key == "")
-//                     result = null;
+func (c *DummyGrpcClient) GetDummyById(correlationId string, dummyId string) (result *testgrpc.Dummy, err error) {
 
-//                 callback(err, result);
-//             }
-//         );        
-//     }
+	req := &testproto.DummyIdRequest{
+		CorrelationId: correlationId,
+		DummyId:       dummyId,
+	}
 
-//     public createDummy(correlationId: string, dummy: any,
-//         callback: (err: any, result: Dummy) => void): void {
-//         this.call('create_dummy',
-//             correlationId,
-//             {
-//                 dummy: dummy
-//             }, 
-//             (err, result) => {
-//                 this.instrument(correlationId, 'dummy.create');
+	reply := new(testproto.Dummy)
+	err = c.Call("get_dummy_by_id", correlationId, req, reply)
+	c.Instrument(correlationId, "dummy.get_one_by_id")
+	if err != nil {
+		return nil, err
+	}
+	result = toDummy(reply)
+	if result != nil && result.Id == "" && result.Key == "" {
+		result = nil
+	}
+	return result, nil
+}
 
-//                 if (result && result.id == "" && result.key == "")
-//                     result = null;
+func (c *DummyGrpcClient) CreateDummy(correlationId string, dummy testgrpc.Dummy) (result *testgrpc.Dummy, err error) {
 
-//                 callback(err, result);
-//             }
-//         );
-//     }
+	req := &testproto.DummyObjectRequest{
+		CorrelationId: correlationId,
+		Dummy:         fromDummy(&dummy),
+	}
 
-//     public updateDummy(correlationId: string, dummy: any,
-//         callback: (err: any, result: Dummy) => void): void {
-//         this.call('update_dummy',
-//             correlationId, 
-//             {
-//                 dummy: dummy
-//             }, 
-//             (err, result) => {
-//                 this.instrument(correlationId, 'dummy.update');
+	reply := new(testproto.Dummy)
+	err = c.Call("create_dummy", correlationId, req, reply)
+	c.Instrument(correlationId, "dummy.create")
+	if err != nil {
+		return nil, err
+	}
+	result = toDummy(reply)
+	if result != nil && result.Id == "" && result.Key == "" {
+		result = nil
+	}
+	return result, nil
+}
 
-//                 if (result && result.id == "" && result.key == "")
-//                     result = null;
+func (c *DummyGrpcClient) UpdateDummy(correlationId string, dummy testgrpc.Dummy) (result *testgrpc.Dummy, err error) {
+	req := &testproto.DummyObjectRequest{
+		CorrelationId: correlationId,
+		Dummy:         fromDummy(&dummy),
+	}
+	reply := new(testproto.Dummy)
+	err = c.Call("update_dummy", correlationId, req, reply)
+	c.Instrument(correlationId, "dummy.update")
+	if err != nil {
+		return nil, err
+	}
+	result = toDummy(reply)
+	if result != nil && result.Id == "" && result.Key == "" {
+		result = nil
+	}
+	return result, nil
+}
 
-//                 callback(err, result);
-//             }
-//         );
-//     }
+func (c *DummyGrpcClient) DeleteDummy(correlationId string, dummyId string) (result *testgrpc.Dummy, err error) {
 
-//     public deleteDummy(correlationId: string, dummyId: string,
-//         callback: (err: any, result: Dummy) => void): void {
-//         this.call('delete_dummy_by_id',
-//             correlationId, 
-//             {
-//                 dummy_id: dummyId
-//             }, 
-//             (err, result) => {
-//                 this.instrument(correlationId, 'dummy.delete_by_id');
+	req := &testproto.DummyIdRequest{
+		CorrelationId: correlationId,
+		DummyId:       dummyId,
+	}
 
-//                 if (result && result.id == "" && result.key == "")
-//                     result = null;
-
-//                 callback(err, result);
-//             }
-//         );
-//     }
-  
-// }
+	reply := new(testproto.Dummy)
+	c.Call("delete_dummy_by_id", correlationId, req, reply)
+	c.Instrument(correlationId, "dummy.delete_by_id")
+	if err != nil {
+		return nil, err
+	}
+	result = toDummy(reply)
+	if result != nil && result.Id == "" && result.Key == "" {
+		result = nil
+	}
+	return result, nil
+}

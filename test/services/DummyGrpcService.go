@@ -62,8 +62,21 @@ func (c *DummyGrpcService) Open(correlationId string) error {
 
 func (c *DummyGrpcService) GetDummies(ctx context.Context, req *protos.DummiesPageRequest) (*protos.DummiesPage, error) {
 
+	// Schema := cvalid.NewObjectSchema().
+	// 	WithOptionalProperty("Paging", cvalid.NewPagingParamsSchema()).
+	// 	WithOptionalProperty("Filter", cvalid.NewFilterParamsSchema())
+
+	// validateErr := Schema.ValidateAndReturnError("", *req, false)
+
+	// if validateErr != nil {
+	// 	return nil, validateErr
+	// }
+
 	filter := cdata.NewFilterParamsFromValue(req.GetFilter())
-	paging := cdata.NewPagingParams(req.Paging.GetSkip(), req.Paging.GetTake(), req.Paging.GetTotal())
+	paging := cdata.NewEmptyPagingParams()
+	if req.Paging != nil {
+		paging = cdata.NewPagingParams(req.Paging.GetSkip(), req.Paging.GetTake(), req.Paging.GetTotal())
+	}
 	data, err := c.controller.GetPageByFilter(
 		req.CorrelationId,
 		filter,
@@ -88,9 +101,9 @@ func (c *DummyGrpcService) GetDummies(ctx context.Context, req *protos.DummiesPa
 func (c *DummyGrpcService) GetDummyById(ctx context.Context, req *protos.DummyIdRequest) (*protos.Dummy, error) {
 
 	Schema := cvalid.NewObjectSchema().
-		WithRequiredProperty("dummy_id", cconv.String)
+		WithRequiredProperty("DummyId", cconv.String)
 
-	validateErr := Schema.ValidateAndReturnError("", req, true)
+	validateErr := Schema.ValidateAndReturnError("", *req, false)
 
 	if validateErr != nil {
 		return nil, validateErr
@@ -100,7 +113,7 @@ func (c *DummyGrpcService) GetDummyById(ctx context.Context, req *protos.DummyId
 		req.CorrelationId,
 		req.DummyId,
 	)
-	if err != nil || data == nil {
+	if err != nil {
 		return nil, err
 	}
 	result := protos.Dummy{}
@@ -112,6 +125,15 @@ func (c *DummyGrpcService) GetDummyById(ctx context.Context, req *protos.DummyId
 }
 
 func (c *DummyGrpcService) CreateDummy(ctx context.Context, req *protos.DummyObjectRequest) (*protos.Dummy, error) {
+
+	Schema := cvalid.NewObjectSchema().
+		WithRequiredProperty("Dummy", grpctest.NewDummySchema())
+
+	validateErr := Schema.ValidateAndReturnError("", *req, false)
+
+	if validateErr != nil {
+		return nil, validateErr
+	}
 
 	dummy := grpctest.Dummy{}
 	bytes, _ := json.Marshal(req.Dummy)
@@ -134,6 +156,15 @@ func (c *DummyGrpcService) CreateDummy(ctx context.Context, req *protos.DummyObj
 
 func (c *DummyGrpcService) UpdateDummy(ctx context.Context, req *protos.DummyObjectRequest) (*protos.Dummy, error) {
 
+	Schema := cvalid.NewObjectSchema().
+		WithRequiredProperty("Dummy", grpctest.NewDummySchema())
+
+	validateErr := Schema.ValidateAndReturnError("", *req, false)
+
+	if validateErr != nil {
+		return nil, validateErr
+	}
+
 	dummy := grpctest.Dummy{}
 	bytes, _ := json.Marshal(req.Dummy)
 	json.Unmarshal(bytes, &dummy)
@@ -154,6 +185,15 @@ func (c *DummyGrpcService) UpdateDummy(ctx context.Context, req *protos.DummyObj
 
 func (c *DummyGrpcService) DeleteDummyById(ctx context.Context, req *protos.DummyIdRequest) (*protos.Dummy, error) {
 
+	Schema := cvalid.NewObjectSchema().
+		WithRequiredProperty("DummyId", cconv.String)
+
+	validateErr := Schema.ValidateAndReturnError("", *req, false)
+
+	if validateErr != nil {
+		return nil, validateErr
+	}
+
 	data, err := c.controller.DeleteById(
 		req.CorrelationId,
 		req.DummyId,
@@ -171,40 +211,4 @@ func (c *DummyGrpcService) Register() {
 
 	protos.RegisterDummiesServer(c.Endpoint.GetServer(), c)
 
-	//     c.registerMethod(
-	//         "get_dummies",
-	//         new ObjectSchema(true)
-	//             .withOptionalProperty("paging", new PagingParamsSchema())
-	//             .withOptionalProperty("filter", new FilterParamsSchema()),
-	//         c.getPageByFilter
-	//     );
-
-	//     c.registerMethod(
-	//         "get_dummy_by_id",
-	//         new ObjectSchema(true)
-	//             .withRequiredProperty("dummy_id", TypeCode.String),
-	//         c.getOneById
-	//     );
-
-	//     c.registerMethod(
-	//         "create_dummy",
-	//         new ObjectSchema(true)
-	//             .withRequiredProperty("dummy", new DummySchema()),
-	//         c.create
-	//     );
-
-	//     c.registerMethod(
-	//         "update_dummy",
-	//         new ObjectSchema(true)
-	//             .withRequiredProperty("dummy", new DummySchema()),
-	//         c.update
-	//     );
-
-	//     c.registerMethod(
-	//         "delete_dummy_by_id",
-	//         new ObjectSchema(true)
-	//             .withRequiredProperty("dummy_id", TypeCode.String),
-	//         c.deleteById
-	//     );
-	// }
 }

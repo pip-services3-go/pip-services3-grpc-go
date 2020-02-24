@@ -1,73 +1,91 @@
 package test_clients
 
-// import { FilterParams } from 'pip-services3-commons-node';
-// import { PagingParams } from 'pip-services3-commons-node';
-// import { DataPage } from 'pip-services3-commons-node';
+import (
+	"reflect"
 
-// import { CommandableGrpcClient } from '../../src/clients/CommandableGrpcClient';
-// import { IDummyClient } from './IDummyClient';
-// import { Dummy } from '../Dummy';
+	cdata "github.com/pip-services3-go/pip-services3-commons-go/data"
+	grpcclients "github.com/pip-services3-go/pip-services3-grpc-go/clients"
+	testgrpc "github.com/pip-services3-go/pip-services3-grpc-go/test"
+	rpcclients "github.com/pip-services3-go/pip-services3-rpc-go/clients"
+)
 
-// export class DummyCommandableGrpcClient extends CommandableGrpcClient implements IDummyClient {
+type DummyCommandableGrpcClient struct {
+	*grpcclients.CommandableGrpcClient
+}
 
-//     public constructor() {
-//         super('dummy');
-//     }
+func NewDummyCommandableGrpcClient() *DummyCommandableGrpcClient {
+	dcgc := DummyCommandableGrpcClient{}
+	dcgc.CommandableGrpcClient = grpcclients.NewCommandableGrpcClient("dummy")
+	return &dcgc
+}
 
-//     public getDummies(correlationId: string, filter: FilterParams, paging: PagingParams, callback: (err: any, result: DataPage<Dummy>) => void): void {
-//         this.callCommand(
-//             'get_dummies',
-//             correlationId,
-//             {
-//                 filter: filter,
-//                 paging: paging
-//             },
-//             callback
-//         );
-//     }
+func (c *DummyCommandableGrpcClient) GetDummies(correlationId string, filter *cdata.FilterParams, paging *cdata.PagingParams) (result *testgrpc.DummyDataPage, err error) {
 
-//     public getDummyById(correlationId: string, dummyId: string, callback: (err: any, result: Dummy) => void): void {
-//         this.callCommand(
-//             'get_dummy_by_id',
-//             correlationId,
-//             {
-//                 dummy_id: dummyId
-//             },
-//             callback
-//         );
-//     }
+	params := cdata.NewEmptyStringValueMap()
+	c.AddFilterParams(params, filter)
+	c.AddPagingParams(params, paging)
 
-//     public createDummy(correlationId: string, dummy: any, callback: (err: any, result: Dummy) => void): void {
-//         this.callCommand(
-//             'create_dummy',
-//             correlationId,
-//             {
-//                 dummy: dummy
-//             },
-//             callback
-//         );
-//     }
+	calValue, calErr := c.CallCommand("get_dummies", correlationId, params)
+	if calErr != nil {
+		return nil, calErr
+	}
 
-//     public updateDummy(correlationId: string, dummy: any, callback: (err: any, result: Dummy) => void): void {
-//         this.callCommand(
-//             'update_dummy',
-//             correlationId,
-//             {
-//                 dummy: dummy
-//             },
-//             callback
-//         );
-//     }
+	convRes, err := rpcclients.ConvertComandResult(calValue, reflect.TypeOf(&testgrpc.DummyDataPage{}))
+	result, _ = convRes.(*testgrpc.DummyDataPage)
+	return result, err
+}
 
-//     public deleteDummy(correlationId: string, dummyId: string, callback: (err: any, result: Dummy) => void): void {
-//         this.callCommand(
-//             'delete_dummy',
-//             correlationId,
-//             {
-//                 dummy_id: dummyId
-//             },
-//             callback
-//         );
-//     }
+func (c *DummyCommandableGrpcClient) GetDummyById(correlationId string, dummyId string) (result *testgrpc.Dummy, err error) {
 
-// }
+	params := cdata.NewEmptyStringValueMap()
+	params.Put("dummy_id", dummyId)
+
+	calValue, calErr := c.CallCommand("get_dummy_by_id", correlationId, params)
+	if calErr != nil {
+		return nil, calErr
+	}
+	convRes, err := rpcclients.ConvertComandResult(calValue, reflect.TypeOf(&testgrpc.Dummy{}))
+	result, _ = convRes.(*testgrpc.Dummy)
+	return result, err
+}
+
+func (c *DummyCommandableGrpcClient) CreateDummy(correlationId string, dummy testgrpc.Dummy) (result *testgrpc.Dummy, err error) {
+
+	bodyMap := make(map[string]interface{})
+	bodyMap["dummy"] = dummy
+	calValue, calErr := c.CallCommand("create_dummy", correlationId, bodyMap)
+	if calErr != nil {
+		return nil, calErr
+	}
+
+	convRes, err := rpcclients.ConvertComandResult(calValue, reflect.TypeOf(&testgrpc.Dummy{}))
+	result, _ = convRes.(*testgrpc.Dummy)
+	return result, err
+}
+
+func (c *DummyCommandableGrpcClient) UpdateDummy(correlationId string, dummy testgrpc.Dummy) (result *testgrpc.Dummy, err error) {
+
+	bodyMap := make(map[string]interface{})
+	bodyMap["dummy"] = dummy
+	calValue, calErr := c.CallCommand("update_dummy", correlationId, bodyMap)
+	if calErr != nil {
+		return nil, calErr
+	}
+	convRes, err := rpcclients.ConvertComandResult(calValue, reflect.TypeOf(&testgrpc.Dummy{}))
+	result, _ = convRes.(*testgrpc.Dummy)
+	return result, err
+}
+
+func (c *DummyCommandableGrpcClient) DeleteDummy(correlationId string, dummyId string) (result *testgrpc.Dummy, err error) {
+
+	params := cdata.NewEmptyStringValueMap()
+	params.Put("dummy_id", dummyId)
+
+	calValue, calErr := c.CallCommand("delete_dummy", correlationId, params)
+	if calErr != nil {
+		return nil, calErr
+	}
+	convRes, err := rpcclients.ConvertComandResult(calValue, reflect.TypeOf(&testgrpc.Dummy{}))
+	result, _ = convRes.(*testgrpc.Dummy)
+	return result, err
+}

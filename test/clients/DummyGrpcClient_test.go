@@ -1,55 +1,49 @@
 package test_clients
 
-// import { Descriptor } from 'pip-services3-commons-node';
-// import { ConfigParams } from 'pip-services3-commons-node';
-// import { References } from 'pip-services3-commons-node';
+import (
+	"testing"
 
-// import { DummyController } from '../DummyController';
-// import { DummyGrpcService } from '../services/DummyGrpcService';
-// import { DummyGrpcClient } from './DummyGrpcClient';
-// import { DummyClientFixture } from './DummyClientFixture';
+	cconf "github.com/pip-services3-go/pip-services3-commons-go/config"
+	cref "github.com/pip-services3-go/pip-services3-commons-go/refer"
+	testgrpc "github.com/pip-services3-go/pip-services3-grpc-go/test"
+	testservices "github.com/pip-services3-go/pip-services3-grpc-go/test/services"
+)
 
-// var grpcConfig = ConfigParams.fromTuples(
-//     "connection.protocol", "http",
-//     "connection.host", "localhost",
-//     "connection.port", 3000
-// );
+func TestDummyGrpcClient(t *testing.T) {
 
-// suite('DummyGrpcClient', ()=> {
-//     let service: DummyGrpcService;
-//     let client: DummyGrpcClient;
-//     let fixture: DummyClientFixture;
+	grpcConfig := cconf.NewConfigParamsFromTuples(
+		"connection.protocol", "http",
+		"connection.host", "localhost",
+		"connection.port", "3000",
+	)
 
-//     suiteSetup((done) => {
-//         let ctrl = new DummyController();
+	var service *testservices.DummyGrpcService
+	var client *DummyGrpcClient
+	var fixture *DummyClientFixture
 
-//         service = new DummyGrpcService();
-//         service.configure(grpcConfig);
+	ctrl := testgrpc.NewDummyController()
 
-//         let references: References = References.fromTuples(
-//             new Descriptor('pip-services-dummies', 'controller', 'default', 'default', '1.0'), ctrl,
-//             new Descriptor('pip-services-dummies', 'service', 'grpc', 'default', '1.0'), service
-//         );
-//         service.setReferences(references);
+	service = testservices.NewDummyGrpcService()
+	service.Configure(grpcConfig)
 
-//         service.open(null, done);
-//     });
+	references := cref.NewReferencesFromTuples(
+		cref.NewDescriptor("pip-services-dummies", "controller", "default", "default", "1.0"), ctrl,
+		cref.NewDescriptor("pip-services-dummies", "service", "grpc", "default", "1.0"), service,
+	)
+	service.SetReferences(references)
 
-//     suiteTeardown((done) => {
-//         service.close(null, done);
-//     });
+	service.Open("")
 
-//     setup((done) => {
-//         client = new DummyGrpcClient();
-//         fixture = new DummyClientFixture(client);
+	defer service.Close("")
 
-//         client.configure(grpcConfig);
-//         client.setReferences(new References());
-//         client.open(null, done);
-//     });
+	client = NewDummyGrpcClient()
+	fixture = NewDummyClientFixture(client)
 
-//     test('CRUD Operations', (done) => {
-//         fixture.testCrudOperations(done);
-//     });
+	client.Configure(grpcConfig)
+	client.SetReferences(cref.NewEmptyReferences())
+	client.Open("")
+	defer client.Close("")
 
-// });
+	t.Run("CRUD Operations", fixture.TestCrudOperations)
+
+}

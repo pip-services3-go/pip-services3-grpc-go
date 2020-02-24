@@ -79,7 +79,7 @@ type CommandableGrpcClient struct {
 */
 func NewCommandableGrpcClient(name string) *CommandableGrpcClient {
 	cgc := CommandableGrpcClient{}
-	cgc.GrpcClient = NewGrpcClient(name)
+	cgc.GrpcClient = NewGrpcClient("commandable.Commandable")
 	cgc.Name = name
 	return &cgc
 }
@@ -115,7 +115,7 @@ func (c *CommandableGrpcClient) CallCommand(name string, correlationId string, p
 	}
 
 	var response grpcproto.InvokeReply
-	err = c.Call("invoke", correlationId, request, &response)
+	err = c.Call("invoke", correlationId, &request, &response)
 
 	timing.EndTiming()
 
@@ -139,12 +139,5 @@ func (c *CommandableGrpcClient) CallCommand(name string, correlationId string, p
 	}
 
 	// Handle regular response
-	var resObj interface{}
-	err = json.Unmarshal([]byte(response.ResultJson), &resObj)
-
-	if err != nil {
-		return nil, err
-	}
-	return &resObj, nil
-
+	return []byte(response.ResultJson), nil
 }

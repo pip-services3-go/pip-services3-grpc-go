@@ -7,7 +7,7 @@ run: install
 	@go run main.go
 
 test:
-	@go test ./test/...
+	@go test -v ./test/...
 
 protogen:
 	protoc --go_out=plugins=grpc:. protos/commandable.proto
