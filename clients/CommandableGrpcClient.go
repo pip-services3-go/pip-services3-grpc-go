@@ -2,9 +2,11 @@ package clients
 
 import (
 	"encoding/json"
+	"reflect"
 
 	cerr "github.com/pip-services3-go/pip-services3-commons-go/errors"
 	grpcproto "github.com/pip-services3-go/pip-services3-grpc-go/protos"
+	rpcclients "github.com/pip-services3-go/pip-services3-rpc-go/clients"
 )
 
 // import (
@@ -94,7 +96,7 @@ The complete route to remote method is defined as serviceName + "." + name.
 - params            command parameters.
 - callback          callback function that receives result or error.
 */
-func (c *CommandableGrpcClient) CallCommand(name string, correlationId string, params interface{}) (result interface{}, err error) {
+func (c *CommandableGrpcClient) CallCommand(prototype reflect.Type, name string, correlationId string, params interface{}) (result interface{}, err error) {
 	method := c.Name + "." + name
 	timing := c.Instrument(correlationId, method)
 
@@ -139,5 +141,9 @@ func (c *CommandableGrpcClient) CallCommand(name string, correlationId string, p
 	}
 
 	// Handle regular response
+	if prototype != nil {
+		return rpcclients.ConvertComandResult([]byte(response.ResultJson), prototype)
+	}
+
 	return []byte(response.ResultJson), nil
 }
