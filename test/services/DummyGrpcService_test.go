@@ -112,5 +112,4 @@ func TestDummyGrpcService(t *testing.T) {
 	idRequest = protos.DummyIdRequest{DummyId: dummy1.Id}
 	dummy, err = client.GetDummyById(context.TODO(), &idRequest)
 	assert.Nil(t, err)
-	//assert.Nil(t, dummy)
 }

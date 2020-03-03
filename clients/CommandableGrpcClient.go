@@ -9,20 +9,16 @@ import (
 	rpcclients "github.com/pip-services3-go/pip-services3-rpc-go/clients"
 )
 
-// import (
-// 	pb "github.com/pip-services3-go/pip-services3-grpc-go/protos"
-// )
-
 /*
-Abstract client that calls commandable GRPC service.
+CommandableGrpcClient abstract client that calls commandable GRPC service.
 
-Commandable services are generated automatically for https://rawgit.com/pip-services-node/pip-services3-commons-node/master/doc/api/interfaces/commands.icommandable.html ICommandable objects.
+Commandable services are generated automatically for ICommandable objects.
 Each command is exposed as Invoke method that receives all parameters as args.
 
- Configuration parameters
+Configuration parameters:
 
 - connection(s):
-  - discovery_key:         (optional) a key to retrieve the connection from https://rawgit.com/pip-services-node/pip-services3-components-node/master/doc/api/interfaces/connect.idiscovery.html IDiscovery
+  - discovery_key:         (optional) a key to retrieve the connection from IDiscovery
   - protocol:              connection protocol: http or https
   - host:                  host name or IP address
   - port:                  port number
@@ -32,42 +28,40 @@ Each command is exposed as Invoke method that receives all parameters as args.
   - connect_timeout:       connection timeout in milliseconds (default: 10 sec)
   - timeout:               invocation timeout in milliseconds (default: 10 sec)
 
- References
+ References:
 
-- *:logger:*:*:1.0         (optional) https://rawgit.com/pip-services-node/pip-services3-components-node/master/doc/api/interfaces/log.ilogger.html ILogger components to pass log messages
-- *:counters:*:*:1.0         (optional) https://rawgit.com/pip-services-node/pip-services3-components-node/master/doc/api/interfaces/count.icounters.html ICounters components to pass collected measurements
-- *:discovery:*:*:1.0        (optional) https://rawgit.com/pip-services-node/pip-services3-components-node/master/doc/api/interfaces/connect.idiscovery.html IDiscovery services to resolve connection
+- *:logger:*:*:1.0         (optional) ILogger components to pass log messages
+- *:counters:*:*:1.0         (optional) ICounters components to pass collected measurements
+- *:discovery:*:*:1.0        (optional) IDiscovery services to resolve connection
 
- Example
+Example:
 
-    class MyCommandableGrpcClient extends CommandableGrpcClient implements IMyClient {
+    type MyCommandableGrpcClient struct {
+	 *CommandableGrpcClient
        ...
+	}
+        func (c * MyCommandableGrpcClient) GetData(correlationId string, id string) (result *MyData, err error) {
+           params := cdata.NewEmptyStringValueMap()
+			params.Put("id", id)
 
-        public getData(correlationId: string, id: string,
-           callback: (err: any, result: MyData) => void): void {
-
-           c.callCommand(
-               "get_data",
-               correlationId,
-               { id: id },
-               (err, result) => {
-                   callback(err, result);
-               }
-            );
+			calValue, calErr := c.CallCommand(MyDataType, "get_mydata_by_id", correlationId, params)
+			if calErr != nil {
+				return nil, calErr
+			}
+			result, _ = calValue.(*testgrpc.MyData)
+			return result, err
         }
         ...
-    }
 
-    let client = new MyCommandableGrpcClient();
-    client.configure(ConfigParams.fromTuples(
+    client := NewMyCommandableGrpcClient();
+    client.Configure(cconf.NewConfigParamsFromTuples(
         "connection.protocol", "http",
         "connection.host", "localhost",
-        "connection.port", 8080
+        "connection.port", 8080,
     ));
 
-    client.getData("123", "1", (err, result) => {
+	result, err := client.GetData("123", "1")
     ...
-    });
 */
 type CommandableGrpcClient struct {
 	*GrpcClient
@@ -75,27 +69,25 @@ type CommandableGrpcClient struct {
 	Name string
 }
 
-/*
-   Creates a new instance of the client.
-   - name     a service name.
-*/
+// NewCommandableGrpcClient method are creates a new instance of the client.
+// Parameters:
+// - name     a service name.
 func NewCommandableGrpcClient(name string) *CommandableGrpcClient {
-	cgc := CommandableGrpcClient{}
-	cgc.GrpcClient = NewGrpcClient("commandable.Commandable")
-	cgc.Name = name
-	return &cgc
+	c := CommandableGrpcClient{}
+	c.GrpcClient = NewGrpcClient("commandable.Commandable")
+	c.Name = name
+	return &c
 }
 
-/*
-Calls a remote method via GRPC commadable protocol.
-The call is made via Invoke method and all parameters are sent in args object.
-The complete route to remote method is defined as serviceName + "." + name.
-
-- name              a name of the command to call.
-- correlationId     (optional) transaction id to trace execution through call chain.
-- params            command parameters.
-- callback          callback function that receives result or error.
-*/
+// CallCommand method are calls a remote method via GRPC commadable protocol.
+// The call is made via Invoke method and all parameters are sent in args object.
+// The complete route to remote method is defined as serviceName + "." + name.
+// Parameters:
+//  - prototype         a prototype for properly convert result
+//  - name              a name of the command to call.
+//  - correlationId     (optional) transaction id to trace execution through call chain.
+//  - params            command parameters.
+// Retruns: result or error.
 func (c *CommandableGrpcClient) CallCommand(prototype reflect.Type, name string, correlationId string, params interface{}) (result interface{}, err error) {
 	method := c.Name + "." + name
 	timing := c.Instrument(correlationId, method)

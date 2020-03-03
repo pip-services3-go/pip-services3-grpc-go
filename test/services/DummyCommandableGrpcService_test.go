@@ -52,7 +52,7 @@ func TestDummyCommandableGrpcService(t *testing.T) {
 	Dummy1 = testgrpc.Dummy{Id: "", Key: "Key 1", Content: "Content 1"}
 	Dummy2 = testgrpc.Dummy{Id: "", Key: "Key 2", Content: "Content 2"}
 
-	//     Test CRUD Operations
+	// Test CRUD Operations
 	var dummy, dummy1 testgrpc.Dummy
 
 	request := cmdproto.InvokeRequest{}
@@ -91,7 +91,6 @@ func TestDummyCommandableGrpcService(t *testing.T) {
 	assert.NotNil(t, dummy)
 	assert.Equal(t, dummy.Content, Dummy2.Content)
 	assert.Equal(t, dummy.Key, Dummy2.Key)
-	//dummy2 = dummy
 
 	// Get all dummies
 	request.Method = "dummy.get_dummies"
@@ -141,7 +140,7 @@ func TestDummyCommandableGrpcService(t *testing.T) {
 	assert.Nil(t, err)
 	assert.Nil(t, response.Error)
 
-	//         // Try to get delete dummy
+	// Try to get delete dummy
 	request.Method = "dummy.get_dummy_by_id"
 	request.ArgsEmpty = false
 	request.ArgsJson = string(jsonBuf)

@@ -21,12 +21,12 @@ type DummyGrpcService struct {
 }
 
 func NewDummyGrpcService() *DummyGrpcService {
-	dgs := DummyGrpcService{}
-	dgs.GrpcService = grpcservices.NewGrpcService("dummies.Dummies")
-	dgs.GrpcService.IRegisterable = &dgs
-	dgs.numberOfCalls = 0
-	dgs.DependencyResolver.Put("controller", cref.NewDescriptor("pip-services-dummies", "controller", "default", "*", "*"))
-	return &dgs
+	c := DummyGrpcService{}
+	c.GrpcService = grpcservices.NewGrpcService("dummies.Dummies")
+	c.GrpcService.IRegisterable = &c
+	c.numberOfCalls = 0
+	c.DependencyResolver.Put("controller", cref.NewDescriptor("pip-services-dummies", "controller", "default", "*", "*"))
+	return &c
 }
 
 func (c *DummyGrpcService) SetReferences(references cref.IReferences) {
@@ -56,7 +56,6 @@ func (c *DummyGrpcService) incrementNumberOfCalls(ctx context.Context, req inter
 func (c *DummyGrpcService) Open(correlationId string) error {
 	// Add interceptors
 	c.Endpoint.AddInterceptors(grpc.UnaryInterceptor(c.incrementNumberOfCalls))
-
 	return c.GrpcService.Open(correlationId)
 }
 
@@ -94,7 +93,6 @@ func (c *DummyGrpcService) GetDummies(ctx context.Context, req *protos.DummiesPa
 		json.Unmarshal(bytes, &buf)
 		result.Data = append(result.Data, &buf)
 	}
-
 	return &result, err
 }
 
@@ -119,9 +117,7 @@ func (c *DummyGrpcService) GetDummyById(ctx context.Context, req *protos.DummyId
 	result := protos.Dummy{}
 	bytes, _ := json.Marshal(data)
 	json.Unmarshal(bytes, &result)
-
 	return &result, nil
-
 }
 
 func (c *DummyGrpcService) CreateDummy(ctx context.Context, req *protos.DummyObjectRequest) (*protos.Dummy, error) {
@@ -151,7 +147,6 @@ func (c *DummyGrpcService) CreateDummy(ctx context.Context, req *protos.DummyObj
 	bytes, _ = json.Marshal(data)
 	json.Unmarshal(bytes, &result)
 	return &result, nil
-
 }
 
 func (c *DummyGrpcService) UpdateDummy(ctx context.Context, req *protos.DummyObjectRequest) (*protos.Dummy, error) {
@@ -208,7 +203,5 @@ func (c *DummyGrpcService) DeleteDummyById(ctx context.Context, req *protos.Dumm
 }
 
 func (c *DummyGrpcService) Register() {
-
 	protos.RegisterDummiesServer(c.Endpoint.GetServer(), c)
-
 }

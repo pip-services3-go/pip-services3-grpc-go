@@ -11,8 +11,8 @@ type DummyCommandableGrpcService struct {
 
 func NewDummyCommandableGrpcService() *DummyCommandableGrpcService {
 
-	dcgs := DummyCommandableGrpcService{}
-	dcgs.CommandableGrpcService = grpcservices.NewCommandableGrpcService("dummy")
-	dcgs.DependencyResolver.Put("controller", cref.NewDescriptor("pip-services-dummies", "controller", "default", "*", "*"))
-	return &dcgs
+	c := DummyCommandableGrpcService{}
+	c.CommandableGrpcService = grpcservices.NewCommandableGrpcService("dummy")
+	c.DependencyResolver.Put("controller", cref.NewDescriptor("pip-services-dummies", "controller", "default", "*", "*"))
+	return &c
 }

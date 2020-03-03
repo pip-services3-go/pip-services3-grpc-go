@@ -17,13 +17,13 @@ import (
 )
 
 /*
-Abstract client that calls commandable HTTP service.
+GrpcClient abstract client that calls commandable HTTP service.
 
 Commandable services are generated automatically for ICommandable objects. Each command is exposed as POST operation that receives all parameters in body object.
 
-Configuration parameters
-base_route: base route for remote URI
+Configuration parameters:
 
+base_route: base route for remote URI
 connection(s):
 discovery_key: (optional) a key to retrieve the connection from IDiscovery
 protocol: connection protocol: http or https
@@ -34,36 +34,48 @@ options:
 retries: number of retries (default: 3)
 connect_timeout: connection timeout in milliseconds (default: 10 sec)
 timeout: invocation timeout in milliseconds (default: 10 sec)
-References
+
+References:
+
 *:logger:*:*:1.0 (optional) ILogger components to pass log messages
 *:counters:*:*:1.0 (optional) ICounters components to pass collected measurements
 *:discovery:*:*:1.0 (optional) IDiscovery services to resolve connection
 
-Example
-type MyCommandableHttpClient {
-CommandableHttpClient
+Example:
 
+type MyCommandableHttpClient struct{
+ 	*CommandableHttpClient
 }
     func  (c *MyCommandableHttpClient) GetData(correlationId string, id string) (res interface{}, err error) {
 
-       res, err = chc.callCommand(
-           "get_data",
-           correlationId,
-           { id: id });
+        req := &testproto.MyDataIdRequest{
+			CorrelationId: correlationId,
+			mydataId:       id,
+		}
+
+		reply := new(testproto.MyData)
+		err = c.Call("get_mydata_by_id", correlationId, req, reply)
+		c.Instrument(correlationId, "mydata.get_one_by_id")
+		if err != nil {
+			return nil, err
+		}
+		result = toMyData(reply)
+		if result != nil && result.Id == "" && result.Key == "" {
+			result = nil
+		}
+		return result, nil
 	}
 
 var client = NewMyCommandableHttpClient();
 client.Configure(NewConfigParamsFromTuples(
     "connection.protocol", "http",
     "connection.host", "localhost",
-    "connection.port", 8080
+    "connection.port", 8080,
 ));
 
-client.GetData("123", "1", (err, result) => {
+result, err := client.GetData("123", "1")
 ...
-});
 */
-
 type GrpcClient struct {
 	address string
 	name    string
@@ -89,16 +101,16 @@ type GrpcClient struct {
 	Uri string
 }
 
-// Creates a new instance of the client.
+// NewGrpcClient method are creates a new instance of the client.
 // Parameters:
-// 			- baseRoute string
-// 			a base route for remote service.
+// 	- baseRoute string
+// 	a base route for remote service.
 // Returns *GrpcClient
 func NewGrpcClient(name string) *GrpcClient {
-	gc := GrpcClient{
+	c := GrpcClient{
 		name: name,
 	}
-	gc.defaultConfig = cconf.NewConfigParamsFromTuples(
+	c.defaultConfig = cconf.NewConfigParamsFromTuples(
 		"connection.protocol", "http",
 		"connection.host", "localhost",
 		"connection.port", "8090",
@@ -108,20 +120,20 @@ func NewGrpcClient(name string) *GrpcClient {
 		"options.retries", 3,
 		"options.debug", true,
 	)
-	gc.ConnectionResolver = rpccon.NewHttpConnectionResolver()
-	gc.Logger = clog.NewCompositeLogger()
-	gc.Counters = ccount.NewCompositeCounters()
-	gc.Options = cconf.NewEmptyConfigParams()
-	gc.ConnectTimeout = 10000 * time.Millisecond
-	gc.Timeout = 10000 * time.Millisecond
+	c.ConnectionResolver = rpccon.NewHttpConnectionResolver()
+	c.Logger = clog.NewCompositeLogger()
+	c.Counters = ccount.NewCompositeCounters()
+	c.Options = cconf.NewEmptyConfigParams()
+	c.ConnectTimeout = 10000 * time.Millisecond
+	c.Timeout = 10000 * time.Millisecond
 
-	return &gc
+	return &c
 }
 
-// Configures component by passing configuration parameters.
+// Configure method are configures component by passing configuration parameters.
 // Parameters:
-// 			- config *config.ConfigParams
-// 			onfiguration parameters to be set.
+// 	- config *config.ConfigParams
+// 	configuration parameters to be set.
 func (c *GrpcClient) Configure(config *cconf.ConfigParams) {
 	host := config.GetAsStringWithDefault("connection.host", "localhost")
 	port := config.GetAsStringWithDefault("connection.port", "8090")
@@ -132,8 +144,8 @@ func (c *GrpcClient) Configure(config *cconf.ConfigParams) {
 	c.address = host + ":" + port
 }
 
-// Sets references to dependent components.
-// - references  cref.IReferences
+// SetReferences method are sets references to dependent components.
+//  - references  cref.IReferences
 //	references to locate the component dependencies.
 func (c *GrpcClient) SetReferences(references cref.IReferences) {
 	c.Logger.SetReferences(references)
@@ -141,29 +153,24 @@ func (c *GrpcClient) SetReferences(references cref.IReferences) {
 	c.ConnectionResolver.SetReferences(references)
 }
 
-/*
-  Adds instrumentation to log calls and measure call time.
-  It returns a Timing object that is used to end the time measurement.
-
-  - correlationId     (optional) transaction id to trace execution through call chain.
-  - name              a method name.
-  @returns Timing object to end the time measurement.
-*/
+// Instrument method are adds instrumentation to log calls and measure call time.
+// It returns a Timing object that is used to end the time measurement.
+//   - correlationId     (optional) transaction id to trace execution through call chain.
+//   - name              a method name.
+// Returns: Timing object to end the time measurement.
 func (c *GrpcClient) Instrument(correlationId string, name string) *ccount.Timing {
 	c.Logger.Trace(correlationId, "Executing %s method", name)
 	c.Counters.IncrementOne(name + ".call_count")
 	return c.Counters.BeginTiming(name + ".call_time")
 }
 
-/*
-  Adds instrumentation to error handling.
-
-  - correlationId     (optional) transaction id to trace execution through call chain.
-  - name              a method name.
-  - err               an occured error
-  - result            (optional) an execution result
-  - callback          (optional) an execution callback
-*/
+// InstrumentError mrthod are adds instrumentation to error handling.
+//   - correlationId     (optional) transaction id to trace execution through call chain.
+//   - name              a method name.
+//   - err               an occured error
+//   - result            (optional) an execution result
+// Retruns: result interface{}, err error
+// input result and error.
 func (c *GrpcClient) InstrumentError(correlationId string, name string, inErr error, inRes interface{}) (result interface{}, err error) {
 	if inErr != nil {
 		c.Logger.Error(correlationId, inErr, "Failed to call %s method", name)
@@ -173,37 +180,34 @@ func (c *GrpcClient) InstrumentError(correlationId string, name string, inErr er
 	return inRes, inErr
 }
 
-// Checks if the component is opened.
+// IsOpen method are checks if the component is opened.
 // Returns bool
 // true if the component has been opened and false otherwise.
 func (c *GrpcClient) IsOpen() bool {
 	return c.connection != nil
 }
 
-// Opens the component.
+// Open method are opens the component.
 // Parameters:
-// 			-correlationId string
-// 			 transaction id to trace execution through call chain.
+// 	- correlationId string
+// 	transaction id to trace execution through call chain.
 // Returns error
+// error or nil
 func (c *GrpcClient) Open(correlationId string) error {
 
 	if c.IsOpen() {
 		return nil
 	}
-
 	connection, credential, err := c.ConnectionResolver.Resolve(correlationId)
 	if err != nil {
 		return err
 	}
-
 	c.Uri = connection.Uri()
-
 	// Set up a connection to the server.
 	opts := []grpc.DialOption{
 		grpc.WithTimeout(c.ConnectTimeout),
 		grpc.WithKeepaliveParams(keepalive.ClientParameters{Timeout: c.Timeout}),
 	}
-
 	if connection.Protocol() == "https" {
 		//sslKeyFile := credential.GetAsString("ssl_key_file")
 		sslCrtFile := credential.GetAsString("ssl_crt_file")
@@ -215,22 +219,19 @@ func (c *GrpcClient) Open(correlationId string) error {
 	} else {
 		opts = append(opts, grpc.WithInsecure())
 	}
-
 	conn, err := grpc.Dial(c.address, opts...)
 	if err != nil {
 		return err
 	}
 	c.connection = conn
-
 	c.Client = grpcproto.NewCommandableClient(conn)
-
 	return nil
 }
 
-// Closes component and frees used resources.
+// Close method are closes component and frees used resources.
 // Parameters:
-// 			- correlationId string
-// 			transaction id to trace execution through call chain.
+// 	- correlationId string
+// 	transaction id to trace execution through call chain.
 // Returns error
 func (c *GrpcClient) Close(correlationId string) error {
 	if c.connection != nil {
@@ -240,7 +241,7 @@ func (c *GrpcClient) Close(correlationId string) error {
 	return nil
 }
 
-// Calls a remote method via gRPC protocol.
+// Call method are calls a remote method via gRPC protocol.
 // Parameters:
 // 		- method string
 // 		gRPC method name
@@ -257,16 +258,13 @@ func (c *GrpcClient) Call(method string, correlationId string, request interface
 	method = "/" + c.name + "/" + method
 	err := c.connection.Invoke(ctx, method, request, response)
 	return err
-
 }
 
-/*
-   Adds filter parameters (with the same name as they defined)
-   to invocation parameter map.
-   - params        invocation parameters.
-   - filter        (optional) filter parameters
-   Return invocation parameters with added filter parameters.
-*/
+// AddFilterParams method are adds filter parameters (with the same name as they defined)
+// to invocation parameter map.
+//    - params        invocation parameters.
+//    - filter        (optional) filter parameters
+// Return invocation parameters with added filter parameters.
 func (c *GrpcClient) AddFilterParams(params *cdata.StringValueMap, filter *cdata.FilterParams) *cdata.StringValueMap {
 
 	if params == nil {
@@ -280,12 +278,10 @@ func (c *GrpcClient) AddFilterParams(params *cdata.StringValueMap, filter *cdata
 	return params
 }
 
-/*
-   Adds paging parameters (skip, take, total) to invocation parameter map.
-   - params        invocation parameters.
-   - paging        (optional) paging parameters
-   Return invocation parameters with added paging parameters.
-*/
+// AddPagingParams method are adds paging parameters (skip, take, total) to invocation parameter map.
+//    - params        invocation parameters.
+//    - paging        (optional) paging parameters
+// Return invocation parameters with added paging parameters.
 func (c *GrpcClient) AddPagingParams(params *cdata.StringValueMap, paging *cdata.PagingParams) *cdata.StringValueMap {
 	if params == nil {
 		params = cdata.NewEmptyStringValueMap()
@@ -300,6 +296,5 @@ func (c *GrpcClient) AddPagingParams(params *cdata.StringValueMap, paging *cdata
 			params.Put("take", *paging.Take)
 		}
 	}
-
 	return params
 }

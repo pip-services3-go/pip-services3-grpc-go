@@ -16,7 +16,6 @@ func fromError(err error) *testproto.ErrorDescription {
 
 	desc := errors.ErrorDescriptionFactory.Create(err)
 	obj := &testproto.ErrorDescription{
-		//Type:          desc.Type,
 		Category:      desc.Category,
 		Code:          desc.Code,
 		CorrelationId: desc.CorrelationId,
@@ -36,7 +35,6 @@ func toError(obj *testproto.ErrorDescription) error {
 	}
 
 	description := &errors.ErrorDescription{
-		//Type:          obj.Type,
 		Category:      obj.Category,
 		Code:          obj.Code,
 		CorrelationId: obj.CorrelationId,
@@ -56,7 +54,6 @@ func fromMap(val map[string]interface{}) map[string]string {
 	for k, v := range val {
 		r[k] = convert.ToString(v)
 	}
-
 	return r
 }
 
@@ -66,7 +63,6 @@ func toMap(val map[string]string) map[string]interface{} {
 	for k, v := range val {
 		r[k] = v
 	}
-
 	return r
 }
 
@@ -102,7 +98,6 @@ func fromDummy(in *testgrpc.Dummy) *testproto.Dummy {
 		Key:     in.Key,
 		Content: in.Content,
 	}
-
 	return obj
 }
 
@@ -110,13 +105,11 @@ func toDummy(obj *testproto.Dummy) *testgrpc.Dummy {
 	if obj == nil {
 		return nil
 	}
-
 	dummy := &testgrpc.Dummy{
 		Id:      obj.Id,
 		Key:     obj.Key,
 		Content: obj.Content,
 	}
-
 	return dummy
 }
 
