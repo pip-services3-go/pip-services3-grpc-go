@@ -99,6 +99,8 @@ type GrpcClient struct {
 	Timeout time.Duration
 	//	The remote service uri which is calculated on open.
 	Uri string
+	// interceptors
+	interceptors []grpc.DialOption
 }
 
 // NewGrpcClient method are creates a new instance of the client.
@@ -126,7 +128,7 @@ func NewGrpcClient(name string) *GrpcClient {
 	c.Options = cconf.NewEmptyConfigParams()
 	c.ConnectTimeout = 10000 * time.Millisecond
 	c.Timeout = 10000 * time.Millisecond
-
+	c.interceptors = make([]grpc.DialOption, 0, 0)
 	return &c
 }
 
@@ -187,6 +189,15 @@ func (c *GrpcClient) IsOpen() bool {
 	return c.connection != nil
 }
 
+// AddInterceptors method are registers a middleware for methods in gRPC client.
+// See https://github.com/grpc/grpc-go/tree/master/examples/features/interceptor
+// Parameters:
+// - interceptors ...grpc.DialOption
+// interceptor functions (Stream or Unary use grpc.WithUnaryInterceptor() or grpc.WithStreamInterceptor() for inflate in grpc.ServerOption)
+func (c *GrpcClient) AddInterceptors(interceptors ...grpc.DialOption) {
+	c.interceptors = append(c.interceptors, interceptors...)
+}
+
 // Open method are opens the component.
 // Parameters:
 // 	- correlationId string
@@ -208,6 +219,12 @@ func (c *GrpcClient) Open(correlationId string) error {
 		grpc.WithTimeout(c.ConnectTimeout),
 		grpc.WithKeepaliveParams(keepalive.ClientParameters{Timeout: c.Timeout}),
 	}
+
+	if len(c.interceptors) > 0 {
+		// Add interceptors
+		opts = append(opts, c.interceptors...)
+	}
+
 	if connection.Protocol() == "https" {
 		//sslKeyFile := credential.GetAsString("ssl_key_file")
 		sslCrtFile := credential.GetAsString("ssl_crt_file")
