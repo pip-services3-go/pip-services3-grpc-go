@@ -43,6 +43,7 @@ If you worked with the microservice before you can check out latest changes and 
 ```bash
 go get -u
 ```
+
 ## <a name="build"></a> Building
 
 The commons is written in Golang language.
@@ -50,7 +51,7 @@ So, if you make changes to the source code you need to compile it before running
 The process will output compiled executable files.
 
 ```bash
-go buld
+go build
 ```
 
 ## <a name="test"></a> Testing
