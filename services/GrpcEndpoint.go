@@ -184,12 +184,19 @@ func (c *GrpcEndpoint) Open(correlationId string) (err error) {
 		creds, _ := credentials.NewServerTLSFromFile(sslCrtFile, sslKeyFile)
 		opts = append(opts, grpc.Creds(creds))
 	}
-	lis, _ := net.Listen("tcp", c.uri)
+	lis, lErr := net.Listen("tcp", c.uri)
+	if lErr != nil {
+		return lErr
+	}
 	// Create instance of express application
 	c.server = grpc.NewServer(opts...)
+	if c.server == nil {
+		return cerr.NewConnectionError(correlationId, "CAN'T_CREATE_SRV", "Opening GRPC service failed").
+			Wrap(err).WithDetails("url", c.uri)
+	}
 	err = c.connectionResolver.Register(correlationId)
 	if err != nil {
-		return nil
+		return err
 	}
 	c.logger.Debug(correlationId, "Opened GRPC service at tcp:\\\\%s", c.uri)
 	// Start operations

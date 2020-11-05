@@ -19,7 +19,7 @@ func TestDummyGrpcServiceConnection(t *testing.T) {
 	grpcConfig := cconf.NewConfigParamsFromTuples(
 		"connection.protocol", "http",
 		"connection.host", "localhost",
-		"connection.port", "3000",
+		"connection.port", "3001",
 	)
 
 	var Dummy1 testgrpc.Dummy
@@ -55,7 +55,7 @@ func TestDummyGrpcServiceConnection(t *testing.T) {
 	opts := []grpc.DialOption{
 		grpc.WithInsecure(),
 	}
-	conn, err := grpc.Dial("localhost:3000", opts...)
+	conn, err := grpc.Dial("localhost:3001", opts...)
 
 	if err != nil {
 		grpclog.Fatalf("fail to dial: %v", err)
