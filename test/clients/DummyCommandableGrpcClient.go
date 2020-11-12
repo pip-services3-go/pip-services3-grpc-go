@@ -29,7 +29,7 @@ func (c *DummyCommandableGrpcClient) GetDummies(correlationId string, filter *cd
 	c.AddFilterParams(params, filter)
 	c.AddPagingParams(params, paging)
 
-	calValue, calErr := c.CallCommand(dummyDataPageType, "get_dummies", correlationId, params)
+	calValue, calErr := c.CallCommand(dummyDataPageType, "get_dummies", correlationId, cdata.NewAnyValueMapFromValue(params.Value()))
 	if calErr != nil {
 		return nil, calErr
 	}
@@ -39,7 +39,7 @@ func (c *DummyCommandableGrpcClient) GetDummies(correlationId string, filter *cd
 
 func (c *DummyCommandableGrpcClient) GetDummyById(correlationId string, dummyId string) (result *testgrpc.Dummy, err error) {
 
-	params := cdata.NewEmptyStringValueMap()
+	params := cdata.NewEmptyAnyValueMap()
 	params.Put("dummy_id", dummyId)
 
 	calValue, calErr := c.CallCommand(dummyType, "get_dummy_by_id", correlationId, params)
@@ -52,9 +52,10 @@ func (c *DummyCommandableGrpcClient) GetDummyById(correlationId string, dummyId 
 
 func (c *DummyCommandableGrpcClient) CreateDummy(correlationId string, dummy testgrpc.Dummy) (result *testgrpc.Dummy, err error) {
 
-	bodyMap := make(map[string]interface{})
-	bodyMap["dummy"] = dummy
-	calValue, calErr := c.CallCommand(dummyType, "create_dummy", correlationId, bodyMap)
+	params := cdata.NewEmptyAnyValueMap()
+	params.Put("dummy", dummy)
+
+	calValue, calErr := c.CallCommand(dummyType, "create_dummy", correlationId, params)
 	if calErr != nil {
 		return nil, calErr
 	}
@@ -64,9 +65,10 @@ func (c *DummyCommandableGrpcClient) CreateDummy(correlationId string, dummy tes
 
 func (c *DummyCommandableGrpcClient) UpdateDummy(correlationId string, dummy testgrpc.Dummy) (result *testgrpc.Dummy, err error) {
 
-	bodyMap := make(map[string]interface{})
-	bodyMap["dummy"] = dummy
-	calValue, calErr := c.CallCommand(dummyType, "update_dummy", correlationId, bodyMap)
+	params := cdata.NewEmptyAnyValueMap()
+	params.Put("dummy", dummy)
+
+	calValue, calErr := c.CallCommand(dummyType, "update_dummy", correlationId, params)
 	if calErr != nil {
 		return nil, calErr
 	}
@@ -76,7 +78,7 @@ func (c *DummyCommandableGrpcClient) UpdateDummy(correlationId string, dummy tes
 
 func (c *DummyCommandableGrpcClient) DeleteDummy(correlationId string, dummyId string) (result *testgrpc.Dummy, err error) {
 
-	params := cdata.NewEmptyStringValueMap()
+	params := cdata.NewEmptyAnyValueMap()
 	params.Put("dummy_id", dummyId)
 
 	calValue, calErr := c.CallCommand(dummyType, "delete_dummy", correlationId, params)

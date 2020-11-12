@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"reflect"
 
+	cdata "github.com/pip-services3-go/pip-services3-commons-go/data"
 	cerr "github.com/pip-services3-go/pip-services3-commons-go/errors"
 	grpcproto "github.com/pip-services3-go/pip-services3-grpc-go/protos"
 	rpcclients "github.com/pip-services3-go/pip-services3-rpc-go/clients"
@@ -88,13 +89,13 @@ func NewCommandableGrpcClient(name string) *CommandableGrpcClient {
 //  - correlationId     (optional) transaction id to trace execution through call chain.
 //  - params            command parameters.
 // Retruns: result or error.
-func (c *CommandableGrpcClient) CallCommand(prototype reflect.Type, name string, correlationId string, params interface{}) (result interface{}, err error) {
+func (c *CommandableGrpcClient) CallCommand(prototype reflect.Type, name string, correlationId string, params *cdata.AnyValueMap) (result interface{}, err error) {
 	method := c.Name + "." + name
 	timing := c.Instrument(correlationId, method)
 
 	var jsonArgs string
 	if params != nil {
-		jsonRes, err := json.Marshal(params)
+		jsonRes, err := json.Marshal(params.Value())
 		jsonArgs = string(jsonRes)
 		if err != nil {
 			return nil, err
