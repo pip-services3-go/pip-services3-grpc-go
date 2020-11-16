@@ -43,6 +43,8 @@ github.com/pip-services3-go/pip-services3-components-go v1.0.1 h1:dvoUIO/EkK3XOD
 github.com/pip-services3-go/pip-services3-components-go v1.0.1/go.mod h1:Me/KFWw/xeMML89twlGdFKqnvprgt2qyi8xAV1+XKGs=
 github.com/pip-services3-go/pip-services3-components-go v1.0.2 h1:46jDnLU9f4H+vIUKyTGY5MqZiTK7gKYjF6xU3iXZcWI=
 github.com/pip-services3-go/pip-services3-components-go v1.0.2/go.mod h1:Me/KFWw/xeMML89twlGdFKqnvprgt2qyi8xAV1+XKGs=
+github.com/pip-services3-go/pip-services3-components-go v1.0.4 h1:uPLfxiQyc0bs9fwNwJGLI8k71kgVQzF1iyBCaFp7RIk=
+github.com/pip-services3-go/pip-services3-components-go v1.0.4/go.mod h1:Me/KFWw/xeMML89twlGdFKqnvprgt2qyi8xAV1+XKGs=
 github.com/pip-services3-go/pip-services3-rpc-go v0.0.0-20200218142434-b7578b2c74dc h1:IsjQkbIPTa75XTsT9NfrNEFkXWGj+GtNnrIP8MyWx4w=
 github.com/pip-services3-go/pip-services3-rpc-go v0.0.0-20200218142434-b7578b2c74dc/go.mod h1:boD+x5t7ft4JOTVpHwrn1hz2mQng/zvo9lnLqeE/oPg=
 github.com/pip-services3-go/pip-services3-rpc-go v0.0.0-20200221155527-a4e345ba6290 h1:NwF7KrLCUVIVwFwi1nalqcXYxYNYjWoOLsTBhwiQbA4=
