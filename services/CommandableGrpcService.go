@@ -15,15 +15,15 @@ GRPC-based remote interface.
 
 Configuration parameters:
 
-- dependencies:
-  - endpoint:              override for HTTP Endpoint dependency
-  - controller:            override for Controller dependency
-- connection(s):
-  - discovery_key:         (optional) a key to retrieve the connection from  IDiscovery
-  - protocol:              connection protocol: http or https
-  - host:                  host name or IP address
-  - port:                  port number
-  - uri:                   resource URI or connection string with all parameters in it
+  - dependencies:
+    - endpoint:              override for HTTP Endpoint dependency
+    - controller:            override for Controller dependency
+  - connection(s):
+    - discovery_key:         (optional) a key to retrieve the connection from  IDiscovery
+    - protocol:              connection protocol: http or https
+    - host:                  host name or IP address
+    - port:                  port number
+    - uri:                   resource URI or connection string with all parameters in it
 
 References:
 
@@ -38,14 +38,14 @@ See GrpcService
 Example:
 
     type MyCommandableGrpcService struct {
-	 	*CommandableGrpcService
-	}
+        *CommandableGrpcService
+    }
 
 	func NewCommandableGrpcService() *CommandableGrpcService {
         c := DummyCommandableGrpcService{}
-		c.CommandableGrpcService = grpcservices.NewCommandableGrpcService("myservice")
-		c.DependencyResolver.Put("controller", cref.NewDescriptor("mygroup", "controller", "default", "*", "*"))
-		return &c
+        c.CommandableGrpcService = grpcservices.NewCommandableGrpcService("myservice")
+        c.DependencyResolver.Put("controller", cref.NewDescriptor("mygroup", "controller", "default", "*", "*"))
+        return &c
     }
 
     service := NewMyCommandableGrpcService();
@@ -58,10 +58,10 @@ Example:
        cref.NewDescriptor("mygroup","controller","default","default","1.0"), controller
     ));
 
-	opnErr:= service.Open("123")
-	if opnErr == nil {
-		console.log("The GRPC service is running on port 8080");
-	}
+    opnErr:= service.Open("123")
+    if opnErr == nil {
+        console.log("The GRPC service is running on port 8080");
+    }
 
 */
 type CommandableGrpcService struct {

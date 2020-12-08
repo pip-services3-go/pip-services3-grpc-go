@@ -53,18 +53,18 @@ Examples:
     func (c* Endpoint) MyMethod(config ConfigParams, references IReferences) {
         endpoint := NewGrpcEndpoint();
         if c.config != nil {
-			endpoint.Configure(c._config);
-		}
+            endpoint.Configure(c._config);
+        }
         if c.references != nil {
-			endpoint.SetReferences(c.references);
-		}
+            endpoint.SetReferences(c.references);
+        }
         ...
 
-		err := c.endpoint.Open(correlationId)
-		if err != nil {
-			// error ocured
-			return err
-		}
+        err := c.endpoint.Open(correlationId)
+        if err != nil {
+            // error ocured
+            return err
+        }
         c.Opened = true
         return nil
         ...
@@ -215,7 +215,7 @@ func (c *GrpcEndpoint) Open(correlationId string) (err error) {
 
 // Close methods are closes c endpoint and the GRPC server (service) that was opened earlier.
 // Parameters:
-// 		- correlationId     (optional) transaction id to trace execution through call chain.
+//   - correlationId     (optional) transaction id to trace execution through call chain.
 // Returns: an error if one is raised.
 func (c *GrpcEndpoint) Close(correlationId string) (err error) {
 	if c.server != nil {
@@ -240,14 +240,14 @@ func (c *GrpcEndpoint) GetServer() *grpc.Server {
 // AddInterceptors method are registers a middleware for methods in GRPC endpoint.
 // See https://github.com/grpc/grpc-go/tree/master/examples/features/interceptor
 // Parameters:
-// - interceptors ...grpc.ServerOption
+//   - interceptors ...grpc.ServerOption
 // interceptor functions (Stream or Unary use grpc.UnaryInterceptor() or grpc.StreamInterceptor() for inflate in grpc.ServerOption)
 func (c *GrpcEndpoint) AddInterceptors(interceptors ...grpc.ServerOption) {
 	c.interceptors = append(c.interceptors, interceptors...)
 }
 
 // Register method are registers a registerable object for dynamic endpoint discovery.
-//    - registration      the registration to add.
+//   - registration      the registration to add.
 // See IRegisterable
 func (c *GrpcEndpoint) Register(registration IRegisterable) {
 	c.registrations = append(c.registrations, registration)
@@ -255,7 +255,7 @@ func (c *GrpcEndpoint) Register(registration IRegisterable) {
 
 // Unregister mwthod are unregisters a registerable object, so that it is no longer used in dynamic
 // endpoint discovery.
-//    - registration      the registration to remove.
+//   - registration      the registration to remove.
 // See IRegisterable
 func (c *GrpcEndpoint) Unregister(registration IRegisterable) {
 	for i := 0; i < len(c.registrations); {
@@ -287,7 +287,7 @@ func (c *GrpcEndpoint) registerCommandableService() {
 }
 
 // RegisterService method are registers a service with related implementation
-//    - implementation the service implementation method Invoke.
+//   - implementation the service implementation method Invoke.
 func (c *GrpcEndpoint) RegisterService(sd *grpc.ServiceDesc, implementation interface{}) {
 	if c.server != nil {
 		c.server.RegisterService(sd, implementation)
@@ -355,9 +355,9 @@ func (c *GrpcEndpoint) invoke(ctx context.Context, request *grpcproto.InvokeRequ
 }
 
 // RegisterCommadableMethod method are registers a commandable method in c objects GRPC server (service) by the given name.,
-// - method        the GRPC method name.
-// - schema        the schema to use for parameter validation.
-// - action        the action to perform at the given route.
+//   - method        the GRPC method name.
+//   - schema        the schema to use for parameter validation.
+//   - action        the action to perform at the given route.
 func (c *GrpcEndpoint) RegisterCommadableMethod(method string, schema *cvalid.Schema,
 	action func(correlationId string, args *crun.Parameters) (result interface{}, err error)) {
 
