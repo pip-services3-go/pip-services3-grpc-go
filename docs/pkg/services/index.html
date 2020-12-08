@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>services - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="../../lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="../../lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.13.15";</script>
+<script src="../../lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="../index.html">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="../index.html">GoDoc</a></div>
+<a href="index.html#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="http://localhost:6060/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package services
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "services"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="index.html#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="index.html#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+			
+				
+				<dd><a href="index.html#CommandableGrpcService">type CommandableGrpcService</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewCommandableGrpcService">func NewCommandableGrpcService(name string) *CommandableGrpcService</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#CommandableGrpcService.Register">func (c *CommandableGrpcService) Register()</a></dd>
+				
+			
+				
+				<dd><a href="index.html#GrpcEndpoint">type GrpcEndpoint</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewGrpcEndpoint">func NewGrpcEndpoint() *GrpcEndpoint</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GrpcEndpoint.AddInterceptors">func (c *GrpcEndpoint) AddInterceptors(interceptors ...grpc.ServerOption)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GrpcEndpoint.Close">func (c *GrpcEndpoint) Close(correlationId string) (err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GrpcEndpoint.Configure">func (c *GrpcEndpoint) Configure(config *cconf.ConfigParams)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GrpcEndpoint.GetServer">func (c *GrpcEndpoint) GetServer() *grpc.Server</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GrpcEndpoint.IsOpen">func (c *GrpcEndpoint) IsOpen() bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GrpcEndpoint.Open">func (c *GrpcEndpoint) Open(correlationId string) (err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GrpcEndpoint.Register">func (c *GrpcEndpoint) Register(registration IRegisterable)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GrpcEndpoint.RegisterCommadableMethod">func (c *GrpcEndpoint) RegisterCommadableMethod(method string, schema *cvalid.Schema, action func(correlationId string, args *crun.Parameters) (result interface{}, err error))</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GrpcEndpoint.RegisterService">func (c *GrpcEndpoint) RegisterService(sd *grpc.ServiceDesc, implementation interface{})</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GrpcEndpoint.SetReferences">func (c *GrpcEndpoint) SetReferences(references cref.IReferences)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GrpcEndpoint.Unregister">func (c *GrpcEndpoint) Unregister(registration IRegisterable)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#GrpcService">type GrpcService</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#NewGrpcService">func NewGrpcService(serviceName string) *GrpcService</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GrpcService.Close">func (c *GrpcService) Close(correlationId string) (err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GrpcService.Configure">func (c *GrpcService) Configure(config *cconf.ConfigParams)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GrpcService.Instrument">func (c *GrpcService) Instrument(correlationId string, name string) *ccount.Timing</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GrpcService.InstrumentError">func (c *GrpcService) InstrumentError(correlationId string, name string, errIn error, resIn interface{}) (result interface{}, err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GrpcService.IsOpen">func (c *GrpcService) IsOpen() bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GrpcService.Open">func (c *GrpcService) Open(correlationId string) (err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GrpcService.RegisterCommadableMethod">func (c *GrpcService) RegisterCommadableMethod(method string, schema *cvalid.Schema, action func(correlationId string, data *crun.Parameters) (result interface{}, err error))</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GrpcService.SetReferences">func (c *GrpcService) SetReferences(references cref.IReferences)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GrpcService.UnsetReferences">func (c *GrpcService) UnsetReferences()</a></dd>
+				
+			
+				
+				<dd><a href="index.html#IRegisterable">type IRegisterable</a></dd>
+				
+				
+			
+				
+				<dd><a href="index.html#InvokeComandMediator">type InvokeComandMediator</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#InvokeComandMediator.Invoke">func (c *InvokeComandMediator) Invoke(ctx context.Context, request *grpcproto.InvokeRequest) (response *grpcproto.InvokeReply, err error)</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="http://localhost:6060/src/services/CommandableGrpcService.go">CommandableGrpcService.go</a>
+			
+				<a href="http://localhost:6060/src/services/GrpcEndpoint.go">GrpcEndpoint.go</a>
+			
+				<a href="http://localhost:6060/src/services/GrpcService.go">GrpcService.go</a>
+			
+				<a href="http://localhost:6060/src/services/IRegisterable.go">IRegisterable.go</a>
+			
+				<a href="http://localhost:6060/src/services/Mediators.go">Mediators.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+		
+			
+			
+			<h2 id="CommandableGrpcService">type <a href="http://localhost:6060/src/services/CommandableGrpcService.go?s=2386:2490#L57">CommandableGrpcService</a>
+				<a class="permalink" href="index.html#CommandableGrpcService">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+CommandableGrpcService abstract service that receives commands via GRPC protocol
+to operations automatically generated for commands defined in ICommandable components.
+Each command is exposed as invoke method that receives command name and parameters.
+</p>
+<p>
+Commandable services require only 3 lines of code to implement a robust external
+GRPC-based remote interface.
+</p>
+<p>
+Configuration parameters:
+</p>
+<pre>- dependencies:
+  - endpoint:              override for HTTP Endpoint dependency
+  - controller:            override for Controller dependency
+- connection(s):
+  - discovery_key:         (optional) a key to retrieve the connection from  IDiscovery
+  - protocol:              connection protocol: http or https
+  - host:                  host name or IP address
+  - port:                  port number
+  - uri:                   resource URI or connection string with all parameters in it
+</pre>
+<p>
+References:
+</p>
+<p>
+- *:logger:*:*:1.0               (optional) ILogger components to pass log messages
+- *:counters:*:*:1.0             (optional) ICounters components to pass collected measurements
+- *:discovery:*:*:1.0            (optional) IDiscovery services to resolve connection
+- *:endpoint:grpc:*:1.0          (optional) GrpcEndpoint reference
+</p>
+<p>
+See CommandableGrpcClient
+See GrpcService
+</p>
+<p>
+Example:
+</p>
+<pre>    type MyCommandableGrpcService struct {
+        *CommandableGrpcService
+    }
+
+	func NewCommandableGrpcService() *CommandableGrpcService {
+        c := DummyCommandableGrpcService{}
+        c.CommandableGrpcService = grpcservices.NewCommandableGrpcService(&#34;myservice&#34;)
+        c.DependencyResolver.Put(&#34;controller&#34;, cref.NewDescriptor(&#34;mygroup&#34;, &#34;controller&#34;, &#34;default&#34;, &#34;*&#34;, &#34;*&#34;))
+        return &amp;c
+    }
+
+    service := NewMyCommandableGrpcService();
+    service.Configure(cconf.NewConfigParamsFromTuples(
+        &#34;connection.protocol&#34;, &#34;http&#34;,
+        &#34;connection.host&#34;, &#34;localhost&#34;,
+        &#34;connection.port&#34;, &#34;8080&#34;,
+    ));
+    service.SetReferences(cref.NewReferencesFromTuples(
+       cref.NewDescriptor(&#34;mygroup&#34;,&#34;controller&#34;,&#34;default&#34;,&#34;default&#34;,&#34;1.0&#34;), controller
+    ));
+
+    opnErr:= service.Open(&#34;123&#34;)
+    if opnErr == nil {
+        console.log(&#34;The GRPC service is running on port 8080&#34;);
+    }
+</pre>
+
+			<pre>type CommandableGrpcService struct {
+    *<a href="index.html#GrpcService">GrpcService</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewCommandableGrpcService">func <a href="http://localhost:6060/src/services/CommandableGrpcService.go?s=2600:2667#L65">NewCommandableGrpcService</a>
+					<a class="permalink" href="index.html#NewCommandableGrpcService">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewCommandableGrpcService(name <a href="http://localhost:6060/pkg/builtin/#string">string</a>) *<a href="index.html#CommandableGrpcService">CommandableGrpcService</a></pre>
+				<p>
+NewCommandableGrpcService method are creates a new instance of the service.
+</p>
+<pre>- name a service name.
+</pre>
+
+				
+				
+			
+
+			
+				
+				<h3 id="CommandableGrpcService.Register">func (*CommandableGrpcService) <a href="http://localhost:6060/src/services/CommandableGrpcService.go?s=2933:2976#L75">Register</a>
+					<a class="permalink" href="index.html#CommandableGrpcService.Register">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#CommandableGrpcService">CommandableGrpcService</a>) Register()</pre>
+				<p>
+Register method are registers all service command in gRPC endpoint.
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="GrpcEndpoint">type <a href="http://localhost:6060/src/services/GrpcEndpoint.go?s=2372:2925#L63">GrpcEndpoint</a>
+				<a class="permalink" href="index.html#GrpcEndpoint">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+GrpcEndpoint used for creating GRPC endpoints. An endpoint is a URL, at which a given service can be accessed by a client.
+</p>
+<p>
+Configuration parameters:
+</p>
+<p>
+Parameters to pass to the configure method for component configuration:
+</p>
+<p>
+- connection(s) - the connection resolver&#34;s connections:
+</p>
+<pre>- &#34;connection.discovery_key&#34; - the key to use for connection resolving in a discovery service;
+- &#34;connection.protocol&#34; - the connection&#34;s protocol;
+- &#34;connection.host&#34; - the target host;
+- &#34;connection.port&#34; - the target port;
+- &#34;connection.uri&#34; - the target URI.
+</pre>
+<p>
+- credential - the HTTPS credentials:
+</p>
+<pre>- &#34;credential.ssl_key_file&#34; - the SSL private key in PEM
+- &#34;credential.ssl_crt_file&#34; - the SSL certificate in PEM
+- &#34;credential.ssl_ca_file&#34; - the certificate authorities (root cerfiticates) in PEM
+</pre>
+<p>
+References:
+</p>
+<p>
+A logger, counters, and a connection resolver can be referenced by passing the
+following references to the object&#34;s setReferences method:
+</p>
+<p>
+- logger: &#34;*:logger:*:*:1.0&#34;;
+- counters: &#34;*:counters:*:*:1.0&#34;;
+- discovery: &#34;*:discovery:*:*:1.0&#34; (for the connection resolver).
+</p>
+<p>
+Examples:
+</p>
+<pre>func (c* Endpoint) MyMethod(config ConfigParams, references IReferences) {
+    endpoint := NewGrpcEndpoint();
+    if c.config != nil {
+        endpoint.Configure(c._config);
+    }
+    if c.references != nil {
+        endpoint.SetReferences(c.references);
+    }
+    ...
+
+    err := c.endpoint.Open(correlationId)
+    if err != nil {
+        // error ocured
+        return err
+    }
+    c.Opened = true
+    return nil
+    ...
+}
+</pre>
+
+			<pre>type GrpcEndpoint struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewGrpcEndpoint">func <a href="http://localhost:6060/src/services/GrpcEndpoint.go?s=2994:3030#L79">NewGrpcEndpoint</a>
+					<a class="permalink" href="index.html#NewGrpcEndpoint">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewGrpcEndpoint() *<a href="index.html#GrpcEndpoint">GrpcEndpoint</a></pre>
+				<p>
+NewGrpcEndpoint method are creates new instance of GrpcEndpoint
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="GrpcEndpoint.AddInterceptors">func (*GrpcEndpoint) <a href="http://localhost:6060/src/services/GrpcEndpoint.go?s=8906:8979#L235">AddInterceptors</a>
+					<a class="permalink" href="index.html#GrpcEndpoint.AddInterceptors">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#GrpcEndpoint">GrpcEndpoint</a>) AddInterceptors(interceptors ...<a href="http://localhost:6060/pkg/google.golang.org/grpc/">grpc</a>.<a href="http://localhost:6060/pkg/google.golang.org/grpc/#ServerOption">ServerOption</a>)</pre>
+				<p>
+AddInterceptors method are registers a middleware for methods in GRPC endpoint.
+See <a href="https://github.com/grpc/grpc-go/tree/master/examples/features/interceptor">https://github.com/grpc/grpc-go/tree/master/examples/features/interceptor</a>
+Parameters:
+</p>
+<pre>- interceptors ...grpc.ServerOption
+</pre>
+<p>
+interceptor functions (Stream or Unary use grpc.UnaryInterceptor() or grpc.StreamInterceptor() for inflate in grpc.ServerOption)
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="GrpcEndpoint.Close">func (*GrpcEndpoint) <a href="http://localhost:6060/src/services/GrpcEndpoint.go?s=8109:8171#L210">Close</a>
+					<a class="permalink" href="index.html#GrpcEndpoint.Close">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#GrpcEndpoint">GrpcEndpoint</a>) Close(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>) (err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<p>
+Close methods are closes c endpoint and the GRPC server (service) that was opened earlier.
+Parameters:
+</p>
+<pre>- correlationId     (optional) transaction id to trace execution through call chain.
+</pre>
+<p>
+Returns: an error if one is raised.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="GrpcEndpoint.Configure">func (*GrpcEndpoint) <a href="http://localhost:6060/src/services/GrpcEndpoint.go?s=4851:4911#L123">Configure</a>
+					<a class="permalink" href="index.html#GrpcEndpoint.Configure">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#GrpcEndpoint">GrpcEndpoint</a>) Configure(config *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/">cconf</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/#ConfigParams">ConfigParams</a>)</pre>
+				<p>
+Configure method are configures c HttpEndpoint using the given configuration parameters.
+Configuration parameters:
+</p>
+<pre>- connection(s) - the connection resolver&#34;s connections;
+    - &#34;connection.discovery_key&#34; - the key to use for connection resolving in a discovery service;
+    - &#34;connection.protocol&#34; - the connection&#34;s protocol;
+    - &#34;connection.host&#34; - the target host;
+    - &#34;connection.port&#34; - the target port;
+    - &#34;connection.uri&#34; - the target URI.
+    - &#34;credential.ssl_key_file&#34; - SSL private key in PEM
+    - &#34;credential.ssl_crt_file&#34; - SSL certificate in PEM
+    - &#34;credential.ssl_ca_file&#34; - Certificate authority (root certificate) in PEM
+</pre>
+<p>
+Parameters:
+</p>
+<pre>- config    configuration parameters, containing a &#34;connection(s)&#34; section.
+</pre>
+<p>
+See ConfigParams (in the PipServices &#34;Commons&#34; package)
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="GrpcEndpoint.GetServer">func (*GrpcEndpoint) <a href="http://localhost:6060/src/services/GrpcEndpoint.go?s=8484:8531#L226">GetServer</a>
+					<a class="permalink" href="index.html#GrpcEndpoint.GetServer">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#GrpcEndpoint">GrpcEndpoint</a>) GetServer() *<a href="http://localhost:6060/pkg/google.golang.org/grpc/">grpc</a>.<a href="http://localhost:6060/pkg/google.golang.org/grpc/#Server">Server</a></pre>
+				<p>
+GetServer return working gRPC server for register services
+Returns *grpc.Server
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="GrpcEndpoint.IsOpen">func (*GrpcEndpoint) <a href="http://localhost:6060/src/services/GrpcEndpoint.go?s=5972:6008#L147">IsOpen</a>
+					<a class="permalink" href="index.html#GrpcEndpoint.IsOpen">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#GrpcEndpoint">GrpcEndpoint</a>) IsOpen() <a href="http://localhost:6060/pkg/builtin/#bool">bool</a></pre>
+				<p>
+IsOpen method are return whether or not c endpoint is open with an actively listening GRPC server.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="GrpcEndpoint.Open">func (*GrpcEndpoint) <a href="http://localhost:6060/src/services/GrpcEndpoint.go?s=6367:6428#L156">Open</a>
+					<a class="permalink" href="index.html#GrpcEndpoint.Open">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#GrpcEndpoint">GrpcEndpoint</a>) Open(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>) (err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<p>
+Open method are opens a connection using the parameters resolved by the referenced connection
+resolver and creates a GRPC server (service) using the set options and parameters.
+Parameters:
+</p>
+<pre>- correlationId     (optional) transaction id to trace execution through call chain.
+</pre>
+<p>
+Retunrns: an error if one is raised.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="GrpcEndpoint.Register">func (*GrpcEndpoint) <a href="http://localhost:6060/src/services/GrpcEndpoint.go?s=9201:9260#L242">Register</a>
+					<a class="permalink" href="index.html#GrpcEndpoint.Register">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#GrpcEndpoint">GrpcEndpoint</a>) Register(registration <a href="index.html#IRegisterable">IRegisterable</a>)</pre>
+				<p>
+Register method are registers a registerable object for dynamic endpoint discovery.
+</p>
+<pre>- registration      the registration to add.
+</pre>
+<p>
+See IRegisterable
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="GrpcEndpoint.RegisterCommadableMethod">func (*GrpcEndpoint) <a href="http://localhost:6060/src/services/GrpcEndpoint.go?s=12689:12865#L351">RegisterCommadableMethod</a>
+					<a class="permalink" href="index.html#GrpcEndpoint.RegisterCommadableMethod">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#GrpcEndpoint">GrpcEndpoint</a>) RegisterCommadableMethod(method <a href="http://localhost:6060/pkg/builtin/#string">string</a>, schema *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/validate/">cvalid</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/validate/#Schema">Schema</a>,
+    action func(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, args *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/run/">crun</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/run/#Parameters">Parameters</a>) (result interface{}, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>))</pre>
+				<p>
+RegisterCommadableMethod method are registers a commandable method in c objects GRPC server (service) by the given name.,
+</p>
+<pre>- method        the GRPC method name.
+- schema        the schema to use for parameter validation.
+- action        the action to perform at the given route.
+</pre>
+
+				
+				
+				
+			
+				
+				<h3 id="GrpcEndpoint.RegisterService">func (*GrpcEndpoint) <a href="http://localhost:6060/src/services/GrpcEndpoint.go?s=10400:10488#L281">RegisterService</a>
+					<a class="permalink" href="index.html#GrpcEndpoint.RegisterService">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#GrpcEndpoint">GrpcEndpoint</a>) RegisterService(sd *<a href="http://localhost:6060/pkg/google.golang.org/grpc/">grpc</a>.<a href="http://localhost:6060/pkg/google.golang.org/grpc/#ServiceDesc">ServiceDesc</a>, implementation interface{})</pre>
+				<p>
+RegisterService method are registers a service with related implementation
+</p>
+<pre>- implementation the service implementation method Invoke.
+</pre>
+
+				
+				
+				
+			
+				
+				<h3 id="GrpcEndpoint.SetReferences">func (*GrpcEndpoint) <a href="http://localhost:6060/src/services/GrpcEndpoint.go?s=5677:5742#L140">SetReferences</a>
+					<a class="permalink" href="index.html#GrpcEndpoint.SetReferences">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#GrpcEndpoint">GrpcEndpoint</a>) SetReferences(references <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/">cref</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/#IReferences">IReferences</a>)</pre>
+				<p>
+SetReferences method are sets references to c endpoint&#34;s logger, counters, and connection resolver.
+References:
+</p>
+<pre>- logger: &#34;*:logger:*:*:1.0&#34;
+- counters: &#34;*:counters:*:*:1.0&#34;
+- discovery: &#34;*:discovery:*:*:1.0&#34; (for the connection resolver)
+</pre>
+<p>
+Parameters:
+</p>
+<pre>- references    an IReferences object, containing references to a logger, counters,
+                     and a connection resolver.
+</pre>
+<p>
+See IReferences (in the PipServices &#34;Commons&#34; package)
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="GrpcEndpoint.Unregister">func (*GrpcEndpoint) <a href="http://localhost:6060/src/services/GrpcEndpoint.go?s=9520:9581#L250">Unregister</a>
+					<a class="permalink" href="index.html#GrpcEndpoint.Unregister">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#GrpcEndpoint">GrpcEndpoint</a>) Unregister(registration <a href="index.html#IRegisterable">IRegisterable</a>)</pre>
+				<p>
+Unregister mwthod are unregisters a registerable object, so that it is no longer used in dynamic
+endpoint discovery.
+</p>
+<pre>- registration      the registration to remove.
+</pre>
+<p>
+See IRegisterable
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="GrpcService">type <a href="http://localhost:6060/src/services/GrpcService.go?s=3260:3726#L78">GrpcService</a>
+				<a class="permalink" href="index.html#GrpcService">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+GrpcService abstract service that receives remove calls via GRPC protocol.
+</p>
+<p>
+Configuration parameters:
+</p>
+<pre>- dependencies:
+  - endpoint:              override for GRPC Endpoint dependency
+  - controller:            override for Controller dependency
+- connection(s):
+  - discovery_key:         (optional) a key to retrieve the connection from connect.idiscovery.html IDiscovery
+  - protocol:              connection protocol: http or https
+  - host:                  host name or IP address
+  - port:                  port number
+  - uri:                   resource URI or connection string with all parameters in it
+- credential - the HTTPS credentials:
+  - ssl_key_file:         the SSL private key in PEM
+  - ssl_crt_file:         the SSL certificate in PEM
+  - ssl_ca_file:          the certificate authorities (root cerfiticates) in PEM
+</pre>
+<p>
+References:
+</p>
+<p>
+- *:logger:*:*:1.0               (optional) ILogger components to pass log messages
+- *:counters:*:*:1.0             (optional) ICounters components to pass collected measurements
+- *:discovery:*:*:1.0            (optional) IDiscovery services to resolve connection
+- *:endpoint:grpc:*:1.0           (optional) GrpcEndpoint reference
+</p>
+<h3 id="hdr-See_GrpcClient">See GrpcClient</h3>
+<p>
+Example:
+</p>
+<pre>type MyGrpcService struct{
+   *GrpcService
+   controller IMyController;
+}
+...
+
+   func NewMyGrpcService() *MyGrpcService {
+       c := NewMyGrpcService{}
+       c.GrpcService = grpcservices.NewGrpcService(&#34;Mydata.Mydatas&#34;)
+       c.GrpcService.IRegisterable = &amp;c
+       c.numberOfCalls = 0
+       c.DependencyResolver.Put(&#34;controller&#34;, cref.NewDescriptor(&#34;mygroup&#34;, &#34;controller&#34;, &#34;*&#34;, &#34;*&#34;, &#34;*&#34;))
+       return &amp;c
+   }
+
+   func (c*MyGrpcService) SetReferences(references: IReferences) {
+        c.GrpcService.SetReferences(references);
+        resolv, err := c.DependencyResolver.GetOneRequired(&#34;controller&#34;)
+        if err == nil &amp;&amp; resolv != nil {
+            c.controller = resolv.(grpctest.IMyController)
+            return
+        }
+        panic(&#34;Can&#39;t resolve &#39;controller&#39; reference&#34;)
+   }
+
+   func (c*MyGrpcService) Register() {
+       protos.RegisterMyDataServer(c.Endpoint.GetServer(), c)
+       ...
+   }
+
+service := NewMyGrpcService();
+service.Configure(cconf.NewConfigParamsFromTuples(
+    &#34;connection.protocol&#34;, &#34;http&#34;,
+    &#34;connection.host&#34;, &#34;localhost&#34;,
+    &#34;connection.port&#34;, 8080,
+));
+service.SetReferences(cref.NewReferencesFromTuples(
+   cref.NewDescriptor(&#34;mygroup&#34;,&#34;controller&#34;,&#34;default&#34;,&#34;default&#34;,&#34;1.0&#34;), controller
+));
+
+err := service.Open(&#34;123&#34;)
+if  err == nil {
+   fmt.Println(&#34;The GRPC service is running on port 8080&#34;);
+}
+</pre>
+
+			<pre>type GrpcService struct {
+    <a href="index.html#IRegisterable">IRegisterable</a>
+
+    <span class="comment">//  The GRPC endpoint that exposes c service.</span>
+<span id="GrpcService.Endpoint"></span>    Endpoint *<a href="index.html#GrpcEndpoint">GrpcEndpoint</a>
+    <span class="comment">//  The dependency resolver.</span>
+<span id="GrpcService.DependencyResolver"></span>    DependencyResolver *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/">cref</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/#DependencyResolver">DependencyResolver</a>
+    <span class="comment">//  The logger.</span>
+<span id="GrpcService.Logger"></span>    Logger *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-components-go/log/">clog</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-components-go/log/#CompositeLogger">CompositeLogger</a>
+    <span class="comment">//  The performance counters.</span>
+<span id="GrpcService.Counters"></span>    Counters *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-components-go/count/">ccount</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-components-go/count/#CompositeCounters">CompositeCounters</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewGrpcService">func <a href="http://localhost:6060/src/services/GrpcService.go?s=3940:3992#L101">NewGrpcService</a>
+					<a class="permalink" href="index.html#NewGrpcService">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewGrpcService(serviceName <a href="http://localhost:6060/pkg/builtin/#string">string</a>) *<a href="index.html#GrpcService">GrpcService</a></pre>
+				<p>
+NewGrpcService methods are creates new instance NewGrpcService
+Parameters:
+</p>
+<pre>- serviceName string
+</pre>
+<p>
+service name from XYZ.pb.go, set &#34;&#34; for use default gRPC commandable protobuf
+Return *GrpcService
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="GrpcService.Close">func (*GrpcService) <a href="http://localhost:6060/src/services/GrpcService.go?s=8093:8154#L228">Close</a>
+					<a class="permalink" href="index.html#GrpcService.Close">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#GrpcService">GrpcService</a>) Close(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>) (err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<p>
+Close method are closes component and frees used resources.
+Parameters:
+</p>
+<pre>- correlationId 	(optional) transaction id to trace execution through call chain.
+</pre>
+<p>
+Returns: error or nil no errors occured.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="GrpcService.Configure">func (*GrpcService) <a href="http://localhost:6060/src/services/GrpcService.go?s=4494:4553#L115">Configure</a>
+					<a class="permalink" href="index.html#GrpcService.Configure">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#GrpcService">GrpcService</a>) Configure(config *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/">cconf</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/config/#ConfigParams">ConfigParams</a>)</pre>
+				<p>
+Configure method are configures component by passing configuration parameters.
+</p>
+<pre>- config   configuration parameters to be set.
+</pre>
+
+				
+				
+				
+			
+				
+				<h3 id="GrpcService.Instrument">func (*GrpcService) <a href="http://localhost:6060/src/services/GrpcService.go?s=6206:6288#L169">Instrument</a>
+					<a class="permalink" href="index.html#GrpcService.Instrument">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#GrpcService">GrpcService</a>) Instrument(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, name <a href="http://localhost:6060/pkg/builtin/#string">string</a>) *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-components-go/count/">ccount</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-components-go/count/#Timing">Timing</a></pre>
+				<p>
+Instrument method are adds instrumentation to log calls and measure call time.
+It returns a Timing object that is used to end the time measurement.
+Parameters:
+</p>
+<pre>- correlationId     (optional) transaction id to trace execution through call chain.
+- name              a method name.
+</pre>
+<p>
+Return Timing object to end the time measurement.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="GrpcService.InstrumentError">func (*GrpcService) <a href="http://localhost:6060/src/services/GrpcService.go?s=6835:6972#L183">InstrumentError</a>
+					<a class="permalink" href="index.html#GrpcService.InstrumentError">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#GrpcService">GrpcService</a>) InstrumentError(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, name <a href="http://localhost:6060/pkg/builtin/#string">string</a>, errIn <a href="http://localhost:6060/pkg/builtin/#error">error</a>,
+    resIn interface{}) (result interface{}, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<p>
+InstrumentError method are adds instrumentation to error handling.
+Parameters:
+</p>
+<pre>- correlationId     (optional) transaction id to trace execution through call chain.
+- name              a method name.
+- errIn               an occured error
+- resIn            (optional) an execution result
+</pre>
+<p>
+Returns: result interface{}, err error
+input result and error
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="GrpcService.IsOpen">func (*GrpcService) <a href="http://localhost:6060/src/services/GrpcService.go?s=7271:7306#L194">IsOpen</a>
+					<a class="permalink" href="index.html#GrpcService.IsOpen">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#GrpcService">GrpcService</a>) IsOpen() <a href="http://localhost:6060/pkg/builtin/#bool">bool</a></pre>
+				<p>
+IsOpen method are checks if the component is opened.
+Return true if the component has been opened and false otherwise.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="GrpcService.Open">func (*GrpcService) <a href="http://localhost:6060/src/services/GrpcService.go?s=7515:7575#L202">Open</a>
+					<a class="permalink" href="index.html#GrpcService.Open">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#GrpcService">GrpcService</a>) Open(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>) (err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<p>
+Open method are opens the component.
+Parameters:
+</p>
+<pre>- correlationId 	(optional) transaction id to trace execution through call chain.
+</pre>
+<p>
+Returns: error or nil no errors occured.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="GrpcService.RegisterCommadableMethod">func (*GrpcService) <a href="http://localhost:6060/src/services/GrpcService.go?s=8786:8961#L253">RegisterCommadableMethod</a>
+					<a class="permalink" href="index.html#GrpcService.RegisterCommadableMethod">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#GrpcService">GrpcService</a>) RegisterCommadableMethod(method <a href="http://localhost:6060/pkg/builtin/#string">string</a>, schema *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/validate/">cvalid</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/validate/#Schema">Schema</a>,
+    action func(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, data *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/run/">crun</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/run/#Parameters">Parameters</a>) (result interface{}, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>))</pre>
+				<p>
+RegisterCommadableMethod method are registers a commandable method in c objects GRPC server (service) by the given name.,
+Parameters:
+</p>
+<pre>- method        the GRPC method name.
+- schema        the schema to use for parameter validation.
+- action        the action to perform at the given route.
+</pre>
+
+				
+				
+				
+			
+				
+				<h3 id="GrpcService.SetReferences">func (*GrpcService) <a href="http://localhost:6060/src/services/GrpcService.go?s=4815:4879#L124">SetReferences</a>
+					<a class="permalink" href="index.html#GrpcService.SetReferences">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#GrpcService">GrpcService</a>) SetReferences(references <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/">cref</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/refer/#IReferences">IReferences</a>)</pre>
+				<p>
+SetReferences method are sets references to dependent components.
+Parameters:
+</p>
+<pre>- references 	references to locate the component dependencies.
+</pre>
+
+				
+				
+				
+			
+				
+				<h3 id="GrpcService.UnsetReferences">func (*GrpcService) <a href="http://localhost:6060/src/services/GrpcService.go?s=5459:5498#L144">UnsetReferences</a>
+					<a class="permalink" href="index.html#GrpcService.UnsetReferences">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#GrpcService">GrpcService</a>) UnsetReferences()</pre>
+				<p>
+UnsetReferences method are unsets (clears) previously set references to dependent components.
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="IRegisterable">type <a href="http://localhost:6060/src/services/IRegisterable.go?s=84:169#L1">IRegisterable</a>
+				<a class="permalink" href="index.html#IRegisterable">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+IRegisterable is interface to perform on-demand registrations.
+</p>
+
+			<pre>type IRegisterable interface {
+    <span class="comment">// Perform required registration steps.</span>
+    Register()
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="InvokeComandMediator">type <a href="http://localhost:6060/src/services/Mediators.go?s=197:350#L1">InvokeComandMediator</a>
+				<a class="permalink" href="index.html#InvokeComandMediator">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+InvokeComandMediator Helper class for implements invoke method in CommandableGrpc
+</p>
+
+			<pre>type InvokeComandMediator struct {
+<span id="InvokeComandMediator.InvokeFunc"></span>    InvokeFunc func(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, request *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-grpc-go/protos/">grpcproto</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-grpc-go/protos/#InvokeRequest">InvokeRequest</a>) (response *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-grpc-go/protos/">grpcproto</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-grpc-go/protos/#InvokeReply">InvokeReply</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="InvokeComandMediator.Invoke">func (*InvokeComandMediator) <a href="http://localhost:6060/src/services/Mediators.go?s=352:489#L4">Invoke</a>
+					<a class="permalink" href="index.html#InvokeComandMediator.Invoke">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#InvokeComandMediator">InvokeComandMediator</a>) Invoke(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, request *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-grpc-go/protos/">grpcproto</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-grpc-go/protos/#InvokeRequest">InvokeRequest</a>) (response *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-grpc-go/protos/">grpcproto</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-grpc-go/protos/#InvokeReply">InvokeReply</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.13.15.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
+<a href="http://localhost:6060/doc/tos.html">Terms of Service</a> |
+<a href="http://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>
