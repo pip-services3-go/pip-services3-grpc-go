@@ -18,16 +18,16 @@ Each command is exposed as Invoke method that receives all parameters as args.
 
 Configuration parameters:
 
-- connection(s):
-  - discovery_key:         (optional) a key to retrieve the connection from IDiscovery
-  - protocol:              connection protocol: http or https
-  - host:                  host name or IP address
-  - port:                  port number
-  - uri:                   resource URI or connection string with all parameters in it
-- options:
-  - retries:               number of retries (default: 3)
-  - connect_timeout:       connection timeout in milliseconds (default: 10 sec)
-  - timeout:               invocation timeout in milliseconds (default: 10 sec)
+  - connection(s):
+    - discovery_key:         (optional) a key to retrieve the connection from IDiscovery
+    - protocol:              connection protocol: http or https
+    - host:                  host name or IP address
+    - port:                  port number
+    - uri:                   resource URI or connection string with all parameters in it
+  - options:
+    - retries:               number of retries (default: 3)
+    - connect_timeout:       connection timeout in milliseconds (default: 10 sec)
+    - timeout:               invocation timeout in milliseconds (default: 10 sec)
 
  References:
 
@@ -43,14 +43,14 @@ Example:
 	}
         func (c * MyCommandableGrpcClient) GetData(correlationId string, id string) (result *MyData, err error) {
            params := cdata.NewEmptyStringValueMap()
-			params.Put("id", id)
+           params.Put("id", id)
 
-			calValue, calErr := c.CallCommand(MyDataType, "get_mydata_by_id", correlationId, params)
-			if calErr != nil {
-				return nil, calErr
-			}
-			result, _ = calValue.(*testgrpc.MyData)
-			return result, err
+            calValue, calErr := c.CallCommand(MyDataType, "get_mydata_by_id", correlationId, params)
+            if calErr != nil {
+                return nil, calErr
+            }
+            result, _ = calValue.(*testgrpc.MyData)
+            return result, err
         }
         ...
 
@@ -61,7 +61,7 @@ Example:
         "connection.port", 8080,
     ));
 
-	result, err := client.GetData("123", "1")
+    result, err := client.GetData("123", "1")
     ...
 */
 type CommandableGrpcClient struct {
@@ -72,7 +72,7 @@ type CommandableGrpcClient struct {
 
 // NewCommandableGrpcClient method are creates a new instance of the client.
 // Parameters:
-// - name     a service name.
+//   - name     a service name.
 func NewCommandableGrpcClient(name string) *CommandableGrpcClient {
 	c := CommandableGrpcClient{}
 	c.GrpcClient = NewGrpcClient("commandable.Commandable")
@@ -84,10 +84,10 @@ func NewCommandableGrpcClient(name string) *CommandableGrpcClient {
 // The call is made via Invoke method and all parameters are sent in args object.
 // The complete route to remote method is defined as serviceName + "." + name.
 // Parameters:
-//  - prototype         a prototype for properly convert result
-//  - name              a name of the command to call.
-//  - correlationId     (optional) transaction id to trace execution through call chain.
-//  - params            command parameters.
+//   - prototype         a prototype for properly convert result
+//   - name              a name of the command to call.
+//   - correlationId     (optional) transaction id to trace execution through call chain.
+//   - params            command parameters.
 // Retruns: result or error.
 func (c *CommandableGrpcClient) CallCommand(prototype reflect.Type, name string, correlationId string, params *cdata.AnyValueMap) (result interface{}, err error) {
 	method := c.Name + "." + name

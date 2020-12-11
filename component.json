@@ -1,6 +1,6 @@
 {
     "name": "pip-services3-grpc-go",
-    "registry": "pipdevs",
-    "version": "1.0.0",
+    "registry": "github.com/pip-services3-go",
+    "version": "3.0.0",
     "build": 0
 }
