@@ -6,13 +6,12 @@ import (
 )
 
 type DummyCommandableGrpcService struct {
-	*grpcservices.CommandableGrpcService
+	grpcservices.CommandableGrpcService
 }
 
 func NewDummyCommandableGrpcService() *DummyCommandableGrpcService {
-
-	c := DummyCommandableGrpcService{}
-	c.CommandableGrpcService = grpcservices.NewCommandableGrpcService("dummy")
+	c := &DummyCommandableGrpcService{}
+	c.CommandableGrpcService = *grpcservices.InheritCommandableGrpcService(c, "dummy")
 	c.DependencyResolver.Put("controller", cref.NewDescriptor("pip-services-dummies", "controller", "default", "*", "*"))
-	return &c
+	return c
 }

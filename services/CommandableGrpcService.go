@@ -65,20 +65,19 @@ Example:
 
 */
 type CommandableGrpcService struct {
-	*GrpcService
+	GrpcService
 	name       string
 	commandSet *ccomands.CommandSet
 }
 
 // NewCommandableGrpcService method are creates a new instance of the service.
 //    - name a service name.
-func NewCommandableGrpcService(name string) *CommandableGrpcService {
-	cgs := CommandableGrpcService{}
-	cgs.GrpcService = NewGrpcService("")
-	cgs.GrpcService.IRegisterable = &cgs
-	cgs.name = name
-	cgs.DependencyResolver.Put("controller", "none")
-	return &cgs
+func InheritCommandableGrpcService(overrides IGrpcServiceOverrides, name string) *CommandableGrpcService {
+	c := &CommandableGrpcService{}
+	c.GrpcService = *InheritGrpcService(overrides, "")
+	c.name = name
+	c.DependencyResolver.Put("controller", "none")
+	return c
 }
 
 // Register method are registers all service command in gRPC endpoint.

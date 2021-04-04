@@ -15,18 +15,17 @@ import (
 )
 
 type DummyGrpcService struct {
-	*grpcservices.GrpcService
+	grpcservices.GrpcService
 	controller    grpctest.IDummyController
 	numberOfCalls int64
 }
 
 func NewDummyGrpcService() *DummyGrpcService {
-	c := DummyGrpcService{}
-	c.GrpcService = grpcservices.NewGrpcService("dummies.Dummies")
-	c.GrpcService.IRegisterable = &c
+	c := &DummyGrpcService{}
+	c.GrpcService = *grpcservices.InheritGrpcService(c, "dummies.Dummies")
 	c.numberOfCalls = 0
 	c.DependencyResolver.Put("controller", cref.NewDescriptor("pip-services-dummies", "controller", "default", "*", "*"))
-	return &c
+	return c
 }
 
 func (c *DummyGrpcService) SetReferences(references cref.IReferences) {

@@ -10,6 +10,10 @@ import (
 	clog "github.com/pip-services3-go/pip-services3-components-go/log"
 )
 
+type IGrpcServiceOverrides interface {
+	Register()
+}
+
 /*
 GrpcService abstract service that receives remove calls via GRPC protocol.
 
@@ -86,7 +90,8 @@ Example:
     }
 */
 type GrpcService struct {
-	IRegisterable
+	Overrides IGrpcServiceOverrides
+
 	defaultConfig *cconf.ConfigParams
 	serviceName   string
 	config        *cconf.ConfigParams
@@ -103,21 +108,24 @@ type GrpcService struct {
 	Counters *ccount.CompositeCounters
 }
 
-// NewGrpcService methods are creates new instance NewGrpcService
+// InheritGrpcService methods are creates new instance NewGrpcService
 // Parameters:
+//    - overrides a reference to child class that overrides virtual methods
 //    - serviceName string
 // service name from XYZ.pb.go, set "" for use default gRPC commandable protobuf
 // Return *GrpcService
-func NewGrpcService(serviceName string) *GrpcService {
-	gs := GrpcService{}
-	gs.serviceName = serviceName
-	gs.defaultConfig = cconf.NewConfigParamsFromTuples(
+func InheritGrpcService(overrides IGrpcServiceOverrides, serviceName string) *GrpcService {
+	c := &GrpcService{
+		Overrides: overrides,
+	}
+	c.serviceName = serviceName
+	c.defaultConfig = cconf.NewConfigParamsFromTuples(
 		"dependencies.endpoint", "*:endpoint:grpc:*:1.0",
 	)
-	gs.DependencyResolver = cref.NewDependencyResolverWithParams(gs.defaultConfig, cref.NewEmptyReferences())
-	gs.Logger = clog.NewCompositeLogger()
-	gs.Counters = ccount.NewCompositeCounters()
-	return &gs
+	c.DependencyResolver = cref.NewDependencyResolverWithParams(c.defaultConfig, cref.NewEmptyReferences())
+	c.Logger = clog.NewCompositeLogger()
+	c.Counters = ccount.NewCompositeCounters()
+	return c
 }
 
 // Configure method are configures component by passing configuration parameters.
@@ -263,4 +271,10 @@ func (c *GrpcService) Close(correlationId string) (err error) {
 func (c *GrpcService) RegisterCommadableMethod(method string, schema *cvalid.Schema,
 	action func(correlationId string, data *crun.Parameters) (result interface{}, err error)) {
 	c.Endpoint.RegisterCommadableMethod(method, schema, action)
+}
+
+// Register method are registers all service routes in HTTP endpoint.
+func (c *GrpcService) Register() {
+	// Override in child classes
+	c.Overrides.Register()
 }
