@@ -277,6 +277,43 @@ func (c *GrpcClient) Call(method string, correlationId string, request interface
 	return err
 }
 
+// CallWithContext method are calls a remote method via gRPC protocol.
+// Parameters:
+//   - ctx context
+//   - correlationId string
+//   transaction id to trace execution through call chain.
+//   - method string//   gRPC method name
+//   - request interface{}
+//    request query parameters.
+//   - response interface{}
+//   - response body object.
+// Returns error
+func (c *GrpcClient) CallWithContext(ctx context.Context, correlationId string, method string, request interface{}, response interface{}) error {
+	method = "/" + c.name + "/" + method
+	err := c.connection.Invoke(ctx, method, request, response)
+	return err
+}
+
+// CreateClient method is a way to generate a client for streaming purposes
+// Parameters:
+//   - correlationId string
+//   transaction id to trace execution through call chain.
+//   - newClient function
+//   function to create a client
+// Returns:
+//   - interface{}
+//   the output of the newClient function
+//   - error
+//   any error experienced
+func (c *GrpcClient) CreateClient(correlationId string, newClient func(*grpc.ClientConn) interface{}) (interface{}, error) {
+	if !c.IsOpen() {
+		if err := c.Open(correlationId); err != nil {
+			return nil, err
+		}
+	}
+	return newClient(c.connection), nil
+}
+
 // AddFilterParams method are adds filter parameters (with the same name as they defined)
 // to invocation parameter map.
 //   - params        invocation parameters.
