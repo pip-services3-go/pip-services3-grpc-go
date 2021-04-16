@@ -84,7 +84,7 @@ type GrpcClient struct {
 	//	The GRPC client.
 	Client grpcproto.CommandableClient
 	// The GRPC connection
-	connection *grpc.ClientConn
+	Connection *grpc.ClientConn
 	//	The connection resolver.
 	ConnectionResolver *rpccon.HttpConnectionResolver
 	//	The logger.
@@ -186,7 +186,7 @@ func (c *GrpcClient) InstrumentError(correlationId string, name string, inErr er
 // Returns bool
 // true if the component has been opened and false otherwise.
 func (c *GrpcClient) IsOpen() bool {
-	return c.connection != nil
+	return c.Connection != nil
 }
 
 // AddInterceptors method are registers a middleware for methods in gRPC client.
@@ -240,7 +240,7 @@ func (c *GrpcClient) Open(correlationId string) error {
 	if err != nil {
 		return err
 	}
-	c.connection = conn
+	c.Connection = conn
 	c.Client = grpcproto.NewCommandableClient(conn)
 	return nil
 }
@@ -251,9 +251,9 @@ func (c *GrpcClient) Open(correlationId string) error {
 //   transaction id to trace execution through call chain.
 // Returns error
 func (c *GrpcClient) Close(correlationId string) error {
-	if c.connection != nil {
-		c.connection.Close()
-		c.connection = nil
+	if c.Connection != nil {
+		c.Connection.Close()
+		c.Connection = nil
 	}
 	return nil
 }
@@ -273,7 +273,24 @@ func (c *GrpcClient) Call(method string, correlationId string, request interface
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
 	method = "/" + c.name + "/" + method
-	err := c.connection.Invoke(ctx, method, request, response)
+	err := c.Connection.Invoke(ctx, method, request, response)
+	return err
+}
+
+// CallWithContext method are calls a remote method via gRPC protocol.
+// Parameters:
+//   - ctx context
+//   - correlationId string
+//   transaction id to trace execution through call chain.
+//   - method string//   gRPC method name
+//   - request interface{}
+//    request query parameters.
+//   - response interface{}
+//   - response body object.
+// Returns error
+func (c *GrpcClient) CallWithContext(ctx context.Context, correlationId string, method string, request interface{}, response interface{}) error {
+	method = "/" + c.name + "/" + method
+	err := c.Connection.Invoke(ctx, method, request, response)
 	return err
 }
 
