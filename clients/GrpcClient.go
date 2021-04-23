@@ -160,7 +160,7 @@ func (c *GrpcClient) SetReferences(references cref.IReferences) {
 //   - correlationId     (optional) transaction id to trace execution through call chain.
 //   - name              a method name.
 // Returns: Timing object to end the time measurement.
-func (c *GrpcClient) Instrument(correlationId string, name string) *ccount.Timing {
+func (c *GrpcClient) Instrument(correlationId string, name string) *ccount.CounterTiming {
 	c.Logger.Trace(correlationId, "Executing %s method", name)
 	c.Counters.IncrementOne(name + ".call_count")
 	return c.Counters.BeginTiming(name + ".call_time")

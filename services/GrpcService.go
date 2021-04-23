@@ -184,7 +184,7 @@ func (c *GrpcService) createEndpoint() *GrpcEndpoint {
 //   - correlationId     (optional) transaction id to trace execution through call chain.
 //   - name              a method name.
 // Return Timing object to end the time measurement.
-func (c *GrpcService) Instrument(correlationId string, name string) *ccount.Timing {
+func (c *GrpcService) Instrument(correlationId string, name string) *ccount.CounterTiming {
 	c.Logger.Trace(correlationId, "Executing %s method", name)
 	c.Counters.IncrementOne(name + ".exec_count")
 	return c.Counters.BeginTiming(name + ".exec_time")
