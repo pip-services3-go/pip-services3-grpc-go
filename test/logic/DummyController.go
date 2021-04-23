@@ -1,18 +1,19 @@
-package test_rpc
+package test_logic
 
 import (
 	ccomand "github.com/pip-services3-go/pip-services3-commons-go/commands"
 	cdata "github.com/pip-services3-go/pip-services3-commons-go/data"
+	tdata "github.com/pip-services3-go/pip-services3-grpc-go/test/data"
 )
 
 type DummyController struct {
 	commandSet *DummyCommandSet
-	entities   []Dummy
+	entities   []tdata.Dummy
 }
 
 func NewDummyController() *DummyController {
 	dc := DummyController{}
-	dc.entities = make([]Dummy, 0)
+	dc.entities = make([]tdata.Dummy, 0)
 	return &dc
 }
 
@@ -23,7 +24,8 @@ func (c *DummyController) GetCommandSet() *ccomand.CommandSet {
 	return &c.commandSet.CommandSet
 }
 
-func (c *DummyController) GetPageByFilter(correlationId string, filter *cdata.FilterParams, paging *cdata.PagingParams) (items *DummyDataPage, err error) {
+func (c *DummyController) GetPageByFilter(correlationId string, filter *cdata.FilterParams,
+	paging *cdata.PagingParams) (items *tdata.DummyDataPage, err error) {
 
 	if filter == nil {
 		filter = cdata.NewEmptyFilterParams()
@@ -36,9 +38,9 @@ func (c *DummyController) GetPageByFilter(correlationId string, filter *cdata.Fi
 	var skip int64 = paging.GetSkip(0)
 	var take int64 = paging.GetTake(100)
 
-	var result []Dummy
+	var result []tdata.Dummy
 	for i := 0; i < len(c.entities); i++ {
-		var entity Dummy = c.entities[i]
+		var entity tdata.Dummy = c.entities[i]
 		if key != "" && key != entity.Key {
 			continue
 		}
@@ -56,12 +58,12 @@ func (c *DummyController) GetPageByFilter(correlationId string, filter *cdata.Fi
 		result = append(result, entity)
 	}
 	var total int64 = (int64)(len(result))
-	return NewDummyDataPage(&total, result), nil
+	return tdata.NewDummyDataPage(&total, result), nil
 }
 
-func (c *DummyController) GetOneById(correlationId string, id string) (result *Dummy, err error) {
+func (c *DummyController) GetOneById(correlationId string, id string) (result *tdata.Dummy, err error) {
 	for i := 0; i < len(c.entities); i++ {
-		var entity Dummy = c.entities[i]
+		var entity tdata.Dummy = c.entities[i]
 		if id == entity.Id {
 			return &entity, nil
 		}
@@ -69,7 +71,7 @@ func (c *DummyController) GetOneById(correlationId string, id string) (result *D
 	return nil, nil
 }
 
-func (c *DummyController) Create(correlationId string, entity Dummy) (result *Dummy, err error) {
+func (c *DummyController) Create(correlationId string, entity tdata.Dummy) (result *tdata.Dummy, err error) {
 	if entity.Id == "" {
 		entity.Id = cdata.IdGenerator.NextLong()
 		c.entities = append(c.entities, entity)
@@ -77,9 +79,9 @@ func (c *DummyController) Create(correlationId string, entity Dummy) (result *Du
 	return &entity, nil
 }
 
-func (c *DummyController) Update(correlationId string, newEntity Dummy) (result *Dummy, err error) {
+func (c *DummyController) Update(correlationId string, newEntity tdata.Dummy) (result *tdata.Dummy, err error) {
 	for index := 0; index < len(c.entities); index++ {
-		var entity Dummy = c.entities[index]
+		var entity tdata.Dummy = c.entities[index]
 		if entity.Id == newEntity.Id {
 			c.entities[index] = newEntity
 			return &newEntity, nil
@@ -89,8 +91,8 @@ func (c *DummyController) Update(correlationId string, newEntity Dummy) (result 
 	return nil, nil
 }
 
-func (c *DummyController) DeleteById(correlationId string, id string) (result *Dummy, err error) {
-	var entity Dummy
+func (c *DummyController) DeleteById(correlationId string, id string) (result *tdata.Dummy, err error) {
+	var entity tdata.Dummy
 
 	for i := 0; i < len(c.entities); {
 		entity = c.entities[i]

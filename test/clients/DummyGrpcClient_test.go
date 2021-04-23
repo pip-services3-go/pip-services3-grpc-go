@@ -5,7 +5,7 @@ import (
 
 	cconf "github.com/pip-services3-go/pip-services3-commons-go/config"
 	cref "github.com/pip-services3-go/pip-services3-commons-go/refer"
-	testgrpc "github.com/pip-services3-go/pip-services3-grpc-go/test"
+	tlogic "github.com/pip-services3-go/pip-services3-grpc-go/test/logic"
 	testservices "github.com/pip-services3-go/pip-services3-grpc-go/test/services"
 )
 
@@ -21,7 +21,7 @@ func TestDummyGrpcClient(t *testing.T) {
 	var client *DummyGrpcClient
 	var fixture *DummyClientFixture
 
-	ctrl := testgrpc.NewDummyController()
+	ctrl := tlogic.NewDummyController()
 
 	service = testservices.NewDummyGrpcService()
 	service.Configure(grpcConfig)
@@ -45,5 +45,4 @@ func TestDummyGrpcClient(t *testing.T) {
 	defer client.Close("")
 
 	t.Run("CRUD Operations", fixture.TestCrudOperations)
-
 }

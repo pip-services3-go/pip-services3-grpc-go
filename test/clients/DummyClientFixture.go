@@ -4,7 +4,7 @@ import (
 	"testing"
 
 	cdata "github.com/pip-services3-go/pip-services3-commons-go/data"
-	testgrpc "github.com/pip-services3-go/pip-services3-grpc-go/test"
+	tdata "github.com/pip-services3-go/pip-services3-grpc-go/test/data"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -19,8 +19,8 @@ func NewDummyClientFixture(client IDummyClient) *DummyClientFixture {
 
 func (c *DummyClientFixture) TestCrudOperations(t *testing.T) {
 
-	dummy1 := testgrpc.Dummy{Id: "", Key: "Key 1", Content: "Content 1"}
-	dummy2 := testgrpc.Dummy{Id: "", Key: "Key 2", Content: "Content 2"}
+	dummy1 := tdata.Dummy{Id: "", Key: "Key 1", Content: "Content 1"}
+	dummy2 := tdata.Dummy{Id: "", Key: "Key 2", Content: "Content 2"}
 
 	// Create one dummy
 	dummy, err := c.client.CreateDummy("", dummy1)

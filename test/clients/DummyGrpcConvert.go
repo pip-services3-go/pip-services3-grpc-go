@@ -5,7 +5,7 @@ import (
 
 	"github.com/pip-services3-go/pip-services3-commons-go/convert"
 	"github.com/pip-services3-go/pip-services3-commons-go/errors"
-	testgrpc "github.com/pip-services3-go/pip-services3-grpc-go/test"
+	tdata "github.com/pip-services3-go/pip-services3-grpc-go/test/data"
 	testproto "github.com/pip-services3-go/pip-services3-grpc-go/test/protos"
 )
 
@@ -88,7 +88,7 @@ func fromJson(value string) interface{} {
 	return m
 }
 
-func fromDummy(in *testgrpc.Dummy) *testproto.Dummy {
+func fromDummy(in *tdata.Dummy) *testproto.Dummy {
 	if in == nil {
 		return nil
 	}
@@ -101,11 +101,11 @@ func fromDummy(in *testgrpc.Dummy) *testproto.Dummy {
 	return obj
 }
 
-func toDummy(obj *testproto.Dummy) *testgrpc.Dummy {
+func toDummy(obj *testproto.Dummy) *tdata.Dummy {
 	if obj == nil {
 		return nil
 	}
-	dummy := &testgrpc.Dummy{
+	dummy := &tdata.Dummy{
 		Id:      obj.Id,
 		Key:     obj.Key,
 		Content: obj.Content,
@@ -113,16 +113,16 @@ func toDummy(obj *testproto.Dummy) *testgrpc.Dummy {
 	return dummy
 }
 
-func toDummiesPage(obj *testproto.DummiesPage) *testgrpc.DummyDataPage {
+func toDummiesPage(obj *testproto.DummiesPage) *tdata.DummyDataPage {
 	if obj == nil {
 		return nil
 	}
 
-	dummies := make([]testgrpc.Dummy, len(obj.Data))
+	dummies := make([]tdata.Dummy, len(obj.Data))
 	for i, v := range obj.Data {
 		dummies[i] = *toDummy(v)
 	}
-	page := testgrpc.NewDummyDataPage(&obj.Total, dummies)
+	page := tdata.NewDummyDataPage(&obj.Total, dummies)
 
 	return page
 }

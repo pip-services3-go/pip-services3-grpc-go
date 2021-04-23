@@ -1,4 +1,4 @@
-package test_rpc
+package test_logic
 
 import (
 	"encoding/json"
@@ -8,6 +8,7 @@ import (
 	cdata "github.com/pip-services3-go/pip-services3-commons-go/data"
 	crun "github.com/pip-services3-go/pip-services3-commons-go/run"
 	cvalid "github.com/pip-services3-go/pip-services3-commons-go/validate"
+	tdata "github.com/pip-services3-go/pip-services3-grpc-go/test/data"
 )
 
 type DummyCommandSet struct {
@@ -55,10 +56,10 @@ func (c *DummyCommandSet) makeGetOneByIdCommand() ccomand.ICommand {
 func (c *DummyCommandSet) makeCreateCommand() ccomand.ICommand {
 	return ccomand.NewCommand(
 		"create_dummy",
-		cvalid.NewObjectSchema().WithRequiredProperty("dummy", NewDummySchema()),
+		cvalid.NewObjectSchema().WithRequiredProperty("dummy", tdata.NewDummySchema()),
 		func(correlationId string, args *crun.Parameters) (result interface{}, err error) {
 			val, _ := json.Marshal(args.Get("dummy"))
-			var entity Dummy
+			var entity tdata.Dummy
 			json.Unmarshal(val, &entity)
 
 			return c.controller.Create(correlationId, entity)
@@ -69,10 +70,10 @@ func (c *DummyCommandSet) makeCreateCommand() ccomand.ICommand {
 func (c *DummyCommandSet) makeUpdateCommand() ccomand.ICommand {
 	return ccomand.NewCommand(
 		"update_dummy",
-		cvalid.NewObjectSchema().WithRequiredProperty("dummy", NewDummySchema()),
+		cvalid.NewObjectSchema().WithRequiredProperty("dummy", tdata.NewDummySchema()),
 		func(correlationId string, args *crun.Parameters) (result interface{}, err error) {
 			val, _ := json.Marshal(args.Get("dummy"))
-			var entity Dummy
+			var entity tdata.Dummy
 			json.Unmarshal(val, &entity)
 			return c.controller.Update(correlationId, entity)
 		},

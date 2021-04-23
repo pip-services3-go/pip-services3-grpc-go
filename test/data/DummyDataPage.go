@@ -1,4 +1,4 @@
-package test_rpc
+package test_data
 
 type DummyDataPage struct {
 	Total *int64  `json:"total"`

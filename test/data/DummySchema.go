@@ -1,4 +1,4 @@
-package test_rpc
+package test_data
 
 import (
 	cconv "github.com/pip-services3-go/pip-services3-commons-go/convert"

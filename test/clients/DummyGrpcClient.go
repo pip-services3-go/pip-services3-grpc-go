@@ -3,7 +3,7 @@ package test_clients
 import (
 	cdata "github.com/pip-services3-go/pip-services3-commons-go/data"
 	grpcclients "github.com/pip-services3-go/pip-services3-grpc-go/clients"
-	testgrpc "github.com/pip-services3-go/pip-services3-grpc-go/test"
+	tdata "github.com/pip-services3-go/pip-services3-grpc-go/test/data"
 	testproto "github.com/pip-services3-go/pip-services3-grpc-go/test/protos"
 )
 
@@ -17,7 +17,7 @@ func NewDummyGrpcClient() *DummyGrpcClient {
 	return &dgc
 }
 
-func (c *DummyGrpcClient) GetDummies(correlationId string, filter *cdata.FilterParams, paging *cdata.PagingParams) (result *testgrpc.DummyDataPage, err error) {
+func (c *DummyGrpcClient) GetDummies(correlationId string, filter *cdata.FilterParams, paging *cdata.PagingParams) (result *tdata.DummyDataPage, err error) {
 
 	req := &testproto.DummiesPageRequest{
 		CorrelationId: correlationId,
@@ -42,7 +42,7 @@ func (c *DummyGrpcClient) GetDummies(correlationId string, filter *cdata.FilterP
 	return result, nil
 }
 
-func (c *DummyGrpcClient) GetDummyById(correlationId string, dummyId string) (result *testgrpc.Dummy, err error) {
+func (c *DummyGrpcClient) GetDummyById(correlationId string, dummyId string) (result *tdata.Dummy, err error) {
 
 	req := &testproto.DummyIdRequest{
 		CorrelationId: correlationId,
@@ -62,7 +62,7 @@ func (c *DummyGrpcClient) GetDummyById(correlationId string, dummyId string) (re
 	return result, nil
 }
 
-func (c *DummyGrpcClient) CreateDummy(correlationId string, dummy testgrpc.Dummy) (result *testgrpc.Dummy, err error) {
+func (c *DummyGrpcClient) CreateDummy(correlationId string, dummy tdata.Dummy) (result *tdata.Dummy, err error) {
 
 	req := &testproto.DummyObjectRequest{
 		CorrelationId: correlationId,
@@ -82,7 +82,7 @@ func (c *DummyGrpcClient) CreateDummy(correlationId string, dummy testgrpc.Dummy
 	return result, nil
 }
 
-func (c *DummyGrpcClient) UpdateDummy(correlationId string, dummy testgrpc.Dummy) (result *testgrpc.Dummy, err error) {
+func (c *DummyGrpcClient) UpdateDummy(correlationId string, dummy tdata.Dummy) (result *tdata.Dummy, err error) {
 	req := &testproto.DummyObjectRequest{
 		CorrelationId: correlationId,
 		Dummy:         fromDummy(&dummy),
@@ -100,7 +100,7 @@ func (c *DummyGrpcClient) UpdateDummy(correlationId string, dummy testgrpc.Dummy
 	return result, nil
 }
 
-func (c *DummyGrpcClient) DeleteDummy(correlationId string, dummyId string) (result *testgrpc.Dummy, err error) {
+func (c *DummyGrpcClient) DeleteDummy(correlationId string, dummyId string) (result *tdata.Dummy, err error) {
 
 	req := &testproto.DummyIdRequest{
 		CorrelationId: correlationId,

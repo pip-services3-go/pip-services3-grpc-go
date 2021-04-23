@@ -1,4 +1,4 @@
-package test_rpc
+package test_data
 
 type Dummy struct {
 	Id      string `json:"id"`

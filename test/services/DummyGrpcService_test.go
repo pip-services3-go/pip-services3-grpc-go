@@ -6,7 +6,8 @@ import (
 
 	cconf "github.com/pip-services3-go/pip-services3-commons-go/config"
 	cref "github.com/pip-services3-go/pip-services3-commons-go/refer"
-	testgrpc "github.com/pip-services3-go/pip-services3-grpc-go/test"
+	tdata "github.com/pip-services3-go/pip-services3-grpc-go/test/data"
+	tlogic "github.com/pip-services3-go/pip-services3-grpc-go/test/logic"
 	"github.com/pip-services3-go/pip-services3-grpc-go/test/protos"
 	"github.com/stretchr/testify/assert"
 	"google.golang.org/grpc"
@@ -21,13 +22,13 @@ func TestDummyGrpcService(t *testing.T) {
 		"connection.port", "3000",
 	)
 
-	var Dummy1 testgrpc.Dummy
-	var Dummy2 testgrpc.Dummy
+	var Dummy1 tdata.Dummy
+	var Dummy2 tdata.Dummy
 
 	var service *DummyGrpcService
 
 	var client protos.DummiesClient
-	ctrl := testgrpc.NewDummyController()
+	ctrl := tlogic.NewDummyController()
 
 	service = NewDummyGrpcService()
 	service.Configure(grpcConfig)
@@ -54,8 +55,8 @@ func TestDummyGrpcService(t *testing.T) {
 	defer conn.Close()
 	client = protos.NewDummiesClient(conn)
 
-	Dummy1 = testgrpc.Dummy{Id: "", Key: "Key 1", Content: "Content 1"}
-	Dummy2 = testgrpc.Dummy{Id: "", Key: "Key 2", Content: "Content 2"}
+	Dummy1 = tdata.Dummy{Id: "", Key: "Key 1", Content: "Content 1"}
+	Dummy2 = tdata.Dummy{Id: "", Key: "Key 2", Content: "Content 2"}
 
 	// Test CRUD Operations
 	// Create first dummy

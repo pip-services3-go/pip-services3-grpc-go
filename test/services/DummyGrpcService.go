@@ -9,14 +9,15 @@ import (
 	cref "github.com/pip-services3-go/pip-services3-commons-go/refer"
 	cvalid "github.com/pip-services3-go/pip-services3-commons-go/validate"
 	grpcservices "github.com/pip-services3-go/pip-services3-grpc-go/services"
-	grpctest "github.com/pip-services3-go/pip-services3-grpc-go/test"
+	tdata "github.com/pip-services3-go/pip-services3-grpc-go/test/data"
+	tlogic "github.com/pip-services3-go/pip-services3-grpc-go/test/logic"
 	"github.com/pip-services3-go/pip-services3-grpc-go/test/protos"
 	"google.golang.org/grpc"
 )
 
 type DummyGrpcService struct {
 	grpcservices.GrpcService
-	controller    grpctest.IDummyController
+	controller    tlogic.IDummyController
 	numberOfCalls int64
 }
 
@@ -32,7 +33,7 @@ func (c *DummyGrpcService) SetReferences(references cref.IReferences) {
 	c.GrpcService.SetReferences(references)
 	resolv, err := c.DependencyResolver.GetOneRequired("controller")
 	if err == nil && resolv != nil {
-		c.controller = resolv.(grpctest.IDummyController)
+		c.controller = resolv.(tlogic.IDummyController)
 		return
 	}
 	panic("Can't resolve 'controller' reference")
@@ -122,7 +123,7 @@ func (c *DummyGrpcService) GetDummyById(ctx context.Context, req *protos.DummyId
 func (c *DummyGrpcService) CreateDummy(ctx context.Context, req *protos.DummyObjectRequest) (*protos.Dummy, error) {
 
 	Schema := cvalid.NewObjectSchema().
-		WithRequiredProperty("Dummy", grpctest.NewDummySchema())
+		WithRequiredProperty("Dummy", tdata.NewDummySchema())
 
 	validateErr := Schema.ValidateAndReturnError("", *req, false)
 
@@ -130,7 +131,7 @@ func (c *DummyGrpcService) CreateDummy(ctx context.Context, req *protos.DummyObj
 		return nil, validateErr
 	}
 
-	dummy := grpctest.Dummy{}
+	dummy := tdata.Dummy{}
 	bytes, _ := json.Marshal(req.Dummy)
 	json.Unmarshal(bytes, &dummy)
 
@@ -151,7 +152,7 @@ func (c *DummyGrpcService) CreateDummy(ctx context.Context, req *protos.DummyObj
 func (c *DummyGrpcService) UpdateDummy(ctx context.Context, req *protos.DummyObjectRequest) (*protos.Dummy, error) {
 
 	Schema := cvalid.NewObjectSchema().
-		WithRequiredProperty("Dummy", grpctest.NewDummySchema())
+		WithRequiredProperty("Dummy", tdata.NewDummySchema())
 
 	validateErr := Schema.ValidateAndReturnError("", *req, false)
 
@@ -159,7 +160,7 @@ func (c *DummyGrpcService) UpdateDummy(ctx context.Context, req *protos.DummyObj
 		return nil, validateErr
 	}
 
-	dummy := grpctest.Dummy{}
+	dummy := tdata.Dummy{}
 	bytes, _ := json.Marshal(req.Dummy)
 	json.Unmarshal(bytes, &dummy)
 

@@ -5,12 +5,12 @@ import (
 
 	cdata "github.com/pip-services3-go/pip-services3-commons-go/data"
 	grpcclients "github.com/pip-services3-go/pip-services3-grpc-go/clients"
-	testgrpc "github.com/pip-services3-go/pip-services3-grpc-go/test"
+	tdata "github.com/pip-services3-go/pip-services3-grpc-go/test/data"
 )
 
 var (
-	dummyDataPageType = reflect.TypeOf(&testgrpc.DummyDataPage{})
-	dummyType         = reflect.TypeOf(&testgrpc.Dummy{})
+	dummyDataPageType = reflect.TypeOf(&tdata.DummyDataPage{})
+	dummyType         = reflect.TypeOf(&tdata.Dummy{})
 )
 
 type DummyCommandableGrpcClient struct {
@@ -23,7 +23,7 @@ func NewDummyCommandableGrpcClient() *DummyCommandableGrpcClient {
 	return &dcgc
 }
 
-func (c *DummyCommandableGrpcClient) GetDummies(correlationId string, filter *cdata.FilterParams, paging *cdata.PagingParams) (result *testgrpc.DummyDataPage, err error) {
+func (c *DummyCommandableGrpcClient) GetDummies(correlationId string, filter *cdata.FilterParams, paging *cdata.PagingParams) (result *tdata.DummyDataPage, err error) {
 
 	params := cdata.NewEmptyStringValueMap()
 	c.AddFilterParams(params, filter)
@@ -33,11 +33,11 @@ func (c *DummyCommandableGrpcClient) GetDummies(correlationId string, filter *cd
 	if calErr != nil {
 		return nil, calErr
 	}
-	result, _ = calValue.(*testgrpc.DummyDataPage)
+	result, _ = calValue.(*tdata.DummyDataPage)
 	return result, err
 }
 
-func (c *DummyCommandableGrpcClient) GetDummyById(correlationId string, dummyId string) (result *testgrpc.Dummy, err error) {
+func (c *DummyCommandableGrpcClient) GetDummyById(correlationId string, dummyId string) (result *tdata.Dummy, err error) {
 
 	params := cdata.NewEmptyAnyValueMap()
 	params.Put("dummy_id", dummyId)
@@ -46,11 +46,11 @@ func (c *DummyCommandableGrpcClient) GetDummyById(correlationId string, dummyId 
 	if calErr != nil {
 		return nil, calErr
 	}
-	result, _ = calValue.(*testgrpc.Dummy)
+	result, _ = calValue.(*tdata.Dummy)
 	return result, err
 }
 
-func (c *DummyCommandableGrpcClient) CreateDummy(correlationId string, dummy testgrpc.Dummy) (result *testgrpc.Dummy, err error) {
+func (c *DummyCommandableGrpcClient) CreateDummy(correlationId string, dummy tdata.Dummy) (result *tdata.Dummy, err error) {
 
 	params := cdata.NewEmptyAnyValueMap()
 	params.Put("dummy", dummy)
@@ -59,11 +59,11 @@ func (c *DummyCommandableGrpcClient) CreateDummy(correlationId string, dummy tes
 	if calErr != nil {
 		return nil, calErr
 	}
-	result, _ = calValue.(*testgrpc.Dummy)
+	result, _ = calValue.(*tdata.Dummy)
 	return result, err
 }
 
-func (c *DummyCommandableGrpcClient) UpdateDummy(correlationId string, dummy testgrpc.Dummy) (result *testgrpc.Dummy, err error) {
+func (c *DummyCommandableGrpcClient) UpdateDummy(correlationId string, dummy tdata.Dummy) (result *tdata.Dummy, err error) {
 
 	params := cdata.NewEmptyAnyValueMap()
 	params.Put("dummy", dummy)
@@ -72,11 +72,11 @@ func (c *DummyCommandableGrpcClient) UpdateDummy(correlationId string, dummy tes
 	if calErr != nil {
 		return nil, calErr
 	}
-	result, _ = calValue.(*testgrpc.Dummy)
+	result, _ = calValue.(*tdata.Dummy)
 	return result, err
 }
 
-func (c *DummyCommandableGrpcClient) DeleteDummy(correlationId string, dummyId string) (result *testgrpc.Dummy, err error) {
+func (c *DummyCommandableGrpcClient) DeleteDummy(correlationId string, dummyId string) (result *tdata.Dummy, err error) {
 
 	params := cdata.NewEmptyAnyValueMap()
 	params.Put("dummy_id", dummyId)
@@ -85,6 +85,6 @@ func (c *DummyCommandableGrpcClient) DeleteDummy(correlationId string, dummyId s
 	if calErr != nil {
 		return nil, calErr
 	}
-	result, _ = calValue.(*testgrpc.Dummy)
+	result, _ = calValue.(*tdata.Dummy)
 	return result, err
 }

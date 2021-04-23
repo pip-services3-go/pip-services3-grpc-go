@@ -8,7 +8,8 @@ import (
 	cconf "github.com/pip-services3-go/pip-services3-commons-go/config"
 	cref "github.com/pip-services3-go/pip-services3-commons-go/refer"
 	cmdproto "github.com/pip-services3-go/pip-services3-grpc-go/protos"
-	testgrpc "github.com/pip-services3-go/pip-services3-grpc-go/test"
+	tdata "github.com/pip-services3-go/pip-services3-grpc-go/test/data"
+	tlogic "github.com/pip-services3-go/pip-services3-grpc-go/test/logic"
 	"github.com/stretchr/testify/assert"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/grpclog"
@@ -22,12 +23,12 @@ func TestDummyCommandableGrpcService(t *testing.T) {
 		"connection.port", "3001",
 	)
 
-	var Dummy1 testgrpc.Dummy
-	var Dummy2 testgrpc.Dummy
+	var Dummy1 tdata.Dummy
+	var Dummy2 tdata.Dummy
 	var service *DummyCommandableGrpcService
 	var client cmdproto.CommandableClient
 
-	ctrl := testgrpc.NewDummyController()
+	ctrl := tlogic.NewDummyController()
 	service = NewDummyCommandableGrpcService()
 	service.Configure(grpcConfig)
 
@@ -49,11 +50,11 @@ func TestDummyCommandableGrpcService(t *testing.T) {
 	defer conn.Close()
 	client = cmdproto.NewCommandableClient(conn)
 
-	Dummy1 = testgrpc.Dummy{Id: "", Key: "Key 1", Content: "Content 1"}
-	Dummy2 = testgrpc.Dummy{Id: "", Key: "Key 2", Content: "Content 2"}
+	Dummy1 = tdata.Dummy{Id: "", Key: "Key 1", Content: "Content 1"}
+	Dummy2 = tdata.Dummy{Id: "", Key: "Key 2", Content: "Content 2"}
 
 	// Test CRUD Operations
-	var dummy, dummy1 testgrpc.Dummy
+	var dummy, dummy1 tdata.Dummy
 
 	request := cmdproto.InvokeRequest{}
 
@@ -101,7 +102,7 @@ func TestDummyCommandableGrpcService(t *testing.T) {
 	assert.Nil(t, err)
 	assert.False(t, response.ResultEmpty)
 	assert.NotEqual(t, response.ResultJson, "")
-	var dummies testgrpc.DummyDataPage
+	var dummies tdata.DummyDataPage
 	json.Unmarshal([]byte(response.ResultJson), &dummies)
 
 	assert.NotNil(t, dummies)
@@ -149,5 +150,4 @@ func TestDummyCommandableGrpcService(t *testing.T) {
 	assert.Nil(t, err)
 	assert.Nil(t, response.Error)
 	assert.True(t, response.ResultEmpty)
-
 }
