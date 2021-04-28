@@ -270,7 +270,7 @@ func (c *GrpcClient) Close(correlationId string) error {
 //   - response body object.
 // Returns error
 func (c *GrpcClient) Call(method string, correlationId string, request interface{}, response interface{}) error {
-	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
+	ctx, cancel := context.WithTimeout(context.Background(), c.Timeout)
 	defer cancel()
 	method = "/" + c.name + "/" + method
 	err := c.Connection.Invoke(ctx, method, request, response)
