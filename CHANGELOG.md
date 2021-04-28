@@ -1,5 +1,11 @@
 # <img src="https://uploads-ssl.webflow.com/5ea5d3315186cf5ec60c3ee4/5edf1c94ce4c859f2b188094_logo.svg" alt="Pip.Services Logo" width="200"> <br/> GRPC Component for Pip.Services in Go Changelog
 
+
+## <a name="1.2.2"></a> 1.2.2 (2021-04-28) 
+
+### Bug Fixes
+* Changed timeout param in request context in Call method of GrpcClient 
+
 ## <a name="1.2.1"></a> 1.2.1 (2021-04-23) 
 
 ### Features
