@@ -55,7 +55,7 @@ func (c *DummyGrpcService) incrementNumberOfCalls(ctx context.Context, req inter
 
 func (c *DummyGrpcService) Open(correlationId string) error {
 	// Add interceptors
-	c.Endpoint.AddInterceptors(grpc.UnaryInterceptor(c.incrementNumberOfCalls))
+	c.RegisterUnaryInterceptor(c.incrementNumberOfCalls)
 	return c.GrpcService.Open(correlationId)
 }
 

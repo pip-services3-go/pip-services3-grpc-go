@@ -105,8 +105,8 @@ func (c *CommandableGrpcService) Register() {
 			func(correlationId string, args *crun.Parameters) (result interface{}, err error) {
 				timing := c.Instrument(correlationId, method)
 				res, err := command.Execute(correlationId, args)
-				timing.EndTiming()
-				return c.InstrumentError(correlationId, method, err, res)
+				timing.EndTiming(err)
+				return res, err
 			})
 	}
 }

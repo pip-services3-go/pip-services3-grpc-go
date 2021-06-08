@@ -1,13 +1,18 @@
 package services
 
 import (
+	"strings"
+	"context"
+	"google.golang.org/grpc"
 	cconf "github.com/pip-services3-go/pip-services3-commons-go/config"
 	cerr "github.com/pip-services3-go/pip-services3-commons-go/errors"
 	cref "github.com/pip-services3-go/pip-services3-commons-go/refer"
 	crun "github.com/pip-services3-go/pip-services3-commons-go/run"
 	cvalid "github.com/pip-services3-go/pip-services3-commons-go/validate"
 	ccount "github.com/pip-services3-go/pip-services3-components-go/count"
+	ctrace "github.com/pip-services3-go/pip-services3-components-go/trace"
 	clog "github.com/pip-services3-go/pip-services3-components-go/log"
+	rpcserv "github.com/pip-services3-go/pip-services3-rpc-go/services"
 )
 
 type IGrpcServiceOverrides interface {
@@ -106,6 +111,8 @@ type GrpcService struct {
 	Logger *clog.CompositeLogger
 	//  The performance counters.
 	Counters *ccount.CompositeCounters
+	// The tracer.
+    Tracer* ctrace.CompositeTracer
 }
 
 // InheritGrpcService methods are creates new instance NewGrpcService
@@ -125,6 +132,7 @@ func InheritGrpcService(overrides IGrpcServiceOverrides, serviceName string) *Gr
 	c.DependencyResolver = cref.NewDependencyResolverWithParams(c.defaultConfig, cref.NewEmptyReferences())
 	c.Logger = clog.NewCompositeLogger()
 	c.Counters = ccount.NewCompositeCounters()
+	c.Tracer = ctrace.NewCompositeTracer(nil)
 	return c
 }
 
@@ -143,6 +151,7 @@ func (c *GrpcService) SetReferences(references cref.IReferences) {
 	c.references = references
 	c.Logger.SetReferences(references)
 	c.Counters.SetReferences(references)
+	c.Tracer.SetReferences(references)
 	c.DependencyResolver.SetReferences(references)
 	// Get endpoint
 	res := c.DependencyResolver.GetOneOptional("endpoint")
@@ -184,10 +193,14 @@ func (c *GrpcService) createEndpoint() *GrpcEndpoint {
 //   - correlationId     (optional) transaction id to trace execution through call chain.
 //   - name              a method name.
 // Return Timing object to end the time measurement.
-func (c *GrpcService) Instrument(correlationId string, name string) *ccount.CounterTiming {
+func (c *GrpcService) Instrument(correlationId string, name string) *rpcserv.InstrumentTiming {
 	c.Logger.Trace(correlationId, "Executing %s method", name)
 	c.Counters.IncrementOne(name + ".exec_count")
-	return c.Counters.BeginTiming(name + ".exec_time")
+
+	counterTiming := c.Counters.BeginTiming(name + ".exec_time")
+    traceTiming := c.Tracer.BeginTrace(correlationId, name, "")
+	return rpcserv.NewInstrumentTiming(correlationId, name, "exec",
+            c.Logger, c.Counters, counterTiming, traceTiming)
 }
 
 // InstrumentError method are adds instrumentation to error handling.
@@ -198,14 +211,14 @@ func (c *GrpcService) Instrument(correlationId string, name string) *ccount.Coun
 //   - resIn            (optional) an execution result
 // Returns: result interface{}, err error
 // input result and error
-func (c *GrpcService) InstrumentError(correlationId string, name string, errIn error,
-	resIn interface{}) (result interface{}, err error) {
-	if errIn != nil {
-		c.Logger.Error(correlationId, errIn, "Failed to execute %s method", name)
-		c.Counters.IncrementOne(name + ".exec_errors")
-	}
-	return resIn, errIn
-}
+// func (c *GrpcService) InstrumentError(correlationId string, name string, errIn error,
+// 	resIn interface{}) (result interface{}, err error) {
+// 	if errIn != nil {
+// 		c.Logger.Error(correlationId, errIn, "Failed to execute %s method", name)
+// 		c.Counters.IncrementOne(name + ".exec_errors")
+// 	}
+// 	return resIn, errIn
+// }
 
 // IsOpen method are checks if the component is opened.
 // Return true if the component has been opened and false otherwise.
@@ -272,6 +285,22 @@ func (c *GrpcService) RegisterCommadableMethod(method string, schema *cvalid.Sch
 	action func(correlationId string, data *crun.Parameters) (result interface{}, err error)) {
 	c.Endpoint.RegisterCommadableMethod(method, schema, action)
 }
+
+
+// Registers a middleware for methods in GRPC endpoint.
+// - action        an action function that is called when middleware is invoked.
+func (c *GrpcService) RegisterUnaryInterceptor(action func(ctx context.Context, req interface{}, info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (interface{}, error) ) {
+    if c.Endpoint == nil {
+		return
+	}
+
+	c.Endpoint.AddInterceptors(grpc.UnaryInterceptor(func(ctx context.Context, req interface{}, info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (interface{}, error) {
+		if strings.HasPrefix(info.FullMethod, "/"+c.serviceName + "/") {
+			return action(ctx, req, info, handler)
+		} 
+		return handler(ctx, req)
+	}))
+    }    
 
 // Register method are registers all service routes in HTTP endpoint.
 func (c *GrpcService) Register() {
