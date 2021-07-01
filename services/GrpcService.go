@@ -1,18 +1,20 @@
 package services
 
 import (
-	"strings"
 	"context"
-	"google.golang.org/grpc"
+	"encoding/json"
+	"strings"
+
 	cconf "github.com/pip-services3-go/pip-services3-commons-go/config"
 	cerr "github.com/pip-services3-go/pip-services3-commons-go/errors"
 	cref "github.com/pip-services3-go/pip-services3-commons-go/refer"
 	crun "github.com/pip-services3-go/pip-services3-commons-go/run"
 	cvalid "github.com/pip-services3-go/pip-services3-commons-go/validate"
 	ccount "github.com/pip-services3-go/pip-services3-components-go/count"
-	ctrace "github.com/pip-services3-go/pip-services3-components-go/trace"
 	clog "github.com/pip-services3-go/pip-services3-components-go/log"
+	ctrace "github.com/pip-services3-go/pip-services3-components-go/trace"
 	rpcserv "github.com/pip-services3-go/pip-services3-rpc-go/services"
+	"google.golang.org/grpc"
 )
 
 type IGrpcServiceOverrides interface {
@@ -112,7 +114,7 @@ type GrpcService struct {
 	//  The performance counters.
 	Counters *ccount.CompositeCounters
 	// The tracer.
-    Tracer* ctrace.CompositeTracer
+	Tracer *ctrace.CompositeTracer
 }
 
 // InheritGrpcService methods are creates new instance NewGrpcService
@@ -198,9 +200,9 @@ func (c *GrpcService) Instrument(correlationId string, name string) *rpcserv.Ins
 	c.Counters.IncrementOne(name + ".exec_count")
 
 	counterTiming := c.Counters.BeginTiming(name + ".exec_time")
-    traceTiming := c.Tracer.BeginTrace(correlationId, name, "")
+	traceTiming := c.Tracer.BeginTrace(correlationId, name, "")
 	return rpcserv.NewInstrumentTiming(correlationId, name, "exec",
-            c.Logger, c.Counters, counterTiming, traceTiming)
+		c.Logger, c.Counters, counterTiming, traceTiming)
 }
 
 // InstrumentError method are adds instrumentation to error handling.
@@ -286,24 +288,43 @@ func (c *GrpcService) RegisterCommadableMethod(method string, schema *cvalid.Sch
 	c.Endpoint.RegisterCommadableMethod(method, schema, action)
 }
 
-
 // Registers a middleware for methods in GRPC endpoint.
 // - action        an action function that is called when middleware is invoked.
-func (c *GrpcService) RegisterUnaryInterceptor(action func(ctx context.Context, req interface{}, info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (interface{}, error) ) {
-    if c.Endpoint == nil {
+func (c *GrpcService) RegisterUnaryInterceptor(action func(ctx context.Context, req interface{}, info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (interface{}, error)) {
+	if c.Endpoint == nil {
 		return
 	}
 
 	c.Endpoint.AddInterceptors(grpc.UnaryInterceptor(func(ctx context.Context, req interface{}, info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (interface{}, error) {
-		if strings.HasPrefix(info.FullMethod, "/"+c.serviceName + "/") {
+		if strings.HasPrefix(info.FullMethod, "/"+c.serviceName+"/") {
 			return action(ctx, req, info, handler)
-		} 
+		}
 		return handler(ctx, req)
 	}))
-    }    
+}
 
 // Register method are registers all service routes in HTTP endpoint.
 func (c *GrpcService) Register() {
 	// Override in child classes
 	c.Overrides.Register()
+}
+
+func (c *GrpcService) ValidateRequest(request interface{}, schema *cvalid.Schema) error {
+
+	buf, err := json.Marshal(request)
+	if err != nil {
+		return err
+	}
+
+	validateObj := make(map[string]interface{})
+	err = json.Unmarshal(buf, &validateObj)
+	if err != nil {
+		return err
+	}
+
+	validateErr := schema.ValidateAndReturnError("", validateObj, false)
+	if validateErr != nil {
+		return validateErr
+	}
+	return nil
 }

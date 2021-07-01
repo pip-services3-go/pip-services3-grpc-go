@@ -54,6 +54,7 @@ func (c *DummyGrpcService) incrementNumberOfCalls(ctx context.Context, req inter
 }
 
 func (c *DummyGrpcService) Open(correlationId string) error {
+
 	// Add interceptors
 	c.RegisterUnaryInterceptor(c.incrementNumberOfCalls)
 	return c.GrpcService.Open(correlationId)
@@ -61,15 +62,14 @@ func (c *DummyGrpcService) Open(correlationId string) error {
 
 func (c *DummyGrpcService) GetDummies(ctx context.Context, req *protos.DummiesPageRequest) (*protos.DummiesPage, error) {
 
-	// Schema := cvalid.NewObjectSchema().
-	// 	WithOptionalProperty("Paging", cvalid.NewPagingParamsSchema()).
-	// 	WithOptionalProperty("Filter", cvalid.NewFilterParamsSchema())
+	validateErr := c.ValidateRequest(req,
+		&cvalid.NewObjectSchema().
+			WithOptionalProperty("paging", cvalid.NewPagingParamsSchema()).
+			WithOptionalProperty("filter", cvalid.NewFilterParamsSchema()).Schema)
 
-	// validateErr := Schema.ValidateAndReturnError("", *req, false)
-
-	// if validateErr != nil {
-	// 	return nil, validateErr
-	// }
+	if validateErr != nil {
+		return nil, validateErr
+	}
 
 	filter := cdata.NewFilterParamsFromValue(req.GetFilter())
 	paging := cdata.NewEmptyPagingParams()
@@ -98,14 +98,15 @@ func (c *DummyGrpcService) GetDummies(ctx context.Context, req *protos.DummiesPa
 
 func (c *DummyGrpcService) GetDummyById(ctx context.Context, req *protos.DummyIdRequest) (*protos.Dummy, error) {
 
-	Schema := cvalid.NewObjectSchema().
-		WithRequiredProperty("DummyId", cconv.String)
-
-	validateErr := Schema.ValidateAndReturnError("", *req, false)
+	// validation
+	validateErr := c.ValidateRequest(req,
+		&cvalid.NewObjectSchema().
+			WithRequiredProperty("dummy_id", cconv.String).Schema)
 
 	if validateErr != nil {
 		return nil, validateErr
 	}
+	// ==================================
 
 	data, err := c.controller.GetOneById(
 		req.CorrelationId,
@@ -122,10 +123,10 @@ func (c *DummyGrpcService) GetDummyById(ctx context.Context, req *protos.DummyId
 
 func (c *DummyGrpcService) CreateDummy(ctx context.Context, req *protos.DummyObjectRequest) (*protos.Dummy, error) {
 
-	Schema := cvalid.NewObjectSchema().
-		WithRequiredProperty("Dummy", tdata.NewDummySchema())
-
-	validateErr := Schema.ValidateAndReturnError("", *req, false)
+	// validation
+	validateErr := c.ValidateRequest(req,
+		&cvalid.NewObjectSchema().
+			WithRequiredProperty("dummy", tdata.NewDummySchema()).Schema)
 
 	if validateErr != nil {
 		return nil, validateErr
@@ -151,10 +152,9 @@ func (c *DummyGrpcService) CreateDummy(ctx context.Context, req *protos.DummyObj
 
 func (c *DummyGrpcService) UpdateDummy(ctx context.Context, req *protos.DummyObjectRequest) (*protos.Dummy, error) {
 
-	Schema := cvalid.NewObjectSchema().
-		WithRequiredProperty("Dummy", tdata.NewDummySchema())
-
-	validateErr := Schema.ValidateAndReturnError("", *req, false)
+	validateErr := c.ValidateRequest(req,
+		&cvalid.NewObjectSchema().
+			WithRequiredProperty("dummy", tdata.NewDummySchema()).Schema)
 
 	if validateErr != nil {
 		return nil, validateErr
@@ -180,10 +180,9 @@ func (c *DummyGrpcService) UpdateDummy(ctx context.Context, req *protos.DummyObj
 
 func (c *DummyGrpcService) DeleteDummyById(ctx context.Context, req *protos.DummyIdRequest) (*protos.Dummy, error) {
 
-	Schema := cvalid.NewObjectSchema().
-		WithRequiredProperty("DummyId", cconv.String)
-
-	validateErr := Schema.ValidateAndReturnError("", *req, false)
+	validateErr := c.ValidateRequest(req,
+		&cvalid.NewObjectSchema().
+			WithRequiredProperty("dummy_id", cconv.String).Schema)
 
 	if validateErr != nil {
 		return nil, validateErr
