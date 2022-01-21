@@ -13,12 +13,16 @@ import (
 	tlogic "github.com/pip-services3-go/pip-services3-grpc-go/test/logic"
 	"github.com/pip-services3-go/pip-services3-grpc-go/test/protos"
 	"google.golang.org/grpc"
+
+	grpcproto "github.com/pip-services3-go/pip-services3-grpc-go/test/protos"
 )
 
 type DummyGrpcService struct {
 	grpcservices.GrpcService
 	controller    tlogic.IDummyController
 	numberOfCalls int64
+
+	grpcproto.DummiesServer
 }
 
 func NewDummyGrpcService() *DummyGrpcService {

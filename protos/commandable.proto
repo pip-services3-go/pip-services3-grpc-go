@@ -18,7 +18,7 @@ option java_multiple_files = true;
 option java_package = "pip-services.grpc.commandable";
 option java_outer_classname = "CommandableProto";
 option objc_class_prefix = "GRPC_CMD";
-option go_package = "protos";
+option go_package = "./protos";
 
 package commandable;
 
