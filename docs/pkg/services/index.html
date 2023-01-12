@@ -14,7 +14,7 @@
 
 
 
-<script>var goVersion = "go1.13.15";</script>
+<script>var goVersion = "go1.16.15";</script>
 <script src="../../lib/godoc/godocs.js" defer></script>
 </head>
 <body>
@@ -116,7 +116,7 @@
 				<dd><a href="index.html#CommandableGrpcService">type CommandableGrpcService</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#NewCommandableGrpcService">func NewCommandableGrpcService(name string) *CommandableGrpcService</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#InheritCommandableGrpcService">func InheritCommandableGrpcService(overrides IGrpcServiceOverrides, name string) *CommandableGrpcService</a></dd>
 				
 				
 					
@@ -168,7 +168,7 @@
 				<dd><a href="index.html#GrpcService">type GrpcService</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#NewGrpcService">func NewGrpcService(serviceName string) *GrpcService</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#InheritGrpcService">func InheritGrpcService(overrides IGrpcServiceOverrides, serviceName string) *GrpcService</a></dd>
 				
 				
 					
@@ -178,10 +178,7 @@
 					<dd>&nbsp; &nbsp; <a href="index.html#GrpcService.Configure">func (c *GrpcService) Configure(config *cconf.ConfigParams)</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#GrpcService.Instrument">func (c *GrpcService) Instrument(correlationId string, name string) *ccount.Timing</a></dd>
-				
-					
-					<dd>&nbsp; &nbsp; <a href="index.html#GrpcService.InstrumentError">func (c *GrpcService) InstrumentError(correlationId string, name string, errIn error, resIn interface{}) (result interface{}, err error)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#GrpcService.Instrument">func (c *GrpcService) Instrument(correlationId string, name string) *rpcserv.InstrumentTiming</a></dd>
 				
 					
 					<dd>&nbsp; &nbsp; <a href="index.html#GrpcService.IsOpen">func (c *GrpcService) IsOpen() bool</a></dd>
@@ -190,13 +187,27 @@
 					<dd>&nbsp; &nbsp; <a href="index.html#GrpcService.Open">func (c *GrpcService) Open(correlationId string) (err error)</a></dd>
 				
 					
+					<dd>&nbsp; &nbsp; <a href="index.html#GrpcService.Register">func (c *GrpcService) Register()</a></dd>
+				
+					
 					<dd>&nbsp; &nbsp; <a href="index.html#GrpcService.RegisterCommadableMethod">func (c *GrpcService) RegisterCommadableMethod(method string, schema *cvalid.Schema, action func(correlationId string, data *crun.Parameters) (result interface{}, err error))</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GrpcService.RegisterUnaryInterceptor">func (c *GrpcService) RegisterUnaryInterceptor(action func(ctx context.Context, req interface{}, info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (interface{}, error))</a></dd>
 				
 					
 					<dd>&nbsp; &nbsp; <a href="index.html#GrpcService.SetReferences">func (c *GrpcService) SetReferences(references cref.IReferences)</a></dd>
 				
 					
 					<dd>&nbsp; &nbsp; <a href="index.html#GrpcService.UnsetReferences">func (c *GrpcService) UnsetReferences()</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="index.html#GrpcService.ValidateRequest">func (c *GrpcService) ValidateRequest(request interface{}, schema *cvalid.Schema) error</a></dd>
+				
+			
+				
+				<dd><a href="index.html#IGrpcServiceOverrides">type IGrpcServiceOverrides</a></dd>
+				
 				
 			
 				
@@ -247,7 +258,7 @@
 		
 			
 			
-			<h2 id="CommandableGrpcService">type <a href="http://localhost:6060/src/services/CommandableGrpcService.go?s=2386:2490#L57">CommandableGrpcService</a>
+			<h2 id="CommandableGrpcService">type <a href="http://localhost:6060/src/services/CommandableGrpcService.go?s=2452:2559#L57">CommandableGrpcService</a>
 				<a class="permalink" href="index.html#CommandableGrpcService">&#xb6;</a>
 				
 				
@@ -318,7 +329,7 @@ Example:
 </pre>
 
 			<pre>type CommandableGrpcService struct {
-    *<a href="index.html#GrpcService">GrpcService</a>
+    <a href="index.html#GrpcService">GrpcService</a>
     <span class="comment">// contains filtered or unexported fields</span>
 }
 </pre>
@@ -333,12 +344,12 @@ Example:
 
 			
 				
-				<h3 id="NewCommandableGrpcService">func <a href="http://localhost:6060/src/services/CommandableGrpcService.go?s=2600:2667#L65">NewCommandableGrpcService</a>
-					<a class="permalink" href="index.html#NewCommandableGrpcService">&#xb6;</a>
+				<h3 id="InheritCommandableGrpcService">func <a href="http://localhost:6060/src/services/CommandableGrpcService.go?s=2673:2777#L65">InheritCommandableGrpcService</a>
+					<a class="permalink" href="index.html#InheritCommandableGrpcService">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func NewCommandableGrpcService(name <a href="http://localhost:6060/pkg/builtin/#string">string</a>) *<a href="index.html#CommandableGrpcService">CommandableGrpcService</a></pre>
+				<pre>func InheritCommandableGrpcService(overrides <a href="index.html#IGrpcServiceOverrides">IGrpcServiceOverrides</a>, name <a href="http://localhost:6060/pkg/builtin/#string">string</a>) *<a href="index.html#CommandableGrpcService">CommandableGrpcService</a></pre>
 				<p>
 NewCommandableGrpcService method are creates a new instance of the service.
 </p>
@@ -351,7 +362,7 @@ NewCommandableGrpcService method are creates a new instance of the service.
 
 			
 				
-				<h3 id="CommandableGrpcService.Register">func (*CommandableGrpcService) <a href="http://localhost:6060/src/services/CommandableGrpcService.go?s=2933:2976#L75">Register</a>
+				<h3 id="CommandableGrpcService.Register">func (*CommandableGrpcService) <a href="http://localhost:6060/src/services/CommandableGrpcService.go?s=3020:3063#L74">Register</a>
 					<a class="permalink" href="index.html#CommandableGrpcService.Register">&#xb6;</a>
 					
 					
@@ -368,7 +379,7 @@ Register method are registers all service command in gRPC endpoint.
 		
 			
 			
-			<h2 id="GrpcEndpoint">type <a href="http://localhost:6060/src/services/GrpcEndpoint.go?s=2372:2925#L63">GrpcEndpoint</a>
+			<h2 id="GrpcEndpoint">type <a href="http://localhost:6060/src/services/GrpcEndpoint.go?s=2444:3010#L63">GrpcEndpoint</a>
 				<a class="permalink" href="index.html#GrpcEndpoint">&#xb6;</a>
 				
 				
@@ -449,7 +460,7 @@ Examples:
 
 			
 				
-				<h3 id="NewGrpcEndpoint">func <a href="http://localhost:6060/src/services/GrpcEndpoint.go?s=2994:3030#L79">NewGrpcEndpoint</a>
+				<h3 id="NewGrpcEndpoint">func <a href="http://localhost:6060/src/services/GrpcEndpoint.go?s=3082:3118#L79">NewGrpcEndpoint</a>
 					<a class="permalink" href="index.html#NewGrpcEndpoint">&#xb6;</a>
 					
 					
@@ -465,7 +476,7 @@ NewGrpcEndpoint method are creates new instance of GrpcEndpoint
 
 			
 				
-				<h3 id="GrpcEndpoint.AddInterceptors">func (*GrpcEndpoint) <a href="http://localhost:6060/src/services/GrpcEndpoint.go?s=8906:8979#L235">AddInterceptors</a>
+				<h3 id="GrpcEndpoint.AddInterceptors">func (*GrpcEndpoint) <a href="http://localhost:6060/src/services/GrpcEndpoint.go?s=9150:9223#L235">AddInterceptors</a>
 					<a class="permalink" href="index.html#GrpcEndpoint.AddInterceptors">&#xb6;</a>
 					
 					
@@ -487,7 +498,7 @@ interceptor functions (Stream or Unary use grpc.UnaryInterceptor() or grpc.Strea
 				
 			
 				
-				<h3 id="GrpcEndpoint.Close">func (*GrpcEndpoint) <a href="http://localhost:6060/src/services/GrpcEndpoint.go?s=8109:8171#L210">Close</a>
+				<h3 id="GrpcEndpoint.Close">func (*GrpcEndpoint) <a href="http://localhost:6060/src/services/GrpcEndpoint.go?s=8328:8390#L210">Close</a>
 					<a class="permalink" href="index.html#GrpcEndpoint.Close">&#xb6;</a>
 					
 					
@@ -508,7 +519,7 @@ Returns: an error if one is raised.
 				
 			
 				
-				<h3 id="GrpcEndpoint.Configure">func (*GrpcEndpoint) <a href="http://localhost:6060/src/services/GrpcEndpoint.go?s=4851:4911#L123">Configure</a>
+				<h3 id="GrpcEndpoint.Configure">func (*GrpcEndpoint) <a href="http://localhost:6060/src/services/GrpcEndpoint.go?s=4983:5043#L123">Configure</a>
 					<a class="permalink" href="index.html#GrpcEndpoint.Configure">&#xb6;</a>
 					
 					
@@ -542,7 +553,7 @@ See ConfigParams (in the PipServices &#34;Commons&#34; package)
 				
 			
 				
-				<h3 id="GrpcEndpoint.GetServer">func (*GrpcEndpoint) <a href="http://localhost:6060/src/services/GrpcEndpoint.go?s=8484:8531#L226">GetServer</a>
+				<h3 id="GrpcEndpoint.GetServer">func (*GrpcEndpoint) <a href="http://localhost:6060/src/services/GrpcEndpoint.go?s=8719:8766#L226">GetServer</a>
 					<a class="permalink" href="index.html#GrpcEndpoint.GetServer">&#xb6;</a>
 					
 					
@@ -558,7 +569,7 @@ Returns *grpc.Server
 				
 			
 				
-				<h3 id="GrpcEndpoint.IsOpen">func (*GrpcEndpoint) <a href="http://localhost:6060/src/services/GrpcEndpoint.go?s=5972:6008#L147">IsOpen</a>
+				<h3 id="GrpcEndpoint.IsOpen">func (*GrpcEndpoint) <a href="http://localhost:6060/src/services/GrpcEndpoint.go?s=6128:6164#L147">IsOpen</a>
 					<a class="permalink" href="index.html#GrpcEndpoint.IsOpen">&#xb6;</a>
 					
 					
@@ -573,7 +584,7 @@ IsOpen method are return whether or not c endpoint is open with an actively list
 				
 			
 				
-				<h3 id="GrpcEndpoint.Open">func (*GrpcEndpoint) <a href="http://localhost:6060/src/services/GrpcEndpoint.go?s=6367:6428#L156">Open</a>
+				<h3 id="GrpcEndpoint.Open">func (*GrpcEndpoint) <a href="http://localhost:6060/src/services/GrpcEndpoint.go?s=6532:6593#L156">Open</a>
 					<a class="permalink" href="index.html#GrpcEndpoint.Open">&#xb6;</a>
 					
 					
@@ -595,7 +606,7 @@ Retunrns: an error if one is raised.
 				
 			
 				
-				<h3 id="GrpcEndpoint.Register">func (*GrpcEndpoint) <a href="http://localhost:6060/src/services/GrpcEndpoint.go?s=9201:9260#L242">Register</a>
+				<h3 id="GrpcEndpoint.Register">func (*GrpcEndpoint) <a href="http://localhost:6060/src/services/GrpcEndpoint.go?s=9452:9511#L242">Register</a>
 					<a class="permalink" href="index.html#GrpcEndpoint.Register">&#xb6;</a>
 					
 					
@@ -615,7 +626,7 @@ See IRegisterable
 				
 			
 				
-				<h3 id="GrpcEndpoint.RegisterCommadableMethod">func (*GrpcEndpoint) <a href="http://localhost:6060/src/services/GrpcEndpoint.go?s=12689:12865#L351">RegisterCommadableMethod</a>
+				<h3 id="GrpcEndpoint.RegisterCommadableMethod">func (*GrpcEndpoint) <a href="http://localhost:6060/src/services/GrpcEndpoint.go?s=13049:13226#L351">RegisterCommadableMethod</a>
 					<a class="permalink" href="index.html#GrpcEndpoint.RegisterCommadableMethod">&#xb6;</a>
 					
 					
@@ -635,7 +646,7 @@ RegisterCommadableMethod method are registers a commandable method in c objects 
 				
 			
 				
-				<h3 id="GrpcEndpoint.RegisterService">func (*GrpcEndpoint) <a href="http://localhost:6060/src/services/GrpcEndpoint.go?s=10400:10488#L281">RegisterService</a>
+				<h3 id="GrpcEndpoint.RegisterService">func (*GrpcEndpoint) <a href="http://localhost:6060/src/services/GrpcEndpoint.go?s=10690:10778#L281">RegisterService</a>
 					<a class="permalink" href="index.html#GrpcEndpoint.RegisterService">&#xb6;</a>
 					
 					
@@ -652,7 +663,7 @@ RegisterService method are registers a service with related implementation
 				
 			
 				
-				<h3 id="GrpcEndpoint.SetReferences">func (*GrpcEndpoint) <a href="http://localhost:6060/src/services/GrpcEndpoint.go?s=5677:5742#L140">SetReferences</a>
+				<h3 id="GrpcEndpoint.SetReferences">func (*GrpcEndpoint) <a href="http://localhost:6060/src/services/GrpcEndpoint.go?s=5826:5891#L140">SetReferences</a>
 					<a class="permalink" href="index.html#GrpcEndpoint.SetReferences">&#xb6;</a>
 					
 					
@@ -681,7 +692,7 @@ See IReferences (in the PipServices &#34;Commons&#34; package)
 				
 			
 				
-				<h3 id="GrpcEndpoint.Unregister">func (*GrpcEndpoint) <a href="http://localhost:6060/src/services/GrpcEndpoint.go?s=9520:9581#L250">Unregister</a>
+				<h3 id="GrpcEndpoint.Unregister">func (*GrpcEndpoint) <a href="http://localhost:6060/src/services/GrpcEndpoint.go?s=9779:9840#L250">Unregister</a>
 					<a class="permalink" href="index.html#GrpcEndpoint.Unregister">&#xb6;</a>
 					
 					
@@ -704,7 +715,7 @@ See IRegisterable
 		
 			
 			
-			<h2 id="GrpcService">type <a href="http://localhost:6060/src/services/GrpcService.go?s=3260:3726#L78">GrpcService</a>
+			<h2 id="GrpcService">type <a href="http://localhost:6060/src/services/GrpcService.go?s=3619:4171#L89">GrpcService</a>
 				<a class="permalink" href="index.html#GrpcService">&#xb6;</a>
 				
 				
@@ -789,7 +800,7 @@ if  err == nil {
 </pre>
 
 			<pre>type GrpcService struct {
-    <a href="index.html#IRegisterable">IRegisterable</a>
+<span id="GrpcService.Overrides"></span>    Overrides <a href="index.html#IGrpcServiceOverrides">IGrpcServiceOverrides</a>
 
     <span class="comment">//  The GRPC endpoint that exposes c service.</span>
 <span id="GrpcService.Endpoint"></span>    Endpoint *<a href="index.html#GrpcEndpoint">GrpcEndpoint</a>
@@ -799,6 +810,8 @@ if  err == nil {
 <span id="GrpcService.Logger"></span>    Logger *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-components-go/log/">clog</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-components-go/log/#CompositeLogger">CompositeLogger</a>
     <span class="comment">//  The performance counters.</span>
 <span id="GrpcService.Counters"></span>    Counters *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-components-go/count/">ccount</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-components-go/count/#CompositeCounters">CompositeCounters</a>
+    <span class="comment">// The tracer.</span>
+<span id="GrpcService.Tracer"></span>    Tracer *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-components-go/trace/">ctrace</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-components-go/trace/#CompositeTracer">CompositeTracer</a>
     <span class="comment">// contains filtered or unexported fields</span>
 }
 </pre>
@@ -813,17 +826,18 @@ if  err == nil {
 
 			
 				
-				<h3 id="NewGrpcService">func <a href="http://localhost:6060/src/services/GrpcService.go?s=3940:3992#L101">NewGrpcService</a>
-					<a class="permalink" href="index.html#NewGrpcService">&#xb6;</a>
+				<h3 id="InheritGrpcService">func <a href="http://localhost:6060/src/services/GrpcService.go?s=4473:4562#L116">InheritGrpcService</a>
+					<a class="permalink" href="index.html#InheritGrpcService">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func NewGrpcService(serviceName <a href="http://localhost:6060/pkg/builtin/#string">string</a>) *<a href="index.html#GrpcService">GrpcService</a></pre>
+				<pre>func InheritGrpcService(overrides <a href="index.html#IGrpcServiceOverrides">IGrpcServiceOverrides</a>, serviceName <a href="http://localhost:6060/pkg/builtin/#string">string</a>) *<a href="index.html#GrpcService">GrpcService</a></pre>
 				<p>
-NewGrpcService methods are creates new instance NewGrpcService
+InheritGrpcService methods are creates new instance NewGrpcService
 Parameters:
 </p>
-<pre>- serviceName string
+<pre>- overrides a reference to child class that overrides virtual methods
+- serviceName string
 </pre>
 <p>
 service name from XYZ.pb.go, set &#34;&#34; for use default gRPC commandable protobuf
@@ -836,7 +850,7 @@ Return *GrpcService
 
 			
 				
-				<h3 id="GrpcService.Close">func (*GrpcService) <a href="http://localhost:6060/src/services/GrpcService.go?s=8093:8154#L228">Close</a>
+				<h3 id="GrpcService.Close">func (*GrpcService) <a href="http://localhost:6060/src/services/GrpcService.go?s=9119:9180#L251">Close</a>
 					<a class="permalink" href="index.html#GrpcService.Close">&#xb6;</a>
 					
 					
@@ -857,7 +871,7 @@ Returns: error or nil no errors occured.
 				
 			
 				
-				<h3 id="GrpcService.Configure">func (*GrpcService) <a href="http://localhost:6060/src/services/GrpcService.go?s=4494:4553#L115">Configure</a>
+				<h3 id="GrpcService.Configure">func (*GrpcService) <a href="http://localhost:6060/src/services/GrpcService.go?s=5142:5201#L133">Configure</a>
 					<a class="permalink" href="index.html#GrpcService.Configure">&#xb6;</a>
 					
 					
@@ -874,12 +888,12 @@ Configure method are configures component by passing configuration parameters.
 				
 			
 				
-				<h3 id="GrpcService.Instrument">func (*GrpcService) <a href="http://localhost:6060/src/services/GrpcService.go?s=6206:6288#L169">Instrument</a>
+				<h3 id="GrpcService.Instrument">func (*GrpcService) <a href="http://localhost:6060/src/services/GrpcService.go?s=6945:7038#L188">Instrument</a>
 					<a class="permalink" href="index.html#GrpcService.Instrument">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#GrpcService">GrpcService</a>) Instrument(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, name <a href="http://localhost:6060/pkg/builtin/#string">string</a>) *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-components-go/count/">ccount</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-components-go/count/#Timing">Timing</a></pre>
+				<pre>func (c *<a href="index.html#GrpcService">GrpcService</a>) Instrument(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, name <a href="http://localhost:6060/pkg/builtin/#string">string</a>) *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-rpc-go/services/">rpcserv</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-rpc-go/services/#InstrumentTiming">InstrumentTiming</a></pre>
 				<p>
 Instrument method are adds instrumentation to log calls and measure call time.
 It returns a Timing object that is used to end the time measurement.
@@ -897,33 +911,7 @@ Return Timing object to end the time measurement.
 				
 			
 				
-				<h3 id="GrpcService.InstrumentError">func (*GrpcService) <a href="http://localhost:6060/src/services/GrpcService.go?s=6835:6972#L183">InstrumentError</a>
-					<a class="permalink" href="index.html#GrpcService.InstrumentError">&#xb6;</a>
-					
-					
-				</h3>
-				<pre>func (c *<a href="index.html#GrpcService">GrpcService</a>) InstrumentError(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, name <a href="http://localhost:6060/pkg/builtin/#string">string</a>, errIn <a href="http://localhost:6060/pkg/builtin/#error">error</a>,
-    resIn interface{}) (result interface{}, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
-				<p>
-InstrumentError method are adds instrumentation to error handling.
-Parameters:
-</p>
-<pre>- correlationId     (optional) transaction id to trace execution through call chain.
-- name              a method name.
-- errIn               an occured error
-- resIn            (optional) an execution result
-</pre>
-<p>
-Returns: result interface{}, err error
-input result and error
-</p>
-
-				
-				
-				
-			
-				
-				<h3 id="GrpcService.IsOpen">func (*GrpcService) <a href="http://localhost:6060/src/services/GrpcService.go?s=7271:7306#L194">IsOpen</a>
+				<h3 id="GrpcService.IsOpen">func (*GrpcService) <a href="http://localhost:6060/src/services/GrpcService.go?s=8263:8298#L217">IsOpen</a>
 					<a class="permalink" href="index.html#GrpcService.IsOpen">&#xb6;</a>
 					
 					
@@ -939,7 +927,7 @@ Return true if the component has been opened and false otherwise.
 				
 			
 				
-				<h3 id="GrpcService.Open">func (*GrpcService) <a href="http://localhost:6060/src/services/GrpcService.go?s=7515:7575#L202">Open</a>
+				<h3 id="GrpcService.Open">func (*GrpcService) <a href="http://localhost:6060/src/services/GrpcService.go?s=8515:8575#L225">Open</a>
 					<a class="permalink" href="index.html#GrpcService.Open">&#xb6;</a>
 					
 					
@@ -960,7 +948,22 @@ Returns: error or nil no errors occured.
 				
 			
 				
-				<h3 id="GrpcService.RegisterCommadableMethod">func (*GrpcService) <a href="http://localhost:6060/src/services/GrpcService.go?s=8786:8961#L253">RegisterCommadableMethod</a>
+				<h3 id="GrpcService.Register">func (*GrpcService) <a href="http://localhost:6060/src/services/GrpcService.go?s=10837:10869#L297">Register</a>
+					<a class="permalink" href="index.html#GrpcService.Register">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#GrpcService">GrpcService</a>) Register()</pre>
+				<p>
+Register method are registers all service routes in HTTP endpoint.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="GrpcService.RegisterCommadableMethod">func (*GrpcService) <a href="http://localhost:6060/src/services/GrpcService.go?s=9837:10013#L276">RegisterCommadableMethod</a>
 					<a class="permalink" href="index.html#GrpcService.RegisterCommadableMethod">&#xb6;</a>
 					
 					
@@ -981,7 +984,23 @@ Parameters:
 				
 			
 				
-				<h3 id="GrpcService.SetReferences">func (*GrpcService) <a href="http://localhost:6060/src/services/GrpcService.go?s=4815:4879#L124">SetReferences</a>
+				<h3 id="GrpcService.RegisterUnaryInterceptor">func (*GrpcService) <a href="http://localhost:6060/src/services/GrpcService.go?s=10223:10396#L283">RegisterUnaryInterceptor</a>
+					<a class="permalink" href="index.html#GrpcService.RegisterUnaryInterceptor">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#GrpcService">GrpcService</a>) RegisterUnaryInterceptor(action func(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, req interface{}, info *<a href="http://localhost:6060/pkg/google.golang.org/grpc/">grpc</a>.<a href="http://localhost:6060/pkg/google.golang.org/grpc/#UnaryServerInfo">UnaryServerInfo</a>, handler <a href="http://localhost:6060/pkg/google.golang.org/grpc/">grpc</a>.<a href="http://localhost:6060/pkg/google.golang.org/grpc/#UnaryHandler">UnaryHandler</a>) (interface{}, <a href="http://localhost:6060/pkg/builtin/#error">error</a>))</pre>
+				<p>
+Registers a middleware for methods in GRPC endpoint.
+- action        an action function that is called when middleware is invoked.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="GrpcService.SetReferences">func (*GrpcService) <a href="http://localhost:6060/src/services/GrpcService.go?s=5472:5536#L142">SetReferences</a>
 					<a class="permalink" href="index.html#GrpcService.SetReferences">&#xb6;</a>
 					
 					
@@ -999,7 +1018,7 @@ Parameters:
 				
 			
 				
-				<h3 id="GrpcService.UnsetReferences">func (*GrpcService) <a href="http://localhost:6060/src/services/GrpcService.go?s=5459:5498#L144">UnsetReferences</a>
+				<h3 id="GrpcService.UnsetReferences">func (*GrpcService) <a href="http://localhost:6060/src/services/GrpcService.go?s=6173:6212#L163">UnsetReferences</a>
 					<a class="permalink" href="index.html#GrpcService.UnsetReferences">&#xb6;</a>
 					
 					
@@ -1013,10 +1032,46 @@ UnsetReferences method are unsets (clears) previously set references to dependen
 				
 				
 			
+				
+				<h3 id="GrpcService.ValidateRequest">func (*GrpcService) <a href="http://localhost:6060/src/services/GrpcService.go?s=10934:11021#L302">ValidateRequest</a>
+					<a class="permalink" href="index.html#GrpcService.ValidateRequest">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#GrpcService">GrpcService</a>) ValidateRequest(request interface{}, schema *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/validate/">cvalid</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-commons-go/validate/#Schema">Schema</a>) <a href="http://localhost:6060/pkg/builtin/#error">error</a></pre>
+				
+				
+				
+				
+			
 		
 			
 			
-			<h2 id="IRegisterable">type <a href="http://localhost:6060/src/services/IRegisterable.go?s=84:169#L1">IRegisterable</a>
+			<h2 id="IGrpcServiceOverrides">type <a href="http://localhost:6060/src/services/GrpcService.go?s=737:791#L10">IGrpcServiceOverrides</a>
+				<a class="permalink" href="index.html#IGrpcServiceOverrides">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type IGrpcServiceOverrides interface {
+    Register()
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+		
+			
+			
+			<h2 id="IRegisterable">type <a href="http://localhost:6060/src/services/IRegisterable.go?s=87:175#L1">IRegisterable</a>
 				<a class="permalink" href="index.html#IRegisterable">&#xb6;</a>
 				
 				
@@ -1044,7 +1099,7 @@ IRegisterable is interface to perform on-demand registrations.
 		
 			
 			
-			<h2 id="InvokeComandMediator">type <a href="http://localhost:6060/src/services/Mediators.go?s=197:350#L1">InvokeComandMediator</a>
+			<h2 id="InvokeComandMediator">type <a href="http://localhost:6060/src/services/Mediators.go?s=206:391#L1">InvokeComandMediator</a>
 				<a class="permalink" href="index.html#InvokeComandMediator">&#xb6;</a>
 				
 				
@@ -1055,6 +1110,7 @@ InvokeComandMediator Helper class for implements invoke method in CommandableGrp
 
 			<pre>type InvokeComandMediator struct {
 <span id="InvokeComandMediator.InvokeFunc"></span>    InvokeFunc func(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, request *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-grpc-go/protos/">grpcproto</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-grpc-go/protos/#InvokeRequest">InvokeRequest</a>) (response *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-grpc-go/protos/">grpcproto</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-grpc-go/protos/#InvokeReply">InvokeReply</a>, err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)
+    <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-grpc-go/protos/">grpcproto</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-grpc-go/protos/#CommandableServer">CommandableServer</a>
 }
 </pre>
 
@@ -1070,7 +1126,7 @@ InvokeComandMediator Helper class for implements invoke method in CommandableGrp
 
 			
 				
-				<h3 id="InvokeComandMediator.Invoke">func (*InvokeComandMediator) <a href="http://localhost:6060/src/services/Mediators.go?s=352:489#L4">Invoke</a>
+				<h3 id="InvokeComandMediator.Invoke">func (*InvokeComandMediator) <a href="http://localhost:6060/src/services/Mediators.go?s=395:532#L5">Invoke</a>
 					<a class="permalink" href="index.html#InvokeComandMediator.Invoke">&#xb6;</a>
 					
 					
@@ -1093,13 +1149,13 @@ InvokeComandMediator Helper class for implements invoke method in CommandableGrp
 
 
 <div id="footer">
-Build version go1.13.15.<br>
+Build version go1.16.15.<br>
 Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
 the content of this page is licensed under the
 Creative Commons Attribution 3.0 License,
 and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
-<a href="http://localhost:6060/doc/tos.html">Terms of Service</a> |
-<a href="http://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
 </div>
 
 </div><!-- .container -->

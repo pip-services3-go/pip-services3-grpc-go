@@ -14,7 +14,7 @@
 
 
 
-<script>var goVersion = "go1.13.15";</script>
+<script>var goVersion = "go1.16.15";</script>
 <script src="../../../lib/godoc/godocs.js" defer></script>
 </head>
 <body>
@@ -110,9 +110,11 @@
 			<dl>
 			
 			
+				<dd><a href="index.html#pkg-variables">Variables</a></dd>
+			
 			
 				
-				<dd><a href="index.html#RegisterDummiesServer">func RegisterDummiesServer(s *grpc.Server, srv DummiesServer)</a></dd>
+				<dd><a href="index.html#RegisterDummiesServer">func RegisterDummiesServer(s grpc.ServiceRegistrar, srv DummiesServer)</a></dd>
 			
 			
 				
@@ -131,34 +133,22 @@
 					<dd>&nbsp; &nbsp; <a href="index.html#DummiesPage.Descriptor">func (*DummiesPage) Descriptor() ([]byte, []int)</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#DummiesPage.GetData">func (m *DummiesPage) GetData() []*Dummy</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#DummiesPage.GetData">func (x *DummiesPage) GetData() []*Dummy</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#DummiesPage.GetTotal">func (m *DummiesPage) GetTotal() int64</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#DummiesPage.GetTotal">func (x *DummiesPage) GetTotal() int64</a></dd>
 				
 					
 					<dd>&nbsp; &nbsp; <a href="index.html#DummiesPage.ProtoMessage">func (*DummiesPage) ProtoMessage()</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#DummiesPage.Reset">func (m *DummiesPage) Reset()</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#DummiesPage.ProtoReflect">func (x *DummiesPage) ProtoReflect() protoreflect.Message</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#DummiesPage.String">func (m *DummiesPage) String() string</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#DummiesPage.Reset">func (x *DummiesPage) Reset()</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#DummiesPage.XXX_DiscardUnknown">func (m *DummiesPage) XXX_DiscardUnknown()</a></dd>
-				
-					
-					<dd>&nbsp; &nbsp; <a href="index.html#DummiesPage.XXX_Marshal">func (m *DummiesPage) XXX_Marshal(b []byte, deterministic bool) ([]byte, error)</a></dd>
-				
-					
-					<dd>&nbsp; &nbsp; <a href="index.html#DummiesPage.XXX_Merge">func (m *DummiesPage) XXX_Merge(src proto.Message)</a></dd>
-				
-					
-					<dd>&nbsp; &nbsp; <a href="index.html#DummiesPage.XXX_Size">func (m *DummiesPage) XXX_Size() int</a></dd>
-				
-					
-					<dd>&nbsp; &nbsp; <a href="index.html#DummiesPage.XXX_Unmarshal">func (m *DummiesPage) XXX_Unmarshal(b []byte) error</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#DummiesPage.String">func (x *DummiesPage) String() string</a></dd>
 				
 			
 				
@@ -169,37 +159,25 @@
 					<dd>&nbsp; &nbsp; <a href="index.html#DummiesPageRequest.Descriptor">func (*DummiesPageRequest) Descriptor() ([]byte, []int)</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#DummiesPageRequest.GetCorrelationId">func (m *DummiesPageRequest) GetCorrelationId() string</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#DummiesPageRequest.GetCorrelationId">func (x *DummiesPageRequest) GetCorrelationId() string</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#DummiesPageRequest.GetFilter">func (m *DummiesPageRequest) GetFilter() map[string]string</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#DummiesPageRequest.GetFilter">func (x *DummiesPageRequest) GetFilter() map[string]string</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#DummiesPageRequest.GetPaging">func (m *DummiesPageRequest) GetPaging() *PagingParams</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#DummiesPageRequest.GetPaging">func (x *DummiesPageRequest) GetPaging() *PagingParams</a></dd>
 				
 					
 					<dd>&nbsp; &nbsp; <a href="index.html#DummiesPageRequest.ProtoMessage">func (*DummiesPageRequest) ProtoMessage()</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#DummiesPageRequest.Reset">func (m *DummiesPageRequest) Reset()</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#DummiesPageRequest.ProtoReflect">func (x *DummiesPageRequest) ProtoReflect() protoreflect.Message</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#DummiesPageRequest.String">func (m *DummiesPageRequest) String() string</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#DummiesPageRequest.Reset">func (x *DummiesPageRequest) Reset()</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#DummiesPageRequest.XXX_DiscardUnknown">func (m *DummiesPageRequest) XXX_DiscardUnknown()</a></dd>
-				
-					
-					<dd>&nbsp; &nbsp; <a href="index.html#DummiesPageRequest.XXX_Marshal">func (m *DummiesPageRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error)</a></dd>
-				
-					
-					<dd>&nbsp; &nbsp; <a href="index.html#DummiesPageRequest.XXX_Merge">func (m *DummiesPageRequest) XXX_Merge(src proto.Message)</a></dd>
-				
-					
-					<dd>&nbsp; &nbsp; <a href="index.html#DummiesPageRequest.XXX_Size">func (m *DummiesPageRequest) XXX_Size() int</a></dd>
-				
-					
-					<dd>&nbsp; &nbsp; <a href="index.html#DummiesPageRequest.XXX_Unmarshal">func (m *DummiesPageRequest) XXX_Unmarshal(b []byte) error</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#DummiesPageRequest.String">func (x *DummiesPageRequest) String() string</a></dd>
 				
 			
 				
@@ -215,37 +193,25 @@
 					<dd>&nbsp; &nbsp; <a href="index.html#Dummy.Descriptor">func (*Dummy) Descriptor() ([]byte, []int)</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#Dummy.GetContent">func (m *Dummy) GetContent() string</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#Dummy.GetContent">func (x *Dummy) GetContent() string</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#Dummy.GetId">func (m *Dummy) GetId() string</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#Dummy.GetId">func (x *Dummy) GetId() string</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#Dummy.GetKey">func (m *Dummy) GetKey() string</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#Dummy.GetKey">func (x *Dummy) GetKey() string</a></dd>
 				
 					
 					<dd>&nbsp; &nbsp; <a href="index.html#Dummy.ProtoMessage">func (*Dummy) ProtoMessage()</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#Dummy.Reset">func (m *Dummy) Reset()</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#Dummy.ProtoReflect">func (x *Dummy) ProtoReflect() protoreflect.Message</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#Dummy.String">func (m *Dummy) String() string</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#Dummy.Reset">func (x *Dummy) Reset()</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#Dummy.XXX_DiscardUnknown">func (m *Dummy) XXX_DiscardUnknown()</a></dd>
-				
-					
-					<dd>&nbsp; &nbsp; <a href="index.html#Dummy.XXX_Marshal">func (m *Dummy) XXX_Marshal(b []byte, deterministic bool) ([]byte, error)</a></dd>
-				
-					
-					<dd>&nbsp; &nbsp; <a href="index.html#Dummy.XXX_Merge">func (m *Dummy) XXX_Merge(src proto.Message)</a></dd>
-				
-					
-					<dd>&nbsp; &nbsp; <a href="index.html#Dummy.XXX_Size">func (m *Dummy) XXX_Size() int</a></dd>
-				
-					
-					<dd>&nbsp; &nbsp; <a href="index.html#Dummy.XXX_Unmarshal">func (m *Dummy) XXX_Unmarshal(b []byte) error</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#Dummy.String">func (x *Dummy) String() string</a></dd>
 				
 			
 				
@@ -256,34 +222,22 @@
 					<dd>&nbsp; &nbsp; <a href="index.html#DummyIdRequest.Descriptor">func (*DummyIdRequest) Descriptor() ([]byte, []int)</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#DummyIdRequest.GetCorrelationId">func (m *DummyIdRequest) GetCorrelationId() string</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#DummyIdRequest.GetCorrelationId">func (x *DummyIdRequest) GetCorrelationId() string</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#DummyIdRequest.GetDummyId">func (m *DummyIdRequest) GetDummyId() string</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#DummyIdRequest.GetDummyId">func (x *DummyIdRequest) GetDummyId() string</a></dd>
 				
 					
 					<dd>&nbsp; &nbsp; <a href="index.html#DummyIdRequest.ProtoMessage">func (*DummyIdRequest) ProtoMessage()</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#DummyIdRequest.Reset">func (m *DummyIdRequest) Reset()</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#DummyIdRequest.ProtoReflect">func (x *DummyIdRequest) ProtoReflect() protoreflect.Message</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#DummyIdRequest.String">func (m *DummyIdRequest) String() string</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#DummyIdRequest.Reset">func (x *DummyIdRequest) Reset()</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#DummyIdRequest.XXX_DiscardUnknown">func (m *DummyIdRequest) XXX_DiscardUnknown()</a></dd>
-				
-					
-					<dd>&nbsp; &nbsp; <a href="index.html#DummyIdRequest.XXX_Marshal">func (m *DummyIdRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error)</a></dd>
-				
-					
-					<dd>&nbsp; &nbsp; <a href="index.html#DummyIdRequest.XXX_Merge">func (m *DummyIdRequest) XXX_Merge(src proto.Message)</a></dd>
-				
-					
-					<dd>&nbsp; &nbsp; <a href="index.html#DummyIdRequest.XXX_Size">func (m *DummyIdRequest) XXX_Size() int</a></dd>
-				
-					
-					<dd>&nbsp; &nbsp; <a href="index.html#DummyIdRequest.XXX_Unmarshal">func (m *DummyIdRequest) XXX_Unmarshal(b []byte) error</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#DummyIdRequest.String">func (x *DummyIdRequest) String() string</a></dd>
 				
 			
 				
@@ -294,34 +248,22 @@
 					<dd>&nbsp; &nbsp; <a href="index.html#DummyObjectRequest.Descriptor">func (*DummyObjectRequest) Descriptor() ([]byte, []int)</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#DummyObjectRequest.GetCorrelationId">func (m *DummyObjectRequest) GetCorrelationId() string</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#DummyObjectRequest.GetCorrelationId">func (x *DummyObjectRequest) GetCorrelationId() string</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#DummyObjectRequest.GetDummy">func (m *DummyObjectRequest) GetDummy() *Dummy</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#DummyObjectRequest.GetDummy">func (x *DummyObjectRequest) GetDummy() *Dummy</a></dd>
 				
 					
 					<dd>&nbsp; &nbsp; <a href="index.html#DummyObjectRequest.ProtoMessage">func (*DummyObjectRequest) ProtoMessage()</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#DummyObjectRequest.Reset">func (m *DummyObjectRequest) Reset()</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#DummyObjectRequest.ProtoReflect">func (x *DummyObjectRequest) ProtoReflect() protoreflect.Message</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#DummyObjectRequest.String">func (m *DummyObjectRequest) String() string</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#DummyObjectRequest.Reset">func (x *DummyObjectRequest) Reset()</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#DummyObjectRequest.XXX_DiscardUnknown">func (m *DummyObjectRequest) XXX_DiscardUnknown()</a></dd>
-				
-					
-					<dd>&nbsp; &nbsp; <a href="index.html#DummyObjectRequest.XXX_Marshal">func (m *DummyObjectRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error)</a></dd>
-				
-					
-					<dd>&nbsp; &nbsp; <a href="index.html#DummyObjectRequest.XXX_Merge">func (m *DummyObjectRequest) XXX_Merge(src proto.Message)</a></dd>
-				
-					
-					<dd>&nbsp; &nbsp; <a href="index.html#DummyObjectRequest.XXX_Size">func (m *DummyObjectRequest) XXX_Size() int</a></dd>
-				
-					
-					<dd>&nbsp; &nbsp; <a href="index.html#DummyObjectRequest.XXX_Unmarshal">func (m *DummyObjectRequest) XXX_Unmarshal(b []byte) error</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#DummyObjectRequest.String">func (x *DummyObjectRequest) String() string</a></dd>
 				
 			
 				
@@ -332,52 +274,40 @@
 					<dd>&nbsp; &nbsp; <a href="index.html#ErrorDescription.Descriptor">func (*ErrorDescription) Descriptor() ([]byte, []int)</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#ErrorDescription.GetCategory">func (m *ErrorDescription) GetCategory() string</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#ErrorDescription.GetCategory">func (x *ErrorDescription) GetCategory() string</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#ErrorDescription.GetCause">func (m *ErrorDescription) GetCause() string</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#ErrorDescription.GetCause">func (x *ErrorDescription) GetCause() string</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#ErrorDescription.GetCode">func (m *ErrorDescription) GetCode() string</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#ErrorDescription.GetCode">func (x *ErrorDescription) GetCode() string</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#ErrorDescription.GetCorrelationId">func (m *ErrorDescription) GetCorrelationId() string</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#ErrorDescription.GetCorrelationId">func (x *ErrorDescription) GetCorrelationId() string</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#ErrorDescription.GetDetails">func (m *ErrorDescription) GetDetails() map[string]string</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#ErrorDescription.GetDetails">func (x *ErrorDescription) GetDetails() map[string]string</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#ErrorDescription.GetMessage">func (m *ErrorDescription) GetMessage() string</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#ErrorDescription.GetMessage">func (x *ErrorDescription) GetMessage() string</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#ErrorDescription.GetStackTrace">func (m *ErrorDescription) GetStackTrace() string</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#ErrorDescription.GetStackTrace">func (x *ErrorDescription) GetStackTrace() string</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#ErrorDescription.GetStatus">func (m *ErrorDescription) GetStatus() string</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#ErrorDescription.GetStatus">func (x *ErrorDescription) GetStatus() string</a></dd>
 				
 					
 					<dd>&nbsp; &nbsp; <a href="index.html#ErrorDescription.ProtoMessage">func (*ErrorDescription) ProtoMessage()</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#ErrorDescription.Reset">func (m *ErrorDescription) Reset()</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#ErrorDescription.ProtoReflect">func (x *ErrorDescription) ProtoReflect() protoreflect.Message</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#ErrorDescription.String">func (m *ErrorDescription) String() string</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#ErrorDescription.Reset">func (x *ErrorDescription) Reset()</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#ErrorDescription.XXX_DiscardUnknown">func (m *ErrorDescription) XXX_DiscardUnknown()</a></dd>
-				
-					
-					<dd>&nbsp; &nbsp; <a href="index.html#ErrorDescription.XXX_Marshal">func (m *ErrorDescription) XXX_Marshal(b []byte, deterministic bool) ([]byte, error)</a></dd>
-				
-					
-					<dd>&nbsp; &nbsp; <a href="index.html#ErrorDescription.XXX_Merge">func (m *ErrorDescription) XXX_Merge(src proto.Message)</a></dd>
-				
-					
-					<dd>&nbsp; &nbsp; <a href="index.html#ErrorDescription.XXX_Size">func (m *ErrorDescription) XXX_Size() int</a></dd>
-				
-					
-					<dd>&nbsp; &nbsp; <a href="index.html#ErrorDescription.XXX_Unmarshal">func (m *ErrorDescription) XXX_Unmarshal(b []byte) error</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#ErrorDescription.String">func (x *ErrorDescription) String() string</a></dd>
 				
 			
 				
@@ -388,37 +318,25 @@
 					<dd>&nbsp; &nbsp; <a href="index.html#PagingParams.Descriptor">func (*PagingParams) Descriptor() ([]byte, []int)</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#PagingParams.GetSkip">func (m *PagingParams) GetSkip() int64</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#PagingParams.GetSkip">func (x *PagingParams) GetSkip() int64</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#PagingParams.GetTake">func (m *PagingParams) GetTake() int32</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#PagingParams.GetTake">func (x *PagingParams) GetTake() int32</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#PagingParams.GetTotal">func (m *PagingParams) GetTotal() bool</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#PagingParams.GetTotal">func (x *PagingParams) GetTotal() bool</a></dd>
 				
 					
 					<dd>&nbsp; &nbsp; <a href="index.html#PagingParams.ProtoMessage">func (*PagingParams) ProtoMessage()</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#PagingParams.Reset">func (m *PagingParams) Reset()</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#PagingParams.ProtoReflect">func (x *PagingParams) ProtoReflect() protoreflect.Message</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#PagingParams.String">func (m *PagingParams) String() string</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#PagingParams.Reset">func (x *PagingParams) Reset()</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#PagingParams.XXX_DiscardUnknown">func (m *PagingParams) XXX_DiscardUnknown()</a></dd>
-				
-					
-					<dd>&nbsp; &nbsp; <a href="index.html#PagingParams.XXX_Marshal">func (m *PagingParams) XXX_Marshal(b []byte, deterministic bool) ([]byte, error)</a></dd>
-				
-					
-					<dd>&nbsp; &nbsp; <a href="index.html#PagingParams.XXX_Merge">func (m *PagingParams) XXX_Merge(src proto.Message)</a></dd>
-				
-					
-					<dd>&nbsp; &nbsp; <a href="index.html#PagingParams.XXX_Size">func (m *PagingParams) XXX_Size() int</a></dd>
-				
-					
-					<dd>&nbsp; &nbsp; <a href="index.html#PagingParams.XXX_Unmarshal">func (m *PagingParams) XXX_Unmarshal(b []byte) error</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#PagingParams.String">func (x *PagingParams) String() string</a></dd>
 				
 			
 				
@@ -426,19 +344,24 @@
 				
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#UnimplementedDummiesServer.CreateDummy">func (*UnimplementedDummiesServer) CreateDummy(ctx context.Context, req *DummyObjectRequest) (*Dummy, error)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#UnimplementedDummiesServer.CreateDummy">func (UnimplementedDummiesServer) CreateDummy(context.Context, *DummyObjectRequest) (*Dummy, error)</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#UnimplementedDummiesServer.DeleteDummyById">func (*UnimplementedDummiesServer) DeleteDummyById(ctx context.Context, req *DummyIdRequest) (*Dummy, error)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#UnimplementedDummiesServer.DeleteDummyById">func (UnimplementedDummiesServer) DeleteDummyById(context.Context, *DummyIdRequest) (*Dummy, error)</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#UnimplementedDummiesServer.GetDummies">func (*UnimplementedDummiesServer) GetDummies(ctx context.Context, req *DummiesPageRequest) (*DummiesPage, error)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#UnimplementedDummiesServer.GetDummies">func (UnimplementedDummiesServer) GetDummies(context.Context, *DummiesPageRequest) (*DummiesPage, error)</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#UnimplementedDummiesServer.GetDummyById">func (*UnimplementedDummiesServer) GetDummyById(ctx context.Context, req *DummyIdRequest) (*Dummy, error)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#UnimplementedDummiesServer.GetDummyById">func (UnimplementedDummiesServer) GetDummyById(context.Context, *DummyIdRequest) (*Dummy, error)</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#UnimplementedDummiesServer.UpdateDummy">func (*UnimplementedDummiesServer) UpdateDummy(ctx context.Context, req *DummyObjectRequest) (*Dummy, error)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#UnimplementedDummiesServer.UpdateDummy">func (UnimplementedDummiesServer) UpdateDummy(context.Context, *DummyObjectRequest) (*Dummy, error)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#UnsafeDummiesServer">type UnsafeDummiesServer</a></dd>
+				
 				
 			
 			
@@ -454,6 +377,8 @@
 			
 				<a href="http://localhost:6060/src/test/protos/dummies.pb.go">dummies.pb.go</a>
 			
+				<a href="http://localhost:6060/src/test/protos/dummies_grpc.pb.go">dummies_grpc.pb.go</a>
+			
 			</span>
 			</p>
 		
@@ -464,15 +389,56 @@
 
 		
 		
+			<h2 id="pkg-variables">Variables</h2>
+			
+				<p>
+Dummies_ServiceDesc is the grpc.ServiceDesc for Dummies service.
+It&#39;s only intended for direct use with grpc.RegisterService,
+and not to be introspected or modified (even as a copy)
+</p>
+
+				<pre>var <span id="Dummies_ServiceDesc">Dummies_ServiceDesc</span> = <a href="http://localhost:6060/pkg/google.golang.org/grpc/">grpc</a>.<a href="http://localhost:6060/pkg/google.golang.org/grpc/#ServiceDesc">ServiceDesc</a>{
+    <a href="http://localhost:6060/pkg/google.golang.org/grpc/#ServiceDesc.ServiceName">ServiceName</a>: &#34;dummies.Dummies&#34;,
+    <a href="http://localhost:6060/pkg/google.golang.org/grpc/#ServiceDesc.HandlerType">HandlerType</a>: (*<a href="index.html#DummiesServer">DummiesServer</a>)(<a href="http://localhost:6060/pkg/builtin/#nil">nil</a>),
+    <a href="http://localhost:6060/pkg/google.golang.org/grpc/#ServiceDesc.Methods">Methods</a>: []<a href="http://localhost:6060/pkg/google.golang.org/grpc/">grpc</a>.<a href="http://localhost:6060/pkg/google.golang.org/grpc/#MethodDesc">MethodDesc</a>{
+        {
+            <a href="index.html#MethodName">MethodName</a>: &#34;get_dummies&#34;,
+            <a href="index.html#Handler">Handler</a>:    _Dummies_GetDummies_Handler,
+        },
+        {
+            <a href="index.html#MethodName">MethodName</a>: &#34;get_dummy_by_id&#34;,
+            <a href="index.html#Handler">Handler</a>:    _Dummies_GetDummyById_Handler,
+        },
+        {
+            <a href="index.html#MethodName">MethodName</a>: &#34;create_dummy&#34;,
+            <a href="index.html#Handler">Handler</a>:    _Dummies_CreateDummy_Handler,
+        },
+        {
+            <a href="index.html#MethodName">MethodName</a>: &#34;update_dummy&#34;,
+            <a href="index.html#Handler">Handler</a>:    _Dummies_UpdateDummy_Handler,
+        },
+        {
+            <a href="index.html#MethodName">MethodName</a>: &#34;delete_dummy_by_id&#34;,
+            <a href="index.html#Handler">Handler</a>:    _Dummies_DeleteDummyById_Handler,
+        },
+    },
+    <a href="http://localhost:6060/pkg/google.golang.org/grpc/#ServiceDesc.Streams">Streams</a>:  []<a href="http://localhost:6060/pkg/google.golang.org/grpc/">grpc</a>.<a href="http://localhost:6060/pkg/google.golang.org/grpc/#StreamDesc">StreamDesc</a>{},
+    <a href="http://localhost:6060/pkg/google.golang.org/grpc/#ServiceDesc.Metadata">Metadata</a>: &#34;test/protos/dummies.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="File_test_protos_dummies_proto">File_test_protos_dummies_proto</span> <a href="http://localhost:6060/pkg/google.golang.org/protobuf/reflect/protoreflect/">protoreflect</a>.<a href="http://localhost:6060/pkg/google.golang.org/protobuf/reflect/protoreflect/#FileDescriptor">FileDescriptor</a></pre>
+			
+		
 		
 			
 			
-			<h2 id="RegisterDummiesServer">func <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=22145:22206#L578">RegisterDummiesServer</a>
+			<h2 id="RegisterDummiesServer">func <a href="http://localhost:6060/src/test/protos/dummies_grpc.pb.go?s=4746:4816#L111">RegisterDummiesServer</a>
 				<a class="permalink" href="index.html#RegisterDummiesServer">&#xb6;</a>
 				
 				
 			</h2>
-			<pre>func RegisterDummiesServer(s *<a href="http://localhost:6060/pkg/google.golang.org/grpc/">grpc</a>.<a href="http://localhost:6060/pkg/google.golang.org/grpc/#Server">Server</a>, srv <a href="index.html#DummiesServer">DummiesServer</a>)</pre>
+			<pre>func RegisterDummiesServer(s <a href="http://localhost:6060/pkg/google.golang.org/grpc/">grpc</a>.<a href="http://localhost:6060/pkg/google.golang.org/grpc/#ServiceRegistrar">ServiceRegistrar</a>, srv <a href="index.html#DummiesServer">DummiesServer</a>)</pre>
 			
 			
 			
@@ -481,7 +447,7 @@
 		
 			
 			
-			<h2 id="DummiesClient">type <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=18493:19022#L488">DummiesClient</a>
+			<h2 id="DummiesClient">type <a href="http://localhost:6060/src/test/protos/dummies_grpc.pb.go?s=645:1174#L10">DummiesClient</a>
 				<a class="permalink" href="index.html#DummiesClient">&#xb6;</a>
 				
 				
@@ -490,7 +456,7 @@
 DummiesClient is the client API for Dummies service.
 </p>
 <p>
-For semantics around ctx use and closing/ending streaming RPCs, please refer to <a href="https://godoc.org/google.golang.org/grpc#ClientConn.NewStream">https://godoc.org/google.golang.org/grpc#ClientConn.NewStream</a>.
+For semantics around ctx use and closing/ending streaming RPCs, please refer to <a href="https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream">https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream</a>.
 </p>
 
 			<pre>type DummiesClient interface {
@@ -511,7 +477,7 @@ For semantics around ctx use and closing/ending streaming RPCs, please refer to 
 
 			
 				
-				<h3 id="NewDummiesClient">func <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=19084:19148#L500">NewDummiesClient</a>
+				<h3 id="NewDummiesClient">func <a href="http://localhost:6060/src/test/protos/dummies_grpc.pb.go?s=1236:1300#L22">NewDummiesClient</a>
 					<a class="permalink" href="index.html#NewDummiesClient">&#xb6;</a>
 					
 					
@@ -526,18 +492,16 @@ For semantics around ctx use and closing/ending streaming RPCs, please refer to 
 		
 			
 			
-			<h2 id="DummiesPage">type <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=6809:7155#L222">DummiesPage</a>
+			<h2 id="DummiesPage">type <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=6904:7207#L256">DummiesPage</a>
 				<a class="permalink" href="index.html#DummiesPage">&#xb6;</a>
 				
 				
 			</h2>
 			
 			<pre>type DummiesPage struct {
-<span id="DummiesPage.Total"></span>    Total                <a href="http://localhost:6060/pkg/builtin/#int64">int64</a>    `protobuf:&#34;varint,1,opt,name=total,proto3&#34; json:&#34;total,omitempty&#34;`
-<span id="DummiesPage.Data"></span>    Data                 []*<a href="index.html#Dummy">Dummy</a> `protobuf:&#34;bytes,2,rep,name=data,proto3&#34; json:&#34;data,omitempty&#34;`
-<span id="DummiesPage.XXX_NoUnkeyedLiteral"></span>    XXX_NoUnkeyedLiteral struct{} `json:&#34;-&#34;`
-<span id="DummiesPage.XXX_unrecognized"></span>    XXX_unrecognized     []<a href="http://localhost:6060/pkg/builtin/#byte">byte</a>   `json:&#34;-&#34;`
-<span id="DummiesPage.XXX_sizecache"></span>    XXX_sizecache        <a href="http://localhost:6060/pkg/builtin/#int32">int32</a>    `json:&#34;-&#34;`
+<span id="DummiesPage.Total"></span>    Total <a href="http://localhost:6060/pkg/builtin/#int64">int64</a>    `protobuf:&#34;varint,1,opt,name=total,proto3&#34; json:&#34;total,omitempty&#34;`
+<span id="DummiesPage.Data"></span>    Data  []*<a href="index.html#Dummy">Dummy</a> `protobuf:&#34;bytes,2,rep,name=data,proto3&#34; json:&#34;data,omitempty&#34;`
+    <span class="comment">// contains filtered or unexported fields</span>
 }
 </pre>
 
@@ -553,43 +517,46 @@ For semantics around ctx use and closing/ending streaming RPCs, please refer to 
 
 			
 				
-				<h3 id="DummiesPage.Descriptor">func (*DummiesPage) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=7335:7383#L233">Descriptor</a>
+				<h3 id="DummiesPage.Descriptor">func (*DummiesPage) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=7935:7983#L293">Descriptor</a>
 					<a class="permalink" href="index.html#DummiesPage.Descriptor">&#xb6;</a>
 					
 					
 				</h3>
 				<pre>func (*<a href="index.html#DummiesPage">DummiesPage</a>) Descriptor() ([]<a href="http://localhost:6060/pkg/builtin/#byte">byte</a>, []<a href="http://localhost:6060/pkg/builtin/#int">int</a>)</pre>
-				
+				<p>
+Deprecated: Use DummiesPage.ProtoReflect.Descriptor instead.
+</p>
+
 				
 				
 				
 			
 				
-				<h3 id="DummiesPage.GetData">func (*DummiesPage) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=8122:8162#L262">GetData</a>
+				<h3 id="DummiesPage.GetData">func (*DummiesPage) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=8141:8181#L304">GetData</a>
 					<a class="permalink" href="index.html#DummiesPage.GetData">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (m *<a href="index.html#DummiesPage">DummiesPage</a>) GetData() []*<a href="index.html#Dummy">Dummy</a></pre>
+				<pre>func (x *<a href="index.html#DummiesPage">DummiesPage</a>) GetData() []*<a href="index.html#Dummy">Dummy</a></pre>
 				
 				
 				
 				
 			
 				
-				<h3 id="DummiesPage.GetTotal">func (*DummiesPage) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=8033:8071#L255">GetTotal</a>
+				<h3 id="DummiesPage.GetTotal">func (*DummiesPage) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=8052:8090#L297">GetTotal</a>
 					<a class="permalink" href="index.html#DummiesPage.GetTotal">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (m *<a href="index.html#DummiesPage">DummiesPage</a>) GetTotal() <a href="http://localhost:6060/pkg/builtin/#int64">int64</a></pre>
+				<pre>func (x *<a href="index.html#DummiesPage">DummiesPage</a>) GetTotal() <a href="http://localhost:6060/pkg/builtin/#int64">int64</a></pre>
 				
 				
 				
 				
 			
 				
-				<h3 id="DummiesPage.ProtoMessage">func (*DummiesPage) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=7294:7328#L232">ProtoMessage</a>
+				<h3 id="DummiesPage.ProtoMessage">func (*DummiesPage) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=7514:7548#L278">ProtoMessage</a>
 					<a class="permalink" href="index.html#DummiesPage.ProtoMessage">&#xb6;</a>
 					
 					
@@ -601,84 +568,36 @@ For semantics around ctx use and closing/ending streaming RPCs, please refer to 
 				
 			
 				
-				<h3 id="DummiesPage.Reset">func (*DummiesPage) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=7157:7186#L230">Reset</a>
+				<h3 id="DummiesPage.ProtoReflect">func (*DummiesPage) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=7553:7610#L280">ProtoReflect</a>
+					<a class="permalink" href="index.html#DummiesPage.ProtoReflect">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (x *<a href="index.html#DummiesPage">DummiesPage</a>) ProtoReflect() <a href="http://localhost:6060/pkg/google.golang.org/protobuf/reflect/protoreflect/">protoreflect</a>.<a href="http://localhost:6060/pkg/google.golang.org/protobuf/reflect/protoreflect/#Message">Message</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="DummiesPage.Reset">func (*DummiesPage) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=7209:7238#L265">Reset</a>
 					<a class="permalink" href="index.html#DummiesPage.Reset">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (m *<a href="index.html#DummiesPage">DummiesPage</a>) Reset()</pre>
+				<pre>func (x *<a href="index.html#DummiesPage">DummiesPage</a>) Reset()</pre>
 				
 				
 				
 				
 			
 				
-				<h3 id="DummiesPage.String">func (*DummiesPage) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=7218:7255#L231">String</a>
+				<h3 id="DummiesPage.String">func (*DummiesPage) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=7432:7469#L274">String</a>
 					<a class="permalink" href="index.html#DummiesPage.String">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (m *<a href="index.html#DummiesPage">DummiesPage</a>) String() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
-				
-				
-				
-				
-			
-				
-				<h3 id="DummiesPage.XXX_DiscardUnknown">func (*DummiesPage) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=7879:7921#L249">XXX_DiscardUnknown</a>
-					<a class="permalink" href="index.html#DummiesPage.XXX_DiscardUnknown">&#xb6;</a>
-					
-					
-				</h3>
-				<pre>func (m *<a href="index.html#DummiesPage">DummiesPage</a>) XXX_DiscardUnknown()</pre>
-				
-				
-				
-				
-			
-				
-				<h3 id="DummiesPage.XXX_Marshal">func (*DummiesPage) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=7547:7626#L240">XXX_Marshal</a>
-					<a class="permalink" href="index.html#DummiesPage.XXX_Marshal">&#xb6;</a>
-					
-					
-				</h3>
-				<pre>func (m *<a href="index.html#DummiesPage">DummiesPage</a>) XXX_Marshal(b []<a href="http://localhost:6060/pkg/builtin/#byte">byte</a>, deterministic <a href="http://localhost:6060/pkg/builtin/#bool">bool</a>) ([]<a href="http://localhost:6060/pkg/builtin/#byte">byte</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
-				
-				
-				
-				
-			
-				
-				<h3 id="DummiesPage.XXX_Merge">func (*DummiesPage) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=7696:7746#L243">XXX_Merge</a>
-					<a class="permalink" href="index.html#DummiesPage.XXX_Merge">&#xb6;</a>
-					
-					
-				</h3>
-				<pre>func (m *<a href="index.html#DummiesPage">DummiesPage</a>) XXX_Merge(src <a href="http://localhost:6060/pkg/github.com/golang/protobuf/proto/">proto</a>.<a href="http://localhost:6060/pkg/github.com/golang/protobuf/proto/#Message">Message</a>)</pre>
-				
-				
-				
-				
-			
-				
-				<h3 id="DummiesPage.XXX_Size">func (*DummiesPage) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=7794:7830#L246">XXX_Size</a>
-					<a class="permalink" href="index.html#DummiesPage.XXX_Size">&#xb6;</a>
-					
-					
-				</h3>
-				<pre>func (m *<a href="index.html#DummiesPage">DummiesPage</a>) XXX_Size() <a href="http://localhost:6060/pkg/builtin/#int">int</a></pre>
-				
-				
-				
-				
-			
-				
-				<h3 id="DummiesPage.XXX_Unmarshal">func (*DummiesPage) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=7439:7490#L237">XXX_Unmarshal</a>
-					<a class="permalink" href="index.html#DummiesPage.XXX_Unmarshal">&#xb6;</a>
-					
-					
-				</h3>
-				<pre>func (m *<a href="index.html#DummiesPage">DummiesPage</a>) XXX_Unmarshal(b []<a href="http://localhost:6060/pkg/builtin/#byte">byte</a>) <a href="http://localhost:6060/pkg/builtin/#error">error</a></pre>
+				<pre>func (x *<a href="index.html#DummiesPage">DummiesPage</a>) String() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
 				
 				
 				
@@ -687,7 +606,7 @@ For semantics around ctx use and closing/ending streaming RPCs, please refer to 
 		
 			
 			
-			<h2 id="DummiesPageRequest">type <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=8266:8900#L270">DummiesPageRequest</a>
+			<h2 id="DummiesPageRequest">type <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=8285:8858#L312">DummiesPageRequest</a>
 				<a class="permalink" href="index.html#DummiesPageRequest">&#xb6;</a>
 				
 				
@@ -697,12 +616,10 @@ The request message containing the page request.
 </p>
 
 			<pre>type DummiesPageRequest struct {
-<span id="DummiesPageRequest.CorrelationId"></span>    CorrelationId        <a href="http://localhost:6060/pkg/builtin/#string">string</a>            `protobuf:&#34;bytes,1,opt,name=correlation_id,json=correlationId,proto3&#34; json:&#34;correlation_id,omitempty&#34;`
-<span id="DummiesPageRequest.Filter"></span>    Filter               map[<a href="http://localhost:6060/pkg/builtin/#string">string</a>]<a href="http://localhost:6060/pkg/builtin/#string">string</a> `protobuf:&#34;bytes,2,rep,name=filter,proto3&#34; json:&#34;filter,omitempty&#34; protobuf_key:&#34;bytes,1,opt,name=key,proto3&#34; protobuf_val:&#34;bytes,2,opt,name=value,proto3&#34;`
-<span id="DummiesPageRequest.Paging"></span>    Paging               *<a href="index.html#PagingParams">PagingParams</a>     `protobuf:&#34;bytes,3,opt,name=paging,proto3&#34; json:&#34;paging,omitempty&#34;`
-<span id="DummiesPageRequest.XXX_NoUnkeyedLiteral"></span>    XXX_NoUnkeyedLiteral struct{}          `json:&#34;-&#34;`
-<span id="DummiesPageRequest.XXX_unrecognized"></span>    XXX_unrecognized     []<a href="http://localhost:6060/pkg/builtin/#byte">byte</a>            `json:&#34;-&#34;`
-<span id="DummiesPageRequest.XXX_sizecache"></span>    XXX_sizecache        <a href="http://localhost:6060/pkg/builtin/#int32">int32</a>             `json:&#34;-&#34;`
+<span id="DummiesPageRequest.CorrelationId"></span>    CorrelationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>            `protobuf:&#34;bytes,1,opt,name=correlation_id,json=correlationId,proto3&#34; json:&#34;correlation_id,omitempty&#34;`
+<span id="DummiesPageRequest.Filter"></span>    Filter        map[<a href="http://localhost:6060/pkg/builtin/#string">string</a>]<a href="http://localhost:6060/pkg/builtin/#string">string</a> `protobuf:&#34;bytes,2,rep,name=filter,proto3&#34; json:&#34;filter,omitempty&#34; protobuf_key:&#34;bytes,1,opt,name=key,proto3&#34; protobuf_val:&#34;bytes,2,opt,name=value,proto3&#34;`
+<span id="DummiesPageRequest.Paging"></span>    Paging        *<a href="index.html#PagingParams">PagingParams</a>     `protobuf:&#34;bytes,3,opt,name=paging,proto3&#34; json:&#34;paging,omitempty&#34;`
+    <span class="comment">// contains filtered or unexported fields</span>
 }
 </pre>
 
@@ -718,55 +635,58 @@ The request message containing the page request.
 
 			
 				
-				<h3 id="DummiesPageRequest.Descriptor">func (*DummiesPageRequest) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=9108:9163#L282">Descriptor</a>
+				<h3 id="DummiesPageRequest.Descriptor">func (*DummiesPageRequest) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=9628:9683#L350">Descriptor</a>
 					<a class="permalink" href="index.html#DummiesPageRequest.Descriptor">&#xb6;</a>
 					
 					
 				</h3>
 				<pre>func (*<a href="index.html#DummiesPageRequest">DummiesPageRequest</a>) Descriptor() ([]<a href="http://localhost:6060/pkg/builtin/#byte">byte</a>, []<a href="http://localhost:6060/pkg/builtin/#int">int</a>)</pre>
-				
+				<p>
+Deprecated: Use DummiesPageRequest.ProtoReflect.Descriptor instead.
+</p>
+
 				
 				
 				
 			
 				
-				<h3 id="DummiesPageRequest.GetCorrelationId">func (*DummiesPageRequest) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=9890:9944#L304">GetCorrelationId</a>
+				<h3 id="DummiesPageRequest.GetCorrelationId">func (*DummiesPageRequest) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=9752:9806#L354">GetCorrelationId</a>
 					<a class="permalink" href="index.html#DummiesPageRequest.GetCorrelationId">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (m *<a href="index.html#DummiesPageRequest">DummiesPageRequest</a>) GetCorrelationId() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
+				<pre>func (x *<a href="index.html#DummiesPageRequest">DummiesPageRequest</a>) GetCorrelationId() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
 				
 				
 				
 				
 			
 				
-				<h3 id="DummiesPageRequest.GetFilter">func (*DummiesPageRequest) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=10004:10062#L311">GetFilter</a>
+				<h3 id="DummiesPageRequest.GetFilter">func (*DummiesPageRequest) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=9866:9924#L361">GetFilter</a>
 					<a class="permalink" href="index.html#DummiesPageRequest.GetFilter">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (m *<a href="index.html#DummiesPageRequest">DummiesPageRequest</a>) GetFilter() map[<a href="http://localhost:6060/pkg/builtin/#string">string</a>]<a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
+				<pre>func (x *<a href="index.html#DummiesPageRequest">DummiesPageRequest</a>) GetFilter() map[<a href="http://localhost:6060/pkg/builtin/#string">string</a>]<a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
 				
 				
 				
 				
 			
 				
-				<h3 id="DummiesPageRequest.GetPaging">func (*DummiesPageRequest) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=10116:10170#L318">GetPaging</a>
+				<h3 id="DummiesPageRequest.GetPaging">func (*DummiesPageRequest) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=9978:10032#L368">GetPaging</a>
 					<a class="permalink" href="index.html#DummiesPageRequest.GetPaging">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (m *<a href="index.html#DummiesPageRequest">DummiesPageRequest</a>) GetPaging() *<a href="index.html#PagingParams">PagingParams</a></pre>
+				<pre>func (x *<a href="index.html#DummiesPageRequest">DummiesPageRequest</a>) GetPaging() *<a href="index.html#PagingParams">PagingParams</a></pre>
 				
 				
 				
 				
 			
 				
-				<h3 id="DummiesPageRequest.ProtoMessage">func (*DummiesPageRequest) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=9060:9101#L281">ProtoMessage</a>
+				<h3 id="DummiesPageRequest.ProtoMessage">func (*DummiesPageRequest) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=9186:9227#L335">ProtoMessage</a>
 					<a class="permalink" href="index.html#DummiesPageRequest.ProtoMessage">&#xb6;</a>
 					
 					
@@ -778,84 +698,36 @@ The request message containing the page request.
 				
 			
 				
-				<h3 id="DummiesPageRequest.Reset">func (*DummiesPageRequest) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=8902:8938#L279">Reset</a>
+				<h3 id="DummiesPageRequest.ProtoReflect">func (*DummiesPageRequest) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=9232:9296#L337">ProtoReflect</a>
+					<a class="permalink" href="index.html#DummiesPageRequest.ProtoReflect">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (x *<a href="index.html#DummiesPageRequest">DummiesPageRequest</a>) ProtoReflect() <a href="http://localhost:6060/pkg/google.golang.org/protobuf/reflect/protoreflect/">protoreflect</a>.<a href="http://localhost:6060/pkg/google.golang.org/protobuf/reflect/protoreflect/#Message">Message</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="DummiesPageRequest.Reset">func (*DummiesPageRequest) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=8860:8896#L322">Reset</a>
 					<a class="permalink" href="index.html#DummiesPageRequest.Reset">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (m *<a href="index.html#DummiesPageRequest">DummiesPageRequest</a>) Reset()</pre>
+				<pre>func (x *<a href="index.html#DummiesPageRequest">DummiesPageRequest</a>) Reset()</pre>
 				
 				
 				
 				
 			
 				
-				<h3 id="DummiesPageRequest.String">func (*DummiesPageRequest) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=8977:9021#L280">String</a>
+				<h3 id="DummiesPageRequest.String">func (*DummiesPageRequest) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=9097:9141#L331">String</a>
 					<a class="permalink" href="index.html#DummiesPageRequest.String">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (m *<a href="index.html#DummiesPageRequest">DummiesPageRequest</a>) String() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
-				
-				
-				
-				
-			
-				
-				<h3 id="DummiesPageRequest.XXX_DiscardUnknown">func (*DummiesPageRequest) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=9715:9764#L298">XXX_DiscardUnknown</a>
-					<a class="permalink" href="index.html#DummiesPageRequest.XXX_DiscardUnknown">&#xb6;</a>
-					
-					
-				</h3>
-				<pre>func (m *<a href="index.html#DummiesPageRequest">DummiesPageRequest</a>) XXX_DiscardUnknown()</pre>
-				
-				
-				
-				
-			
-				
-				<h3 id="DummiesPageRequest.XXX_Marshal">func (*DummiesPageRequest) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=9341:9427#L289">XXX_Marshal</a>
-					<a class="permalink" href="index.html#DummiesPageRequest.XXX_Marshal">&#xb6;</a>
-					
-					
-				</h3>
-				<pre>func (m *<a href="index.html#DummiesPageRequest">DummiesPageRequest</a>) XXX_Marshal(b []<a href="http://localhost:6060/pkg/builtin/#byte">byte</a>, deterministic <a href="http://localhost:6060/pkg/builtin/#bool">bool</a>) ([]<a href="http://localhost:6060/pkg/builtin/#byte">byte</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
-				
-				
-				
-				
-			
-				
-				<h3 id="DummiesPageRequest.XXX_Merge">func (*DummiesPageRequest) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=9504:9561#L292">XXX_Merge</a>
-					<a class="permalink" href="index.html#DummiesPageRequest.XXX_Merge">&#xb6;</a>
-					
-					
-				</h3>
-				<pre>func (m *<a href="index.html#DummiesPageRequest">DummiesPageRequest</a>) XXX_Merge(src <a href="http://localhost:6060/pkg/github.com/golang/protobuf/proto/">proto</a>.<a href="http://localhost:6060/pkg/github.com/golang/protobuf/proto/#Message">Message</a>)</pre>
-				
-				
-				
-				
-			
-				
-				<h3 id="DummiesPageRequest.XXX_Size">func (*DummiesPageRequest) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=9616:9659#L295">XXX_Size</a>
-					<a class="permalink" href="index.html#DummiesPageRequest.XXX_Size">&#xb6;</a>
-					
-					
-				</h3>
-				<pre>func (m *<a href="index.html#DummiesPageRequest">DummiesPageRequest</a>) XXX_Size() <a href="http://localhost:6060/pkg/builtin/#int">int</a></pre>
-				
-				
-				
-				
-			
-				
-				<h3 id="DummiesPageRequest.XXX_Unmarshal">func (*DummiesPageRequest) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=9219:9277#L286">XXX_Unmarshal</a>
-					<a class="permalink" href="index.html#DummiesPageRequest.XXX_Unmarshal">&#xb6;</a>
-					
-					
-				</h3>
-				<pre>func (m *<a href="index.html#DummiesPageRequest">DummiesPageRequest</a>) XXX_Unmarshal(b []<a href="http://localhost:6060/pkg/builtin/#byte">byte</a>) <a href="http://localhost:6060/pkg/builtin/#error">error</a></pre>
+				<pre>func (x *<a href="index.html#DummiesPageRequest">DummiesPageRequest</a>) String() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
 				
 				
 				
@@ -864,13 +736,15 @@ The request message containing the page request.
 		
 			
 			
-			<h2 id="DummiesServer">type <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=20638:21007#L550">DummiesServer</a>
+			<h2 id="DummiesServer">type <a href="http://localhost:6060/src/test/protos/dummies_grpc.pb.go?s=2880:3288#L74">DummiesServer</a>
 				<a class="permalink" href="index.html#DummiesServer">&#xb6;</a>
 				
 				
 			</h2>
 			<p>
 DummiesServer is the server API for Dummies service.
+All implementations must embed UnimplementedDummiesServer
+for forward compatibility
 </p>
 
 			<pre>type DummiesServer interface {
@@ -879,6 +753,7 @@ DummiesServer is the server API for Dummies service.
     CreateDummy(<a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, *<a href="index.html#DummyObjectRequest">DummyObjectRequest</a>) (*<a href="index.html#Dummy">Dummy</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)
     UpdateDummy(<a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, *<a href="index.html#DummyObjectRequest">DummyObjectRequest</a>) (*<a href="index.html#Dummy">Dummy</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)
     DeleteDummyById(<a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, *<a href="index.html#DummyIdRequest">DummyIdRequest</a>) (*<a href="index.html#Dummy">Dummy</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)
+    <span class="comment">// contains filtered or unexported methods</span>
 }</pre>
 
 			
@@ -895,19 +770,17 @@ DummiesServer is the server API for Dummies service.
 		
 			
 			
-			<h2 id="Dummy">type <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=5346:5778#L167">Dummy</a>
+			<h2 id="Dummy">type <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=5478:5852#L193">Dummy</a>
 				<a class="permalink" href="index.html#Dummy">&#xb6;</a>
 				
 				
 			</h2>
 			
 			<pre>type Dummy struct {
-<span id="Dummy.Id"></span>    Id                   <a href="http://localhost:6060/pkg/builtin/#string">string</a>   `protobuf:&#34;bytes,1,opt,name=id,proto3&#34; json:&#34;id,omitempty&#34;`
-<span id="Dummy.Key"></span>    Key                  <a href="http://localhost:6060/pkg/builtin/#string">string</a>   `protobuf:&#34;bytes,2,opt,name=key,proto3&#34; json:&#34;key,omitempty&#34;`
-<span id="Dummy.Content"></span>    Content              <a href="http://localhost:6060/pkg/builtin/#string">string</a>   `protobuf:&#34;bytes,3,opt,name=content,proto3&#34; json:&#34;content,omitempty&#34;`
-<span id="Dummy.XXX_NoUnkeyedLiteral"></span>    XXX_NoUnkeyedLiteral struct{} `json:&#34;-&#34;`
-<span id="Dummy.XXX_unrecognized"></span>    XXX_unrecognized     []<a href="http://localhost:6060/pkg/builtin/#byte">byte</a>   `json:&#34;-&#34;`
-<span id="Dummy.XXX_sizecache"></span>    XXX_sizecache        <a href="http://localhost:6060/pkg/builtin/#int32">int32</a>    `json:&#34;-&#34;`
+<span id="Dummy.Id"></span>    Id      <a href="http://localhost:6060/pkg/builtin/#string">string</a> `protobuf:&#34;bytes,1,opt,name=id,proto3&#34; json:&#34;id,omitempty&#34;`
+<span id="Dummy.Key"></span>    Key     <a href="http://localhost:6060/pkg/builtin/#string">string</a> `protobuf:&#34;bytes,2,opt,name=key,proto3&#34; json:&#34;key,omitempty&#34;`
+<span id="Dummy.Content"></span>    Content <a href="http://localhost:6060/pkg/builtin/#string">string</a> `protobuf:&#34;bytes,3,opt,name=content,proto3&#34; json:&#34;content,omitempty&#34;`
+    <span class="comment">// contains filtered or unexported fields</span>
 }
 </pre>
 
@@ -923,55 +796,58 @@ DummiesServer is the server API for Dummies service.
 
 			
 				
-				<h3 id="Dummy.Descriptor">func (*Dummy) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=5934:5976#L179">Descriptor</a>
+				<h3 id="Dummy.Descriptor">func (*Dummy) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=6544:6586#L231">Descriptor</a>
 					<a class="permalink" href="index.html#Dummy.Descriptor">&#xb6;</a>
 					
 					
 				</h3>
 				<pre>func (*<a href="index.html#Dummy">Dummy</a>) Descriptor() ([]<a href="http://localhost:6060/pkg/builtin/#byte">byte</a>, []<a href="http://localhost:6060/pkg/builtin/#int">int</a>)</pre>
-				
+				<p>
+Deprecated: Use Dummy.ProtoReflect.Descriptor instead.
+</p>
+
 				
 				
 				
 			
 				
-				<h3 id="Dummy.GetContent">func (*Dummy) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=6720:6755#L215">GetContent</a>
+				<h3 id="Dummy.GetContent">func (*Dummy) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=6815:6850#L249">GetContent</a>
 					<a class="permalink" href="index.html#Dummy.GetContent">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (m *<a href="index.html#Dummy">Dummy</a>) GetContent() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
+				<pre>func (x *<a href="index.html#Dummy">Dummy</a>) GetContent() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
 				
 				
 				
 				
 			
 				
-				<h3 id="Dummy.GetId">func (*Dummy) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=6560:6590#L201">GetId</a>
+				<h3 id="Dummy.GetId">func (*Dummy) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=6655:6685#L235">GetId</a>
 					<a class="permalink" href="index.html#Dummy.GetId">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (m *<a href="index.html#Dummy">Dummy</a>) GetId() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
+				<pre>func (x *<a href="index.html#Dummy">Dummy</a>) GetId() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
 				
 				
 				
 				
 			
 				
-				<h3 id="Dummy.GetKey">func (*Dummy) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=6639:6670#L208">GetKey</a>
+				<h3 id="Dummy.GetKey">func (*Dummy) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=6734:6765#L242">GetKey</a>
 					<a class="permalink" href="index.html#Dummy.GetKey">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (m *<a href="index.html#Dummy">Dummy</a>) GetKey() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
+				<pre>func (x *<a href="index.html#Dummy">Dummy</a>) GetKey() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
 				
 				
 				
 				
 			
 				
-				<h3 id="Dummy.ProtoMessage">func (*Dummy) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=5899:5927#L178">ProtoMessage</a>
+				<h3 id="Dummy.ProtoMessage">func (*Dummy) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=6141:6169#L216">ProtoMessage</a>
 					<a class="permalink" href="index.html#Dummy.ProtoMessage">&#xb6;</a>
 					
 					
@@ -983,84 +859,36 @@ DummiesServer is the server API for Dummies service.
 				
 			
 				
-				<h3 id="Dummy.Reset">func (*Dummy) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=5780:5803#L176">Reset</a>
+				<h3 id="Dummy.ProtoReflect">func (*Dummy) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=6174:6225#L218">ProtoReflect</a>
+					<a class="permalink" href="index.html#Dummy.ProtoReflect">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (x *<a href="index.html#Dummy">Dummy</a>) ProtoReflect() <a href="http://localhost:6060/pkg/google.golang.org/protobuf/reflect/protoreflect/">protoreflect</a>.<a href="http://localhost:6060/pkg/google.golang.org/protobuf/reflect/protoreflect/#Message">Message</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Dummy.Reset">func (*Dummy) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=5854:5877#L203">Reset</a>
 					<a class="permalink" href="index.html#Dummy.Reset">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (m *<a href="index.html#Dummy">Dummy</a>) Reset()</pre>
+				<pre>func (x *<a href="index.html#Dummy">Dummy</a>) Reset()</pre>
 				
 				
 				
 				
 			
 				
-				<h3 id="Dummy.String">func (*Dummy) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=5829:5860#L177">String</a>
+				<h3 id="Dummy.String">func (*Dummy) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=6065:6096#L212">String</a>
 					<a class="permalink" href="index.html#Dummy.String">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (m *<a href="index.html#Dummy">Dummy</a>) String() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
-				
-				
-				
-				
-			
-				
-				<h3 id="Dummy.XXX_DiscardUnknown">func (*Dummy) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=6424:6460#L195">XXX_DiscardUnknown</a>
-					<a class="permalink" href="index.html#Dummy.XXX_DiscardUnknown">&#xb6;</a>
-					
-					
-				</h3>
-				<pre>func (m *<a href="index.html#Dummy">Dummy</a>) XXX_DiscardUnknown()</pre>
-				
-				
-				
-				
-			
-				
-				<h3 id="Dummy.XXX_Marshal">func (*Dummy) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=6128:6201#L186">XXX_Marshal</a>
-					<a class="permalink" href="index.html#Dummy.XXX_Marshal">&#xb6;</a>
-					
-					
-				</h3>
-				<pre>func (m *<a href="index.html#Dummy">Dummy</a>) XXX_Marshal(b []<a href="http://localhost:6060/pkg/builtin/#byte">byte</a>, deterministic <a href="http://localhost:6060/pkg/builtin/#bool">bool</a>) ([]<a href="http://localhost:6060/pkg/builtin/#byte">byte</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
-				
-				
-				
-				
-			
-				
-				<h3 id="Dummy.XXX_Merge">func (*Dummy) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=6265:6309#L189">XXX_Merge</a>
-					<a class="permalink" href="index.html#Dummy.XXX_Merge">&#xb6;</a>
-					
-					
-				</h3>
-				<pre>func (m *<a href="index.html#Dummy">Dummy</a>) XXX_Merge(src <a href="http://localhost:6060/pkg/github.com/golang/protobuf/proto/">proto</a>.<a href="http://localhost:6060/pkg/github.com/golang/protobuf/proto/#Message">Message</a>)</pre>
-				
-				
-				
-				
-			
-				
-				<h3 id="Dummy.XXX_Size">func (*Dummy) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=6351:6381#L192">XXX_Size</a>
-					<a class="permalink" href="index.html#Dummy.XXX_Size">&#xb6;</a>
-					
-					
-				</h3>
-				<pre>func (m *<a href="index.html#Dummy">Dummy</a>) XXX_Size() <a href="http://localhost:6060/pkg/builtin/#int">int</a></pre>
-				
-				
-				
-				
-			
-				
-				<h3 id="Dummy.XXX_Unmarshal">func (*Dummy) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=6032:6077#L183">XXX_Unmarshal</a>
-					<a class="permalink" href="index.html#Dummy.XXX_Unmarshal">&#xb6;</a>
-					
-					
-				</h3>
-				<pre>func (m *<a href="index.html#Dummy">Dummy</a>) XXX_Unmarshal(b []<a href="http://localhost:6060/pkg/builtin/#byte">byte</a>) <a href="http://localhost:6060/pkg/builtin/#error">error</a></pre>
+				<pre>func (x *<a href="index.html#Dummy">Dummy</a>) String() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
 				
 				
 				
@@ -1069,7 +897,7 @@ DummiesServer is the server API for Dummies service.
 		
 			
 			
-			<h2 id="DummyIdRequest">type <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=10281:10687#L326">DummyIdRequest</a>
+			<h2 id="DummyIdRequest">type <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=10143:10518#L376">DummyIdRequest</a>
 				<a class="permalink" href="index.html#DummyIdRequest">&#xb6;</a>
 				
 				
@@ -1079,11 +907,9 @@ The request message containing the object id request.
 </p>
 
 			<pre>type DummyIdRequest struct {
-<span id="DummyIdRequest.CorrelationId"></span>    CorrelationId        <a href="http://localhost:6060/pkg/builtin/#string">string</a>   `protobuf:&#34;bytes,1,opt,name=correlation_id,json=correlationId,proto3&#34; json:&#34;correlation_id,omitempty&#34;`
-<span id="DummyIdRequest.DummyId"></span>    DummyId              <a href="http://localhost:6060/pkg/builtin/#string">string</a>   `protobuf:&#34;bytes,2,opt,name=dummy_id,json=dummyId,proto3&#34; json:&#34;dummy_id,omitempty&#34;`
-<span id="DummyIdRequest.XXX_NoUnkeyedLiteral"></span>    XXX_NoUnkeyedLiteral struct{} `json:&#34;-&#34;`
-<span id="DummyIdRequest.XXX_unrecognized"></span>    XXX_unrecognized     []<a href="http://localhost:6060/pkg/builtin/#byte">byte</a>   `json:&#34;-&#34;`
-<span id="DummyIdRequest.XXX_sizecache"></span>    XXX_sizecache        <a href="http://localhost:6060/pkg/builtin/#int32">int32</a>    `json:&#34;-&#34;`
+<span id="DummyIdRequest.CorrelationId"></span>    CorrelationId <a href="http://localhost:6060/pkg/builtin/#string">string</a> `protobuf:&#34;bytes,1,opt,name=correlation_id,json=correlationId,proto3&#34; json:&#34;correlation_id,omitempty&#34;`
+<span id="DummyIdRequest.DummyId"></span>    DummyId       <a href="http://localhost:6060/pkg/builtin/#string">string</a> `protobuf:&#34;bytes,2,opt,name=dummy_id,json=dummyId,proto3&#34; json:&#34;dummy_id,omitempty&#34;`
+    <span class="comment">// contains filtered or unexported fields</span>
 }
 </pre>
 
@@ -1099,43 +925,46 @@ The request message containing the object id request.
 
 			
 				
-				<h3 id="DummyIdRequest.Descriptor">func (*DummyIdRequest) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=10879:10930#L337">Descriptor</a>
+				<h3 id="DummyIdRequest.Descriptor">func (*DummyIdRequest) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=11264:11315#L413">Descriptor</a>
 					<a class="permalink" href="index.html#DummyIdRequest.Descriptor">&#xb6;</a>
 					
 					
 				</h3>
 				<pre>func (*<a href="index.html#DummyIdRequest">DummyIdRequest</a>) Descriptor() ([]<a href="http://localhost:6060/pkg/builtin/#byte">byte</a>, []<a href="http://localhost:6060/pkg/builtin/#int">int</a>)</pre>
-				
+				<p>
+Deprecated: Use DummyIdRequest.ProtoReflect.Descriptor instead.
+</p>
+
 				
 				
 				
 			
 				
-				<h3 id="DummyIdRequest.GetCorrelationId">func (*DummyIdRequest) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=11613:11663#L359">GetCorrelationId</a>
+				<h3 id="DummyIdRequest.GetCorrelationId">func (*DummyIdRequest) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=11384:11434#L417">GetCorrelationId</a>
 					<a class="permalink" href="index.html#DummyIdRequest.GetCorrelationId">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (m *<a href="index.html#DummyIdRequest">DummyIdRequest</a>) GetCorrelationId() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
+				<pre>func (x *<a href="index.html#DummyIdRequest">DummyIdRequest</a>) GetCorrelationId() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
 				
 				
 				
 				
 			
 				
-				<h3 id="DummyIdRequest.GetDummyId">func (*DummyIdRequest) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=11723:11767#L366">GetDummyId</a>
+				<h3 id="DummyIdRequest.GetDummyId">func (*DummyIdRequest) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=11494:11538#L424">GetDummyId</a>
 					<a class="permalink" href="index.html#DummyIdRequest.GetDummyId">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (m *<a href="index.html#DummyIdRequest">DummyIdRequest</a>) GetDummyId() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
+				<pre>func (x *<a href="index.html#DummyIdRequest">DummyIdRequest</a>) GetDummyId() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
 				
 				
 				
 				
 			
 				
-				<h3 id="DummyIdRequest.ProtoMessage">func (*DummyIdRequest) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=10835:10872#L336">ProtoMessage</a>
+				<h3 id="DummyIdRequest.ProtoMessage">func (*DummyIdRequest) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=10834:10871#L398">ProtoMessage</a>
 					<a class="permalink" href="index.html#DummyIdRequest.ProtoMessage">&#xb6;</a>
 					
 					
@@ -1147,84 +976,36 @@ The request message containing the object id request.
 				
 			
 				
-				<h3 id="DummyIdRequest.Reset">func (*DummyIdRequest) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=10689:10721#L334">Reset</a>
+				<h3 id="DummyIdRequest.ProtoReflect">func (*DummyIdRequest) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=10876:10936#L400">ProtoReflect</a>
+					<a class="permalink" href="index.html#DummyIdRequest.ProtoReflect">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (x *<a href="index.html#DummyIdRequest">DummyIdRequest</a>) ProtoReflect() <a href="http://localhost:6060/pkg/google.golang.org/protobuf/reflect/protoreflect/">protoreflect</a>.<a href="http://localhost:6060/pkg/google.golang.org/protobuf/reflect/protoreflect/#Message">Message</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="DummyIdRequest.Reset">func (*DummyIdRequest) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=10520:10552#L385">Reset</a>
 					<a class="permalink" href="index.html#DummyIdRequest.Reset">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (m *<a href="index.html#DummyIdRequest">DummyIdRequest</a>) Reset()</pre>
+				<pre>func (x *<a href="index.html#DummyIdRequest">DummyIdRequest</a>) Reset()</pre>
 				
 				
 				
 				
 			
 				
-				<h3 id="DummyIdRequest.String">func (*DummyIdRequest) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=10756:10796#L335">String</a>
+				<h3 id="DummyIdRequest.String">func (*DummyIdRequest) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=10749:10789#L394">String</a>
 					<a class="permalink" href="index.html#DummyIdRequest.String">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (m *<a href="index.html#DummyIdRequest">DummyIdRequest</a>) String() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
-				
-				
-				
-				
-			
-				
-				<h3 id="DummyIdRequest.XXX_DiscardUnknown">func (*DummyIdRequest) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=11450:11495#L353">XXX_DiscardUnknown</a>
-					<a class="permalink" href="index.html#DummyIdRequest.XXX_DiscardUnknown">&#xb6;</a>
-					
-					
-				</h3>
-				<pre>func (m *<a href="index.html#DummyIdRequest">DummyIdRequest</a>) XXX_DiscardUnknown()</pre>
-				
-				
-				
-				
-			
-				
-				<h3 id="DummyIdRequest.XXX_Marshal">func (*DummyIdRequest) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=11100:11182#L344">XXX_Marshal</a>
-					<a class="permalink" href="index.html#DummyIdRequest.XXX_Marshal">&#xb6;</a>
-					
-					
-				</h3>
-				<pre>func (m *<a href="index.html#DummyIdRequest">DummyIdRequest</a>) XXX_Marshal(b []<a href="http://localhost:6060/pkg/builtin/#byte">byte</a>, deterministic <a href="http://localhost:6060/pkg/builtin/#bool">bool</a>) ([]<a href="http://localhost:6060/pkg/builtin/#byte">byte</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
-				
-				
-				
-				
-			
-				
-				<h3 id="DummyIdRequest.XXX_Merge">func (*DummyIdRequest) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=11255:11308#L347">XXX_Merge</a>
-					<a class="permalink" href="index.html#DummyIdRequest.XXX_Merge">&#xb6;</a>
-					
-					
-				</h3>
-				<pre>func (m *<a href="index.html#DummyIdRequest">DummyIdRequest</a>) XXX_Merge(src <a href="http://localhost:6060/pkg/github.com/golang/protobuf/proto/">proto</a>.<a href="http://localhost:6060/pkg/github.com/golang/protobuf/proto/#Message">Message</a>)</pre>
-				
-				
-				
-				
-			
-				
-				<h3 id="DummyIdRequest.XXX_Size">func (*DummyIdRequest) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=11359:11398#L350">XXX_Size</a>
-					<a class="permalink" href="index.html#DummyIdRequest.XXX_Size">&#xb6;</a>
-					
-					
-				</h3>
-				<pre>func (m *<a href="index.html#DummyIdRequest">DummyIdRequest</a>) XXX_Size() <a href="http://localhost:6060/pkg/builtin/#int">int</a></pre>
-				
-				
-				
-				
-			
-				
-				<h3 id="DummyIdRequest.XXX_Unmarshal">func (*DummyIdRequest) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=10986:11040#L341">XXX_Unmarshal</a>
-					<a class="permalink" href="index.html#DummyIdRequest.XXX_Unmarshal">&#xb6;</a>
-					
-					
-				</h3>
-				<pre>func (m *<a href="index.html#DummyIdRequest">DummyIdRequest</a>) XXX_Unmarshal(b []<a href="http://localhost:6060/pkg/builtin/#byte">byte</a>) <a href="http://localhost:6060/pkg/builtin/#error">error</a></pre>
+				<pre>func (x *<a href="index.html#DummyIdRequest">DummyIdRequest</a>) String() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
 				
 				
 				
@@ -1233,7 +1014,7 @@ The request message containing the object id request.
 		
 			
 			
-			<h2 id="DummyObjectRequest">type <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=11881:12272#L374">DummyObjectRequest</a>
+			<h2 id="DummyObjectRequest">type <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=11652:12012#L432">DummyObjectRequest</a>
 				<a class="permalink" href="index.html#DummyObjectRequest">&#xb6;</a>
 				
 				
@@ -1243,11 +1024,9 @@ The request message containing the object value request.
 </p>
 
 			<pre>type DummyObjectRequest struct {
-<span id="DummyObjectRequest.CorrelationId"></span>    CorrelationId        <a href="http://localhost:6060/pkg/builtin/#string">string</a>   `protobuf:&#34;bytes,1,opt,name=correlation_id,json=correlationId,proto3&#34; json:&#34;correlation_id,omitempty&#34;`
-<span id="DummyObjectRequest.Dummy"></span>    Dummy                *<a href="index.html#Dummy">Dummy</a>   `protobuf:&#34;bytes,2,opt,name=dummy,proto3&#34; json:&#34;dummy,omitempty&#34;`
-<span id="DummyObjectRequest.XXX_NoUnkeyedLiteral"></span>    XXX_NoUnkeyedLiteral struct{} `json:&#34;-&#34;`
-<span id="DummyObjectRequest.XXX_unrecognized"></span>    XXX_unrecognized     []<a href="http://localhost:6060/pkg/builtin/#byte">byte</a>   `json:&#34;-&#34;`
-<span id="DummyObjectRequest.XXX_sizecache"></span>    XXX_sizecache        <a href="http://localhost:6060/pkg/builtin/#int32">int32</a>    `json:&#34;-&#34;`
+<span id="DummyObjectRequest.CorrelationId"></span>    CorrelationId <a href="http://localhost:6060/pkg/builtin/#string">string</a> `protobuf:&#34;bytes,1,opt,name=correlation_id,json=correlationId,proto3&#34; json:&#34;correlation_id,omitempty&#34;`
+<span id="DummyObjectRequest.Dummy"></span>    Dummy         *<a href="index.html#Dummy">Dummy</a> `protobuf:&#34;bytes,2,opt,name=dummy,proto3&#34; json:&#34;dummy,omitempty&#34;`
+    <span class="comment">// contains filtered or unexported fields</span>
 }
 </pre>
 
@@ -1263,43 +1042,46 @@ The request message containing the object value request.
 
 			
 				
-				<h3 id="DummyObjectRequest.Descriptor">func (*DummyObjectRequest) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=12480:12535#L385">Descriptor</a>
+				<h3 id="DummyObjectRequest.Descriptor">func (*DummyObjectRequest) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=12782:12837#L469">Descriptor</a>
 					<a class="permalink" href="index.html#DummyObjectRequest.Descriptor">&#xb6;</a>
 					
 					
 				</h3>
 				<pre>func (*<a href="index.html#DummyObjectRequest">DummyObjectRequest</a>) Descriptor() ([]<a href="http://localhost:6060/pkg/builtin/#byte">byte</a>, []<a href="http://localhost:6060/pkg/builtin/#int">int</a>)</pre>
-				
+				<p>
+Deprecated: Use DummyObjectRequest.ProtoReflect.Descriptor instead.
+</p>
+
 				
 				
 				
 			
 				
-				<h3 id="DummyObjectRequest.GetCorrelationId">func (*DummyObjectRequest) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=13262:13316#L407">GetCorrelationId</a>
+				<h3 id="DummyObjectRequest.GetCorrelationId">func (*DummyObjectRequest) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=12906:12960#L473">GetCorrelationId</a>
 					<a class="permalink" href="index.html#DummyObjectRequest.GetCorrelationId">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (m *<a href="index.html#DummyObjectRequest">DummyObjectRequest</a>) GetCorrelationId() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
+				<pre>func (x *<a href="index.html#DummyObjectRequest">DummyObjectRequest</a>) GetCorrelationId() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
 				
 				
 				
 				
 			
 				
-				<h3 id="DummyObjectRequest.GetDummy">func (*DummyObjectRequest) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=13376:13422#L414">GetDummy</a>
+				<h3 id="DummyObjectRequest.GetDummy">func (*DummyObjectRequest) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=13020:13066#L480">GetDummy</a>
 					<a class="permalink" href="index.html#DummyObjectRequest.GetDummy">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (m *<a href="index.html#DummyObjectRequest">DummyObjectRequest</a>) GetDummy() *<a href="index.html#Dummy">Dummy</a></pre>
+				<pre>func (x *<a href="index.html#DummyObjectRequest">DummyObjectRequest</a>) GetDummy() *<a href="index.html#Dummy">Dummy</a></pre>
 				
 				
 				
 				
 			
 				
-				<h3 id="DummyObjectRequest.ProtoMessage">func (*DummyObjectRequest) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=12432:12473#L384">ProtoMessage</a>
+				<h3 id="DummyObjectRequest.ProtoMessage">func (*DummyObjectRequest) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=12340:12381#L454">ProtoMessage</a>
 					<a class="permalink" href="index.html#DummyObjectRequest.ProtoMessage">&#xb6;</a>
 					
 					
@@ -1311,84 +1093,36 @@ The request message containing the object value request.
 				
 			
 				
-				<h3 id="DummyObjectRequest.Reset">func (*DummyObjectRequest) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=12274:12310#L382">Reset</a>
+				<h3 id="DummyObjectRequest.ProtoReflect">func (*DummyObjectRequest) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=12386:12450#L456">ProtoReflect</a>
+					<a class="permalink" href="index.html#DummyObjectRequest.ProtoReflect">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (x *<a href="index.html#DummyObjectRequest">DummyObjectRequest</a>) ProtoReflect() <a href="http://localhost:6060/pkg/google.golang.org/protobuf/reflect/protoreflect/">protoreflect</a>.<a href="http://localhost:6060/pkg/google.golang.org/protobuf/reflect/protoreflect/#Message">Message</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="DummyObjectRequest.Reset">func (*DummyObjectRequest) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=12014:12050#L441">Reset</a>
 					<a class="permalink" href="index.html#DummyObjectRequest.Reset">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (m *<a href="index.html#DummyObjectRequest">DummyObjectRequest</a>) Reset()</pre>
+				<pre>func (x *<a href="index.html#DummyObjectRequest">DummyObjectRequest</a>) Reset()</pre>
 				
 				
 				
 				
 			
 				
-				<h3 id="DummyObjectRequest.String">func (*DummyObjectRequest) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=12349:12393#L383">String</a>
+				<h3 id="DummyObjectRequest.String">func (*DummyObjectRequest) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=12251:12295#L450">String</a>
 					<a class="permalink" href="index.html#DummyObjectRequest.String">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (m *<a href="index.html#DummyObjectRequest">DummyObjectRequest</a>) String() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
-				
-				
-				
-				
-			
-				
-				<h3 id="DummyObjectRequest.XXX_DiscardUnknown">func (*DummyObjectRequest) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=13087:13136#L401">XXX_DiscardUnknown</a>
-					<a class="permalink" href="index.html#DummyObjectRequest.XXX_DiscardUnknown">&#xb6;</a>
-					
-					
-				</h3>
-				<pre>func (m *<a href="index.html#DummyObjectRequest">DummyObjectRequest</a>) XXX_DiscardUnknown()</pre>
-				
-				
-				
-				
-			
-				
-				<h3 id="DummyObjectRequest.XXX_Marshal">func (*DummyObjectRequest) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=12713:12799#L392">XXX_Marshal</a>
-					<a class="permalink" href="index.html#DummyObjectRequest.XXX_Marshal">&#xb6;</a>
-					
-					
-				</h3>
-				<pre>func (m *<a href="index.html#DummyObjectRequest">DummyObjectRequest</a>) XXX_Marshal(b []<a href="http://localhost:6060/pkg/builtin/#byte">byte</a>, deterministic <a href="http://localhost:6060/pkg/builtin/#bool">bool</a>) ([]<a href="http://localhost:6060/pkg/builtin/#byte">byte</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
-				
-				
-				
-				
-			
-				
-				<h3 id="DummyObjectRequest.XXX_Merge">func (*DummyObjectRequest) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=12876:12933#L395">XXX_Merge</a>
-					<a class="permalink" href="index.html#DummyObjectRequest.XXX_Merge">&#xb6;</a>
-					
-					
-				</h3>
-				<pre>func (m *<a href="index.html#DummyObjectRequest">DummyObjectRequest</a>) XXX_Merge(src <a href="http://localhost:6060/pkg/github.com/golang/protobuf/proto/">proto</a>.<a href="http://localhost:6060/pkg/github.com/golang/protobuf/proto/#Message">Message</a>)</pre>
-				
-				
-				
-				
-			
-				
-				<h3 id="DummyObjectRequest.XXX_Size">func (*DummyObjectRequest) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=12988:13031#L398">XXX_Size</a>
-					<a class="permalink" href="index.html#DummyObjectRequest.XXX_Size">&#xb6;</a>
-					
-					
-				</h3>
-				<pre>func (m *<a href="index.html#DummyObjectRequest">DummyObjectRequest</a>) XXX_Size() <a href="http://localhost:6060/pkg/builtin/#int">int</a></pre>
-				
-				
-				
-				
-			
-				
-				<h3 id="DummyObjectRequest.XXX_Unmarshal">func (*DummyObjectRequest) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=12591:12649#L389">XXX_Unmarshal</a>
-					<a class="permalink" href="index.html#DummyObjectRequest.XXX_Unmarshal">&#xb6;</a>
-					
-					
-				</h3>
-				<pre>func (m *<a href="index.html#DummyObjectRequest">DummyObjectRequest</a>) XXX_Unmarshal(b []<a href="http://localhost:6060/pkg/builtin/#byte">byte</a>) <a href="http://localhost:6060/pkg/builtin/#error">error</a></pre>
+				<pre>func (x *<a href="index.html#DummyObjectRequest">DummyObjectRequest</a>) String() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
 				
 				
 				
@@ -1397,24 +1131,22 @@ The request message containing the object value request.
 		
 			
 			
-			<h2 id="ErrorDescription">type <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=761:1961#L17">ErrorDescription</a>
+			<h2 id="ErrorDescription">type <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=1176:2280#L27">ErrorDescription</a>
 				<a class="permalink" href="index.html#ErrorDescription">&#xb6;</a>
 				
 				
 			</h2>
 			
 			<pre>type ErrorDescription struct {
-<span id="ErrorDescription.Category"></span>    Category             <a href="http://localhost:6060/pkg/builtin/#string">string</a>            `protobuf:&#34;bytes,1,opt,name=category,proto3&#34; json:&#34;category,omitempty&#34;`
-<span id="ErrorDescription.Code"></span>    Code                 <a href="http://localhost:6060/pkg/builtin/#string">string</a>            `protobuf:&#34;bytes,2,opt,name=code,proto3&#34; json:&#34;code,omitempty&#34;`
-<span id="ErrorDescription.CorrelationId"></span>    CorrelationId        <a href="http://localhost:6060/pkg/builtin/#string">string</a>            `protobuf:&#34;bytes,3,opt,name=correlation_id,json=correlationId,proto3&#34; json:&#34;correlation_id,omitempty&#34;`
-<span id="ErrorDescription.Status"></span>    Status               <a href="http://localhost:6060/pkg/builtin/#string">string</a>            `protobuf:&#34;bytes,4,opt,name=status,proto3&#34; json:&#34;status,omitempty&#34;`
-<span id="ErrorDescription.Message"></span>    Message              <a href="http://localhost:6060/pkg/builtin/#string">string</a>            `protobuf:&#34;bytes,5,opt,name=message,proto3&#34; json:&#34;message,omitempty&#34;`
-<span id="ErrorDescription.Cause"></span>    Cause                <a href="http://localhost:6060/pkg/builtin/#string">string</a>            `protobuf:&#34;bytes,6,opt,name=cause,proto3&#34; json:&#34;cause,omitempty&#34;`
-<span id="ErrorDescription.StackTrace"></span>    StackTrace           <a href="http://localhost:6060/pkg/builtin/#string">string</a>            `protobuf:&#34;bytes,7,opt,name=stack_trace,json=stackTrace,proto3&#34; json:&#34;stack_trace,omitempty&#34;`
-<span id="ErrorDescription.Details"></span>    Details              map[<a href="http://localhost:6060/pkg/builtin/#string">string</a>]<a href="http://localhost:6060/pkg/builtin/#string">string</a> `protobuf:&#34;bytes,8,rep,name=details,proto3&#34; json:&#34;details,omitempty&#34; protobuf_key:&#34;bytes,1,opt,name=key,proto3&#34; protobuf_val:&#34;bytes,2,opt,name=value,proto3&#34;`
-<span id="ErrorDescription.XXX_NoUnkeyedLiteral"></span>    XXX_NoUnkeyedLiteral struct{}          `json:&#34;-&#34;`
-<span id="ErrorDescription.XXX_unrecognized"></span>    XXX_unrecognized     []<a href="http://localhost:6060/pkg/builtin/#byte">byte</a>            `json:&#34;-&#34;`
-<span id="ErrorDescription.XXX_sizecache"></span>    XXX_sizecache        <a href="http://localhost:6060/pkg/builtin/#int32">int32</a>             `json:&#34;-&#34;`
+<span id="ErrorDescription.Category"></span>    Category      <a href="http://localhost:6060/pkg/builtin/#string">string</a>            `protobuf:&#34;bytes,1,opt,name=category,proto3&#34; json:&#34;category,omitempty&#34;`
+<span id="ErrorDescription.Code"></span>    Code          <a href="http://localhost:6060/pkg/builtin/#string">string</a>            `protobuf:&#34;bytes,2,opt,name=code,proto3&#34; json:&#34;code,omitempty&#34;`
+<span id="ErrorDescription.CorrelationId"></span>    CorrelationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>            `protobuf:&#34;bytes,3,opt,name=correlation_id,json=correlationId,proto3&#34; json:&#34;correlation_id,omitempty&#34;`
+<span id="ErrorDescription.Status"></span>    Status        <a href="http://localhost:6060/pkg/builtin/#string">string</a>            `protobuf:&#34;bytes,4,opt,name=status,proto3&#34; json:&#34;status,omitempty&#34;`
+<span id="ErrorDescription.Message"></span>    Message       <a href="http://localhost:6060/pkg/builtin/#string">string</a>            `protobuf:&#34;bytes,5,opt,name=message,proto3&#34; json:&#34;message,omitempty&#34;`
+<span id="ErrorDescription.Cause"></span>    Cause         <a href="http://localhost:6060/pkg/builtin/#string">string</a>            `protobuf:&#34;bytes,6,opt,name=cause,proto3&#34; json:&#34;cause,omitempty&#34;`
+<span id="ErrorDescription.StackTrace"></span>    StackTrace    <a href="http://localhost:6060/pkg/builtin/#string">string</a>            `protobuf:&#34;bytes,7,opt,name=stack_trace,json=stackTrace,proto3&#34; json:&#34;stack_trace,omitempty&#34;`
+<span id="ErrorDescription.Details"></span>    Details       map[<a href="http://localhost:6060/pkg/builtin/#string">string</a>]<a href="http://localhost:6060/pkg/builtin/#string">string</a> `protobuf:&#34;bytes,8,rep,name=details,proto3&#34; json:&#34;details,omitempty&#34; protobuf_key:&#34;bytes,1,opt,name=key,proto3&#34; protobuf_val:&#34;bytes,2,opt,name=value,proto3&#34;`
+    <span class="comment">// contains filtered or unexported fields</span>
 }
 </pre>
 
@@ -1430,115 +1162,118 @@ The request message containing the object value request.
 
 			
 				
-				<h3 id="ErrorDescription.Descriptor">func (*ErrorDescription) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=2161:2214#L34">Descriptor</a>
+				<h3 id="ErrorDescription.Descriptor">func (*ErrorDescription) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=3038:3091#L70">Descriptor</a>
 					<a class="permalink" href="index.html#ErrorDescription.Descriptor">&#xb6;</a>
 					
 					
 				</h3>
 				<pre>func (*<a href="index.html#ErrorDescription">ErrorDescription</a>) Descriptor() ([]<a href="http://localhost:6060/pkg/builtin/#byte">byte</a>, []<a href="http://localhost:6060/pkg/builtin/#int">int</a>)</pre>
-				
+				<p>
+Deprecated: Use ErrorDescription.ProtoReflect.Descriptor instead.
+</p>
+
 				
 				
 				
 			
 				
-				<h3 id="ErrorDescription.GetCategory">func (*ErrorDescription) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=2919:2966#L56">GetCategory</a>
+				<h3 id="ErrorDescription.GetCategory">func (*ErrorDescription) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=3160:3207#L74">GetCategory</a>
 					<a class="permalink" href="index.html#ErrorDescription.GetCategory">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (m *<a href="index.html#ErrorDescription">ErrorDescription</a>) GetCategory() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
+				<pre>func (x *<a href="index.html#ErrorDescription">ErrorDescription</a>) GetCategory() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
 				
 				
 				
 				
 			
 				
-				<h3 id="ErrorDescription.GetCause">func (*ErrorDescription) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=3425:3469#L91">GetCause</a>
+				<h3 id="ErrorDescription.GetCause">func (*ErrorDescription) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=3666:3710#L109">GetCause</a>
 					<a class="permalink" href="index.html#ErrorDescription.GetCause">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (m *<a href="index.html#ErrorDescription">ErrorDescription</a>) GetCause() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
+				<pre>func (x *<a href="index.html#ErrorDescription">ErrorDescription</a>) GetCause() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
 				
 				
 				
 				
 			
 				
-				<h3 id="ErrorDescription.GetCode">func (*ErrorDescription) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=3021:3064#L63">GetCode</a>
+				<h3 id="ErrorDescription.GetCode">func (*ErrorDescription) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=3262:3305#L81">GetCode</a>
 					<a class="permalink" href="index.html#ErrorDescription.GetCode">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (m *<a href="index.html#ErrorDescription">ErrorDescription</a>) GetCode() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
+				<pre>func (x *<a href="index.html#ErrorDescription">ErrorDescription</a>) GetCode() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
 				
 				
 				
 				
 			
 				
-				<h3 id="ErrorDescription.GetCorrelationId">func (*ErrorDescription) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=3115:3167#L70">GetCorrelationId</a>
+				<h3 id="ErrorDescription.GetCorrelationId">func (*ErrorDescription) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=3356:3408#L88">GetCorrelationId</a>
 					<a class="permalink" href="index.html#ErrorDescription.GetCorrelationId">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (m *<a href="index.html#ErrorDescription">ErrorDescription</a>) GetCorrelationId() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
+				<pre>func (x *<a href="index.html#ErrorDescription">ErrorDescription</a>) GetCorrelationId() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
 				
 				
 				
 				
 			
 				
-				<h3 id="ErrorDescription.GetDetails">func (*ErrorDescription) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=3627:3684#L105">GetDetails</a>
+				<h3 id="ErrorDescription.GetDetails">func (*ErrorDescription) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=3868:3925#L123">GetDetails</a>
 					<a class="permalink" href="index.html#ErrorDescription.GetDetails">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (m *<a href="index.html#ErrorDescription">ErrorDescription</a>) GetDetails() map[<a href="http://localhost:6060/pkg/builtin/#string">string</a>]<a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
+				<pre>func (x *<a href="index.html#ErrorDescription">ErrorDescription</a>) GetDetails() map[<a href="http://localhost:6060/pkg/builtin/#string">string</a>]<a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
 				
 				
 				
 				
 			
 				
-				<h3 id="ErrorDescription.GetMessage">func (*ErrorDescription) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=3325:3371#L84">GetMessage</a>
+				<h3 id="ErrorDescription.GetMessage">func (*ErrorDescription) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=3566:3612#L102">GetMessage</a>
 					<a class="permalink" href="index.html#ErrorDescription.GetMessage">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (m *<a href="index.html#ErrorDescription">ErrorDescription</a>) GetMessage() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
+				<pre>func (x *<a href="index.html#ErrorDescription">ErrorDescription</a>) GetMessage() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
 				
 				
 				
 				
 			
 				
-				<h3 id="ErrorDescription.GetStackTrace">func (*ErrorDescription) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=3521:3570#L98">GetStackTrace</a>
+				<h3 id="ErrorDescription.GetStackTrace">func (*ErrorDescription) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=3762:3811#L116">GetStackTrace</a>
 					<a class="permalink" href="index.html#ErrorDescription.GetStackTrace">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (m *<a href="index.html#ErrorDescription">ErrorDescription</a>) GetStackTrace() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
+				<pre>func (x *<a href="index.html#ErrorDescription">ErrorDescription</a>) GetStackTrace() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
 				
 				
 				
 				
 			
 				
-				<h3 id="ErrorDescription.GetStatus">func (*ErrorDescription) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=3227:3272#L77">GetStatus</a>
+				<h3 id="ErrorDescription.GetStatus">func (*ErrorDescription) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=3468:3513#L95">GetStatus</a>
 					<a class="permalink" href="index.html#ErrorDescription.GetStatus">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (m *<a href="index.html#ErrorDescription">ErrorDescription</a>) GetStatus() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
+				<pre>func (x *<a href="index.html#ErrorDescription">ErrorDescription</a>) GetStatus() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
 				
 				
 				
 				
 			
 				
-				<h3 id="ErrorDescription.ProtoMessage">func (*ErrorDescription) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=2115:2154#L33">ProtoMessage</a>
+				<h3 id="ErrorDescription.ProtoMessage">func (*ErrorDescription) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=2602:2641#L55">ProtoMessage</a>
 					<a class="permalink" href="index.html#ErrorDescription.ProtoMessage">&#xb6;</a>
 					
 					
@@ -1550,84 +1285,36 @@ The request message containing the object value request.
 				
 			
 				
-				<h3 id="ErrorDescription.Reset">func (*ErrorDescription) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=1963:1997#L31">Reset</a>
+				<h3 id="ErrorDescription.ProtoReflect">func (*ErrorDescription) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=2646:2708#L57">ProtoReflect</a>
+					<a class="permalink" href="index.html#ErrorDescription.ProtoReflect">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (x *<a href="index.html#ErrorDescription">ErrorDescription</a>) ProtoReflect() <a href="http://localhost:6060/pkg/google.golang.org/protobuf/reflect/protoreflect/">protoreflect</a>.<a href="http://localhost:6060/pkg/google.golang.org/protobuf/reflect/protoreflect/#Message">Message</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="ErrorDescription.Reset">func (*ErrorDescription) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=2282:2316#L42">Reset</a>
 					<a class="permalink" href="index.html#ErrorDescription.Reset">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (m *<a href="index.html#ErrorDescription">ErrorDescription</a>) Reset()</pre>
+				<pre>func (x *<a href="index.html#ErrorDescription">ErrorDescription</a>) Reset()</pre>
 				
 				
 				
 				
 			
 				
-				<h3 id="ErrorDescription.String">func (*ErrorDescription) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=2034:2076#L32">String</a>
+				<h3 id="ErrorDescription.String">func (*ErrorDescription) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=2515:2557#L51">String</a>
 					<a class="permalink" href="index.html#ErrorDescription.String">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (m *<a href="index.html#ErrorDescription">ErrorDescription</a>) String() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
-				
-				
-				
-				
-			
-				
-				<h3 id="ErrorDescription.XXX_DiscardUnknown">func (*ErrorDescription) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=2750:2797#L50">XXX_DiscardUnknown</a>
-					<a class="permalink" href="index.html#ErrorDescription.XXX_DiscardUnknown">&#xb6;</a>
-					
-					
-				</h3>
-				<pre>func (m *<a href="index.html#ErrorDescription">ErrorDescription</a>) XXX_DiscardUnknown()</pre>
-				
-				
-				
-				
-			
-				
-				<h3 id="ErrorDescription.XXX_Marshal">func (*ErrorDescription) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=2388:2472#L41">XXX_Marshal</a>
-					<a class="permalink" href="index.html#ErrorDescription.XXX_Marshal">&#xb6;</a>
-					
-					
-				</h3>
-				<pre>func (m *<a href="index.html#ErrorDescription">ErrorDescription</a>) XXX_Marshal(b []<a href="http://localhost:6060/pkg/builtin/#byte">byte</a>, deterministic <a href="http://localhost:6060/pkg/builtin/#bool">bool</a>) ([]<a href="http://localhost:6060/pkg/builtin/#byte">byte</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
-				
-				
-				
-				
-			
-				
-				<h3 id="ErrorDescription.XXX_Merge">func (*ErrorDescription) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=2547:2602#L44">XXX_Merge</a>
-					<a class="permalink" href="index.html#ErrorDescription.XXX_Merge">&#xb6;</a>
-					
-					
-				</h3>
-				<pre>func (m *<a href="index.html#ErrorDescription">ErrorDescription</a>) XXX_Merge(src <a href="http://localhost:6060/pkg/github.com/golang/protobuf/proto/">proto</a>.<a href="http://localhost:6060/pkg/github.com/golang/protobuf/proto/#Message">Message</a>)</pre>
-				
-				
-				
-				
-			
-				
-				<h3 id="ErrorDescription.XXX_Size">func (*ErrorDescription) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=2655:2696#L47">XXX_Size</a>
-					<a class="permalink" href="index.html#ErrorDescription.XXX_Size">&#xb6;</a>
-					
-					
-				</h3>
-				<pre>func (m *<a href="index.html#ErrorDescription">ErrorDescription</a>) XXX_Size() <a href="http://localhost:6060/pkg/builtin/#int">int</a></pre>
-				
-				
-				
-				
-			
-				
-				<h3 id="ErrorDescription.XXX_Unmarshal">func (*ErrorDescription) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=2270:2326#L38">XXX_Unmarshal</a>
-					<a class="permalink" href="index.html#ErrorDescription.XXX_Unmarshal">&#xb6;</a>
-					
-					
-				</h3>
-				<pre>func (m *<a href="index.html#ErrorDescription">ErrorDescription</a>) XXX_Unmarshal(b []<a href="http://localhost:6060/pkg/builtin/#byte">byte</a>) <a href="http://localhost:6060/pkg/builtin/#error">error</a></pre>
+				<pre>func (x *<a href="index.html#ErrorDescription">ErrorDescription</a>) String() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
 				
 				
 				
@@ -1636,19 +1323,17 @@ The request message containing the object value request.
 		
 			
 			
-			<h2 id="PagingParams">type <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=3739:4183#L112">PagingParams</a>
+			<h2 id="PagingParams">type <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=3980:4357#L130">PagingParams</a>
 				<a class="permalink" href="index.html#PagingParams">&#xb6;</a>
 				
 				
 			</h2>
 			
 			<pre>type PagingParams struct {
-<span id="PagingParams.Skip"></span>    Skip                 <a href="http://localhost:6060/pkg/builtin/#int64">int64</a>    `protobuf:&#34;varint,1,opt,name=skip,proto3&#34; json:&#34;skip,omitempty&#34;`
-<span id="PagingParams.Take"></span>    Take                 <a href="http://localhost:6060/pkg/builtin/#int32">int32</a>    `protobuf:&#34;varint,2,opt,name=take,proto3&#34; json:&#34;take,omitempty&#34;`
-<span id="PagingParams.Total"></span>    Total                <a href="http://localhost:6060/pkg/builtin/#bool">bool</a>     `protobuf:&#34;varint,3,opt,name=total,proto3&#34; json:&#34;total,omitempty&#34;`
-<span id="PagingParams.XXX_NoUnkeyedLiteral"></span>    XXX_NoUnkeyedLiteral struct{} `json:&#34;-&#34;`
-<span id="PagingParams.XXX_unrecognized"></span>    XXX_unrecognized     []<a href="http://localhost:6060/pkg/builtin/#byte">byte</a>   `json:&#34;-&#34;`
-<span id="PagingParams.XXX_sizecache"></span>    XXX_sizecache        <a href="http://localhost:6060/pkg/builtin/#int32">int32</a>    `json:&#34;-&#34;`
+<span id="PagingParams.Skip"></span>    Skip  <a href="http://localhost:6060/pkg/builtin/#int64">int64</a> `protobuf:&#34;varint,1,opt,name=skip,proto3&#34; json:&#34;skip,omitempty&#34;`
+<span id="PagingParams.Take"></span>    Take  <a href="http://localhost:6060/pkg/builtin/#int32">int32</a> `protobuf:&#34;varint,2,opt,name=take,proto3&#34; json:&#34;take,omitempty&#34;`
+<span id="PagingParams.Total"></span>    Total <a href="http://localhost:6060/pkg/builtin/#bool">bool</a>  `protobuf:&#34;varint,3,opt,name=total,proto3&#34; json:&#34;total,omitempty&#34;`
+    <span class="comment">// contains filtered or unexported fields</span>
 }
 </pre>
 
@@ -1664,55 +1349,58 @@ The request message containing the object value request.
 
 			
 				
-				<h3 id="PagingParams.Descriptor">func (*PagingParams) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=4367:4416#L124">Descriptor</a>
+				<h3 id="PagingParams.Descriptor">func (*PagingParams) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=5091:5140#L168">Descriptor</a>
 					<a class="permalink" href="index.html#PagingParams.Descriptor">&#xb6;</a>
 					
 					
 				</h3>
 				<pre>func (*<a href="index.html#PagingParams">PagingParams</a>) Descriptor() ([]<a href="http://localhost:6060/pkg/builtin/#byte">byte</a>, []<a href="http://localhost:6060/pkg/builtin/#int">int</a>)</pre>
-				
+				<p>
+Deprecated: Use PagingParams.ProtoReflect.Descriptor instead.
+</p>
+
 				
 				
 				
 			
 				
-				<h3 id="PagingParams.GetSkip">func (*PagingParams) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=5077:5115#L146">GetSkip</a>
+				<h3 id="PagingParams.GetSkip">func (*PagingParams) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=5209:5247#L172">GetSkip</a>
 					<a class="permalink" href="index.html#PagingParams.GetSkip">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (m *<a href="index.html#PagingParams">PagingParams</a>) GetSkip() <a href="http://localhost:6060/pkg/builtin/#int64">int64</a></pre>
+				<pre>func (x *<a href="index.html#PagingParams">PagingParams</a>) GetSkip() <a href="http://localhost:6060/pkg/builtin/#int64">int64</a></pre>
 				
 				
 				
 				
 			
 				
-				<h3 id="PagingParams.GetTake">func (*PagingParams) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=5165:5203#L153">GetTake</a>
+				<h3 id="PagingParams.GetTake">func (*PagingParams) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=5297:5335#L179">GetTake</a>
 					<a class="permalink" href="index.html#PagingParams.GetTake">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (m *<a href="index.html#PagingParams">PagingParams</a>) GetTake() <a href="http://localhost:6060/pkg/builtin/#int32">int32</a></pre>
+				<pre>func (x *<a href="index.html#PagingParams">PagingParams</a>) GetTake() <a href="http://localhost:6060/pkg/builtin/#int32">int32</a></pre>
 				
 				
 				
 				
 			
 				
-				<h3 id="PagingParams.GetTotal">func (*PagingParams) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=5253:5291#L160">GetTotal</a>
+				<h3 id="PagingParams.GetTotal">func (*PagingParams) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=5385:5423#L186">GetTotal</a>
 					<a class="permalink" href="index.html#PagingParams.GetTotal">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (m *<a href="index.html#PagingParams">PagingParams</a>) GetTotal() <a href="http://localhost:6060/pkg/builtin/#bool">bool</a></pre>
+				<pre>func (x *<a href="index.html#PagingParams">PagingParams</a>) GetTotal() <a href="http://localhost:6060/pkg/builtin/#bool">bool</a></pre>
 				
 				
 				
 				
 			
 				
-				<h3 id="PagingParams.ProtoMessage">func (*PagingParams) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=4325:4360#L123">ProtoMessage</a>
+				<h3 id="PagingParams.ProtoMessage">func (*PagingParams) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=4667:4702#L153">ProtoMessage</a>
 					<a class="permalink" href="index.html#PagingParams.ProtoMessage">&#xb6;</a>
 					
 					
@@ -1724,84 +1412,36 @@ The request message containing the object value request.
 				
 			
 				
-				<h3 id="PagingParams.Reset">func (*PagingParams) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=4185:4215#L121">Reset</a>
+				<h3 id="PagingParams.ProtoReflect">func (*PagingParams) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=4707:4765#L155">ProtoReflect</a>
+					<a class="permalink" href="index.html#PagingParams.ProtoReflect">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (x *<a href="index.html#PagingParams">PagingParams</a>) ProtoReflect() <a href="http://localhost:6060/pkg/google.golang.org/protobuf/reflect/protoreflect/">protoreflect</a>.<a href="http://localhost:6060/pkg/google.golang.org/protobuf/reflect/protoreflect/#Message">Message</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="PagingParams.Reset">func (*PagingParams) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=4359:4389#L140">Reset</a>
 					<a class="permalink" href="index.html#PagingParams.Reset">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (m *<a href="index.html#PagingParams">PagingParams</a>) Reset()</pre>
+				<pre>func (x *<a href="index.html#PagingParams">PagingParams</a>) Reset()</pre>
 				
 				
 				
 				
 			
 				
-				<h3 id="PagingParams.String">func (*PagingParams) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=4248:4286#L122">String</a>
+				<h3 id="PagingParams.String">func (*PagingParams) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=4584:4622#L149">String</a>
 					<a class="permalink" href="index.html#PagingParams.String">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (m *<a href="index.html#PagingParams">PagingParams</a>) String() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
-				
-				
-				
-				
-			
-				
-				<h3 id="PagingParams.XXX_DiscardUnknown">func (*PagingParams) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=4920:4963#L140">XXX_DiscardUnknown</a>
-					<a class="permalink" href="index.html#PagingParams.XXX_DiscardUnknown">&#xb6;</a>
-					
-					
-				</h3>
-				<pre>func (m *<a href="index.html#PagingParams">PagingParams</a>) XXX_DiscardUnknown()</pre>
-				
-				
-				
-				
-			
-				
-				<h3 id="PagingParams.XXX_Marshal">func (*PagingParams) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=4582:4662#L131">XXX_Marshal</a>
-					<a class="permalink" href="index.html#PagingParams.XXX_Marshal">&#xb6;</a>
-					
-					
-				</h3>
-				<pre>func (m *<a href="index.html#PagingParams">PagingParams</a>) XXX_Marshal(b []<a href="http://localhost:6060/pkg/builtin/#byte">byte</a>, deterministic <a href="http://localhost:6060/pkg/builtin/#bool">bool</a>) ([]<a href="http://localhost:6060/pkg/builtin/#byte">byte</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
-				
-				
-				
-				
-			
-				
-				<h3 id="PagingParams.XXX_Merge">func (*PagingParams) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=4733:4784#L134">XXX_Merge</a>
-					<a class="permalink" href="index.html#PagingParams.XXX_Merge">&#xb6;</a>
-					
-					
-				</h3>
-				<pre>func (m *<a href="index.html#PagingParams">PagingParams</a>) XXX_Merge(src <a href="http://localhost:6060/pkg/github.com/golang/protobuf/proto/">proto</a>.<a href="http://localhost:6060/pkg/github.com/golang/protobuf/proto/#Message">Message</a>)</pre>
-				
-				
-				
-				
-			
-				
-				<h3 id="PagingParams.XXX_Size">func (*PagingParams) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=4833:4870#L137">XXX_Size</a>
-					<a class="permalink" href="index.html#PagingParams.XXX_Size">&#xb6;</a>
-					
-					
-				</h3>
-				<pre>func (m *<a href="index.html#PagingParams">PagingParams</a>) XXX_Size() <a href="http://localhost:6060/pkg/builtin/#int">int</a></pre>
-				
-				
-				
-				
-			
-				
-				<h3 id="PagingParams.XXX_Unmarshal">func (*PagingParams) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=4472:4524#L128">XXX_Unmarshal</a>
-					<a class="permalink" href="index.html#PagingParams.XXX_Unmarshal">&#xb6;</a>
-					
-					
-				</h3>
-				<pre>func (m *<a href="index.html#PagingParams">PagingParams</a>) XXX_Unmarshal(b []<a href="http://localhost:6060/pkg/builtin/#byte">byte</a>) <a href="http://localhost:6060/pkg/builtin/#error">error</a></pre>
+				<pre>func (x *<a href="index.html#PagingParams">PagingParams</a>) String() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
 				
 				
 				
@@ -1810,13 +1450,13 @@ The request message containing the object value request.
 		
 			
 			
-			<h2 id="UnimplementedDummiesServer">type <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=21099:21141#L559">UnimplementedDummiesServer</a>
+			<h2 id="UnimplementedDummiesServer">type <a href="http://localhost:6060/src/test/protos/dummies_grpc.pb.go?s=3381:3423#L84">UnimplementedDummiesServer</a>
 				<a class="permalink" href="index.html#UnimplementedDummiesServer">&#xb6;</a>
 				
 				
 			</h2>
 			<p>
-UnimplementedDummiesServer can be embedded to have forward compatible implementations.
+UnimplementedDummiesServer must be embedded to have forward compatible implementations.
 </p>
 
 			<pre>type UnimplementedDummiesServer struct {
@@ -1835,64 +1475,93 @@ UnimplementedDummiesServer can be embedded to have forward compatible implementa
 
 			
 				
-				<h3 id="UnimplementedDummiesServer.CreateDummy">func (*UnimplementedDummiesServer) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=21543:21651#L568">CreateDummy</a>
+				<h3 id="UnimplementedDummiesServer.CreateDummy">func (UnimplementedDummiesServer) <a href="http://localhost:6060/src/test/protos/dummies_grpc.pb.go?s=3807:3906#L93">CreateDummy</a>
 					<a class="permalink" href="index.html#UnimplementedDummiesServer.CreateDummy">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (*<a href="index.html#UnimplementedDummiesServer">UnimplementedDummiesServer</a>) CreateDummy(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, req *<a href="index.html#DummyObjectRequest">DummyObjectRequest</a>) (*<a href="index.html#Dummy">Dummy</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<pre>func (<a href="index.html#UnimplementedDummiesServer">UnimplementedDummiesServer</a>) CreateDummy(<a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, *<a href="index.html#DummyObjectRequest">DummyObjectRequest</a>) (*<a href="index.html#Dummy">Dummy</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
 				
 				
 				
 				
 			
 				
-				<h3 id="UnimplementedDummiesServer.DeleteDummyById">func (*UnimplementedDummiesServer) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=21941:22049#L574">DeleteDummyById</a>
+				<h3 id="UnimplementedDummiesServer.DeleteDummyById">func (UnimplementedDummiesServer) <a href="http://localhost:6060/src/test/protos/dummies_grpc.pb.go?s=4187:4286#L99">DeleteDummyById</a>
 					<a class="permalink" href="index.html#UnimplementedDummiesServer.DeleteDummyById">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (*<a href="index.html#UnimplementedDummiesServer">UnimplementedDummiesServer</a>) DeleteDummyById(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, req *<a href="index.html#DummyIdRequest">DummyIdRequest</a>) (*<a href="index.html#Dummy">Dummy</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<pre>func (<a href="index.html#UnimplementedDummiesServer">UnimplementedDummiesServer</a>) DeleteDummyById(<a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, *<a href="index.html#DummyIdRequest">DummyIdRequest</a>) (*<a href="index.html#Dummy">Dummy</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
 				
 				
 				
 				
 			
 				
-				<h3 id="UnimplementedDummiesServer.GetDummies">func (*UnimplementedDummiesServer) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=21143:21256#L562">GetDummies</a>
+				<h3 id="UnimplementedDummiesServer.GetDummies">func (UnimplementedDummiesServer) <a href="http://localhost:6060/src/test/protos/dummies_grpc.pb.go?s=3425:3529#L87">GetDummies</a>
 					<a class="permalink" href="index.html#UnimplementedDummiesServer.GetDummies">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (*<a href="index.html#UnimplementedDummiesServer">UnimplementedDummiesServer</a>) GetDummies(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, req *<a href="index.html#DummiesPageRequest">DummiesPageRequest</a>) (*<a href="index.html#DummiesPage">DummiesPage</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<pre>func (<a href="index.html#UnimplementedDummiesServer">UnimplementedDummiesServer</a>) GetDummies(<a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, *<a href="index.html#DummiesPageRequest">DummiesPageRequest</a>) (*<a href="index.html#DummiesPage">DummiesPage</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
 				
 				
 				
 				
 			
 				
-				<h3 id="UnimplementedDummiesServer.GetDummyById">func (*UnimplementedDummiesServer) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=21346:21451#L565">GetDummyById</a>
+				<h3 id="UnimplementedDummiesServer.GetDummyById">func (UnimplementedDummiesServer) <a href="http://localhost:6060/src/test/protos/dummies_grpc.pb.go?s=3619:3715#L90">GetDummyById</a>
 					<a class="permalink" href="index.html#UnimplementedDummiesServer.GetDummyById">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (*<a href="index.html#UnimplementedDummiesServer">UnimplementedDummiesServer</a>) GetDummyById(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, req *<a href="index.html#DummyIdRequest">DummyIdRequest</a>) (*<a href="index.html#Dummy">Dummy</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<pre>func (<a href="index.html#UnimplementedDummiesServer">UnimplementedDummiesServer</a>) GetDummyById(<a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, *<a href="index.html#DummyIdRequest">DummyIdRequest</a>) (*<a href="index.html#Dummy">Dummy</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
 				
 				
 				
 				
 			
 				
-				<h3 id="UnimplementedDummiesServer.UpdateDummy">func (*UnimplementedDummiesServer) <a href="http://localhost:6060/src/test/protos/dummies.pb.go?s=21742:21850#L571">UpdateDummy</a>
+				<h3 id="UnimplementedDummiesServer.UpdateDummy">func (UnimplementedDummiesServer) <a href="http://localhost:6060/src/test/protos/dummies_grpc.pb.go?s=3997:4096#L96">UpdateDummy</a>
 					<a class="permalink" href="index.html#UnimplementedDummiesServer.UpdateDummy">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (*<a href="index.html#UnimplementedDummiesServer">UnimplementedDummiesServer</a>) UpdateDummy(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, req *<a href="index.html#DummyObjectRequest">DummyObjectRequest</a>) (*<a href="index.html#Dummy">Dummy</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<pre>func (<a href="index.html#UnimplementedDummiesServer">UnimplementedDummiesServer</a>) UpdateDummy(<a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, *<a href="index.html#DummyObjectRequest">DummyObjectRequest</a>) (*<a href="index.html#Dummy">Dummy</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
 				
 				
 				
 				
+			
+		
+			
+			
+			<h2 id="UnsafeDummiesServer">type <a href="http://localhost:6060/src/test/protos/dummies_grpc.pb.go?s=4667:4744#L107">UnsafeDummiesServer</a>
+				<a class="permalink" href="index.html#UnsafeDummiesServer">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+UnsafeDummiesServer may be embedded to opt out of forward compatibility for this service.
+Use of this interface is not recommended, as added methods to DummiesServer will
+result in compilation errors.
+</p>
+
+			<pre>type UnsafeDummiesServer interface {
+    <span class="comment">// contains filtered or unexported methods</span>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
 			
 		
 	
@@ -1906,13 +1575,13 @@ UnimplementedDummiesServer can be embedded to have forward compatible implementa
 
 
 <div id="footer">
-Build version go1.13.15.<br>
+Build version go1.16.15.<br>
 Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
 the content of this page is licensed under the
 Creative Commons Attribution 3.0 License,
 and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
-<a href="http://localhost:6060/doc/tos.html">Terms of Service</a> |
-<a href="http://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
 </div>
 
 </div><!-- .container -->

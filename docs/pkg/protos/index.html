@@ -14,7 +14,7 @@
 
 
 
-<script>var goVersion = "go1.13.15";</script>
+<script>var goVersion = "go1.16.15";</script>
 <script src="../../lib/godoc/godocs.js" defer></script>
 </head>
 <body>
@@ -110,9 +110,11 @@
 			<dl>
 			
 			
+				<dd><a href="index.html#pkg-variables">Variables</a></dd>
+			
 			
 				
-				<dd><a href="index.html#RegisterCommandableServer">func RegisterCommandableServer(s *grpc.Server, srv CommandableServer)</a></dd>
+				<dd><a href="index.html#RegisterCommandableServer">func RegisterCommandableServer(s grpc.ServiceRegistrar, srv CommandableServer)</a></dd>
 			
 			
 				
@@ -136,52 +138,40 @@
 					<dd>&nbsp; &nbsp; <a href="index.html#ErrorDescription.Descriptor">func (*ErrorDescription) Descriptor() ([]byte, []int)</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#ErrorDescription.GetCategory">func (m *ErrorDescription) GetCategory() string</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#ErrorDescription.GetCategory">func (x *ErrorDescription) GetCategory() string</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#ErrorDescription.GetCause">func (m *ErrorDescription) GetCause() string</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#ErrorDescription.GetCause">func (x *ErrorDescription) GetCause() string</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#ErrorDescription.GetCode">func (m *ErrorDescription) GetCode() string</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#ErrorDescription.GetCode">func (x *ErrorDescription) GetCode() string</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#ErrorDescription.GetCorrelationId">func (m *ErrorDescription) GetCorrelationId() string</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#ErrorDescription.GetCorrelationId">func (x *ErrorDescription) GetCorrelationId() string</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#ErrorDescription.GetDetails">func (m *ErrorDescription) GetDetails() map[string]string</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#ErrorDescription.GetDetails">func (x *ErrorDescription) GetDetails() map[string]string</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#ErrorDescription.GetMessage">func (m *ErrorDescription) GetMessage() string</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#ErrorDescription.GetMessage">func (x *ErrorDescription) GetMessage() string</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#ErrorDescription.GetStackTrace">func (m *ErrorDescription) GetStackTrace() string</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#ErrorDescription.GetStackTrace">func (x *ErrorDescription) GetStackTrace() string</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#ErrorDescription.GetStatus">func (m *ErrorDescription) GetStatus() int32</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#ErrorDescription.GetStatus">func (x *ErrorDescription) GetStatus() int32</a></dd>
 				
 					
 					<dd>&nbsp; &nbsp; <a href="index.html#ErrorDescription.ProtoMessage">func (*ErrorDescription) ProtoMessage()</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#ErrorDescription.Reset">func (m *ErrorDescription) Reset()</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#ErrorDescription.ProtoReflect">func (x *ErrorDescription) ProtoReflect() protoreflect.Message</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#ErrorDescription.String">func (m *ErrorDescription) String() string</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#ErrorDescription.Reset">func (x *ErrorDescription) Reset()</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#ErrorDescription.XXX_DiscardUnknown">func (m *ErrorDescription) XXX_DiscardUnknown()</a></dd>
-				
-					
-					<dd>&nbsp; &nbsp; <a href="index.html#ErrorDescription.XXX_Marshal">func (m *ErrorDescription) XXX_Marshal(b []byte, deterministic bool) ([]byte, error)</a></dd>
-				
-					
-					<dd>&nbsp; &nbsp; <a href="index.html#ErrorDescription.XXX_Merge">func (m *ErrorDescription) XXX_Merge(src proto.Message)</a></dd>
-				
-					
-					<dd>&nbsp; &nbsp; <a href="index.html#ErrorDescription.XXX_Size">func (m *ErrorDescription) XXX_Size() int</a></dd>
-				
-					
-					<dd>&nbsp; &nbsp; <a href="index.html#ErrorDescription.XXX_Unmarshal">func (m *ErrorDescription) XXX_Unmarshal(b []byte) error</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#ErrorDescription.String">func (x *ErrorDescription) String() string</a></dd>
 				
 			
 				
@@ -192,37 +182,25 @@
 					<dd>&nbsp; &nbsp; <a href="index.html#InvokeReply.Descriptor">func (*InvokeReply) Descriptor() ([]byte, []int)</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#InvokeReply.GetError">func (m *InvokeReply) GetError() *ErrorDescription</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#InvokeReply.GetError">func (x *InvokeReply) GetError() *ErrorDescription</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#InvokeReply.GetResultEmpty">func (m *InvokeReply) GetResultEmpty() bool</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#InvokeReply.GetResultEmpty">func (x *InvokeReply) GetResultEmpty() bool</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#InvokeReply.GetResultJson">func (m *InvokeReply) GetResultJson() string</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#InvokeReply.GetResultJson">func (x *InvokeReply) GetResultJson() string</a></dd>
 				
 					
 					<dd>&nbsp; &nbsp; <a href="index.html#InvokeReply.ProtoMessage">func (*InvokeReply) ProtoMessage()</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#InvokeReply.Reset">func (m *InvokeReply) Reset()</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#InvokeReply.ProtoReflect">func (x *InvokeReply) ProtoReflect() protoreflect.Message</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#InvokeReply.String">func (m *InvokeReply) String() string</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#InvokeReply.Reset">func (x *InvokeReply) Reset()</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#InvokeReply.XXX_DiscardUnknown">func (m *InvokeReply) XXX_DiscardUnknown()</a></dd>
-				
-					
-					<dd>&nbsp; &nbsp; <a href="index.html#InvokeReply.XXX_Marshal">func (m *InvokeReply) XXX_Marshal(b []byte, deterministic bool) ([]byte, error)</a></dd>
-				
-					
-					<dd>&nbsp; &nbsp; <a href="index.html#InvokeReply.XXX_Merge">func (m *InvokeReply) XXX_Merge(src proto.Message)</a></dd>
-				
-					
-					<dd>&nbsp; &nbsp; <a href="index.html#InvokeReply.XXX_Size">func (m *InvokeReply) XXX_Size() int</a></dd>
-				
-					
-					<dd>&nbsp; &nbsp; <a href="index.html#InvokeReply.XXX_Unmarshal">func (m *InvokeReply) XXX_Unmarshal(b []byte) error</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#InvokeReply.String">func (x *InvokeReply) String() string</a></dd>
 				
 			
 				
@@ -233,40 +211,28 @@
 					<dd>&nbsp; &nbsp; <a href="index.html#InvokeRequest.Descriptor">func (*InvokeRequest) Descriptor() ([]byte, []int)</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#InvokeRequest.GetArgsEmpty">func (m *InvokeRequest) GetArgsEmpty() bool</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#InvokeRequest.GetArgsEmpty">func (x *InvokeRequest) GetArgsEmpty() bool</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#InvokeRequest.GetArgsJson">func (m *InvokeRequest) GetArgsJson() string</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#InvokeRequest.GetArgsJson">func (x *InvokeRequest) GetArgsJson() string</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#InvokeRequest.GetCorrelationId">func (m *InvokeRequest) GetCorrelationId() string</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#InvokeRequest.GetCorrelationId">func (x *InvokeRequest) GetCorrelationId() string</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#InvokeRequest.GetMethod">func (m *InvokeRequest) GetMethod() string</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#InvokeRequest.GetMethod">func (x *InvokeRequest) GetMethod() string</a></dd>
 				
 					
 					<dd>&nbsp; &nbsp; <a href="index.html#InvokeRequest.ProtoMessage">func (*InvokeRequest) ProtoMessage()</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#InvokeRequest.Reset">func (m *InvokeRequest) Reset()</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#InvokeRequest.ProtoReflect">func (x *InvokeRequest) ProtoReflect() protoreflect.Message</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#InvokeRequest.String">func (m *InvokeRequest) String() string</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#InvokeRequest.Reset">func (x *InvokeRequest) Reset()</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#InvokeRequest.XXX_DiscardUnknown">func (m *InvokeRequest) XXX_DiscardUnknown()</a></dd>
-				
-					
-					<dd>&nbsp; &nbsp; <a href="index.html#InvokeRequest.XXX_Marshal">func (m *InvokeRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error)</a></dd>
-				
-					
-					<dd>&nbsp; &nbsp; <a href="index.html#InvokeRequest.XXX_Merge">func (m *InvokeRequest) XXX_Merge(src proto.Message)</a></dd>
-				
-					
-					<dd>&nbsp; &nbsp; <a href="index.html#InvokeRequest.XXX_Size">func (m *InvokeRequest) XXX_Size() int</a></dd>
-				
-					
-					<dd>&nbsp; &nbsp; <a href="index.html#InvokeRequest.XXX_Unmarshal">func (m *InvokeRequest) XXX_Unmarshal(b []byte) error</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#InvokeRequest.String">func (x *InvokeRequest) String() string</a></dd>
 				
 			
 				
@@ -274,7 +240,12 @@
 				
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#UnimplementedCommandableServer.Invoke">func (*UnimplementedCommandableServer) Invoke(ctx context.Context, req *InvokeRequest) (*InvokeReply, error)</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#UnimplementedCommandableServer.Invoke">func (UnimplementedCommandableServer) Invoke(context.Context, *InvokeRequest) (*InvokeReply, error)</a></dd>
+				
+			
+				
+				<dd><a href="index.html#UnsafeCommandableServer">type UnsafeCommandableServer</a></dd>
+				
 				
 			
 			
@@ -290,6 +261,8 @@
 			
 				<a href="http://localhost:6060/src/protos/commandable.pb.go">commandable.pb.go</a>
 			
+				<a href="http://localhost:6060/src/protos/commandable_grpc.pb.go">commandable_grpc.pb.go</a>
+			
 			</span>
 			</p>
 		
@@ -300,15 +273,40 @@
 
 		
 		
+			<h2 id="pkg-variables">Variables</h2>
+			
+				<p>
+Commandable_ServiceDesc is the grpc.ServiceDesc for Commandable service.
+It&#39;s only intended for direct use with grpc.RegisterService,
+and not to be introspected or modified (even as a copy)
+</p>
+
+				<pre>var <span id="Commandable_ServiceDesc">Commandable_ServiceDesc</span> = <a href="http://localhost:6060/pkg/google.golang.org/grpc/">grpc</a>.<a href="http://localhost:6060/pkg/google.golang.org/grpc/#ServiceDesc">ServiceDesc</a>{
+    <a href="http://localhost:6060/pkg/google.golang.org/grpc/#ServiceDesc.ServiceName">ServiceName</a>: &#34;commandable.Commandable&#34;,
+    <a href="http://localhost:6060/pkg/google.golang.org/grpc/#ServiceDesc.HandlerType">HandlerType</a>: (*<a href="index.html#CommandableServer">CommandableServer</a>)(<a href="http://localhost:6060/pkg/builtin/#nil">nil</a>),
+    <a href="http://localhost:6060/pkg/google.golang.org/grpc/#ServiceDesc.Methods">Methods</a>: []<a href="http://localhost:6060/pkg/google.golang.org/grpc/">grpc</a>.<a href="http://localhost:6060/pkg/google.golang.org/grpc/#MethodDesc">MethodDesc</a>{
+        {
+            <a href="index.html#MethodName">MethodName</a>: &#34;invoke&#34;,
+            <a href="index.html#Handler">Handler</a>:    _Commandable_Invoke_Handler,
+        },
+    },
+    <a href="http://localhost:6060/pkg/google.golang.org/grpc/#ServiceDesc.Streams">Streams</a>:  []<a href="http://localhost:6060/pkg/google.golang.org/grpc/">grpc</a>.<a href="http://localhost:6060/pkg/google.golang.org/grpc/#StreamDesc">StreamDesc</a>{},
+    <a href="http://localhost:6060/pkg/google.golang.org/grpc/#ServiceDesc.Metadata">Metadata</a>: &#34;protos/commandable.proto&#34;,
+}</pre>
+			
+				
+				<pre>var <span id="File_protos_commandable_proto">File_protos_commandable_proto</span> <a href="http://localhost:6060/pkg/google.golang.org/protobuf/reflect/protoreflect/">protoreflect</a>.<a href="http://localhost:6060/pkg/google.golang.org/protobuf/reflect/protoreflect/#FileDescriptor">FileDescriptor</a></pre>
+			
+		
 		
 			
 			
-			<h2 id="RegisterCommandableServer">func <a href="http://localhost:6060/src/protos/commandable.pb.go?s=12455:12524#L319">RegisterCommandableServer</a>
+			<h2 id="RegisterCommandableServer">func <a href="http://localhost:6060/src/protos/commandable_grpc.pb.go?s=2263:2341#L55">RegisterCommandableServer</a>
 				<a class="permalink" href="index.html#RegisterCommandableServer">&#xb6;</a>
 				
 				
 			</h2>
-			<pre>func RegisterCommandableServer(s *<a href="http://localhost:6060/pkg/google.golang.org/grpc/">grpc</a>.<a href="http://localhost:6060/pkg/google.golang.org/grpc/#Server">Server</a>, srv <a href="index.html#CommandableServer">CommandableServer</a>)</pre>
+			<pre>func RegisterCommandableServer(s <a href="http://localhost:6060/pkg/google.golang.org/grpc/">grpc</a>.<a href="http://localhost:6060/pkg/google.golang.org/grpc/#ServiceRegistrar">ServiceRegistrar</a>, srv <a href="index.html#CommandableServer">CommandableServer</a>)</pre>
 			
 			
 			
@@ -317,7 +315,7 @@
 		
 			
 			
-			<h2 id="CommandableClient">type <a href="http://localhost:6060/src/protos/commandable.pb.go?s=11362:11493#L285">CommandableClient</a>
+			<h2 id="CommandableClient">type <a href="http://localhost:6060/src/protos/commandable_grpc.pb.go?s=653:784#L10">CommandableClient</a>
 				<a class="permalink" href="index.html#CommandableClient">&#xb6;</a>
 				
 				
@@ -326,7 +324,7 @@
 CommandableClient is the client API for Commandable service.
 </p>
 <p>
-For semantics around ctx use and closing/ending streaming RPCs, please refer to <a href="https://godoc.org/google.golang.org/grpc#ClientConn.NewStream">https://godoc.org/google.golang.org/grpc#ClientConn.NewStream</a>.
+For semantics around ctx use and closing/ending streaming RPCs, please refer to <a href="https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream">https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream</a>.
 </p>
 
 			<pre>type CommandableClient interface {
@@ -343,7 +341,7 @@ For semantics around ctx use and closing/ending streaming RPCs, please refer to 
 
 			
 				
-				<h3 id="NewCommandableClient">func <a href="http://localhost:6060/src/protos/commandable.pb.go?s=11559:11631#L293">NewCommandableClient</a>
+				<h3 id="NewCommandableClient">func <a href="http://localhost:6060/src/protos/commandable_grpc.pb.go?s=850:922#L18">NewCommandableClient</a>
 					<a class="permalink" href="index.html#NewCommandableClient">&#xb6;</a>
 					
 					
@@ -358,17 +356,20 @@ For semantics around ctx use and closing/ending streaming RPCs, please refer to 
 		
 			
 			
-			<h2 id="CommandableServer">type <a href="http://localhost:6060/src/protos/commandable.pb.go?s=12017:12116#L307">CommandableServer</a>
+			<h2 id="CommandableServer">type <a href="http://localhost:6060/src/protos/commandable_grpc.pb.go?s=1402:1544#L34">CommandableServer</a>
 				<a class="permalink" href="index.html#CommandableServer">&#xb6;</a>
 				
 				
 			</h2>
 			<p>
 CommandableServer is the server API for Commandable service.
+All implementations must embed UnimplementedCommandableServer
+for forward compatibility
 </p>
 
 			<pre>type CommandableServer interface {
     Invoke(<a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, *<a href="index.html#InvokeRequest">InvokeRequest</a>) (*<a href="index.html#InvokeReply">InvokeReply</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)
+    <span class="comment">// contains filtered or unexported methods</span>
 }</pre>
 
 			
@@ -385,24 +386,22 @@ CommandableServer is the server API for Commandable service.
 		
 			
 			
-			<h2 id="ErrorDescription">type <a href="http://localhost:6060/src/protos/commandable.pb.go?s=760:1961#L17">ErrorDescription</a>
+			<h2 id="ErrorDescription">type <a href="http://localhost:6060/src/protos/commandable.pb.go?s=1175:2280#L27">ErrorDescription</a>
 				<a class="permalink" href="index.html#ErrorDescription">&#xb6;</a>
 				
 				
 			</h2>
 			
 			<pre>type ErrorDescription struct {
-<span id="ErrorDescription.Category"></span>    Category             <a href="http://localhost:6060/pkg/builtin/#string">string</a>            `protobuf:&#34;bytes,1,opt,name=category,proto3&#34; json:&#34;category,omitempty&#34;`
-<span id="ErrorDescription.Code"></span>    Code                 <a href="http://localhost:6060/pkg/builtin/#string">string</a>            `protobuf:&#34;bytes,2,opt,name=code,proto3&#34; json:&#34;code,omitempty&#34;`
-<span id="ErrorDescription.CorrelationId"></span>    CorrelationId        <a href="http://localhost:6060/pkg/builtin/#string">string</a>            `protobuf:&#34;bytes,3,opt,name=correlation_id,json=correlationId,proto3&#34; json:&#34;correlation_id,omitempty&#34;`
-<span id="ErrorDescription.Status"></span>    Status               <a href="http://localhost:6060/pkg/builtin/#int32">int32</a>             `protobuf:&#34;varint,4,opt,name=status,proto3&#34; json:&#34;status,omitempty&#34;`
-<span id="ErrorDescription.Message"></span>    Message              <a href="http://localhost:6060/pkg/builtin/#string">string</a>            `protobuf:&#34;bytes,5,opt,name=message,proto3&#34; json:&#34;message,omitempty&#34;`
-<span id="ErrorDescription.Cause"></span>    Cause                <a href="http://localhost:6060/pkg/builtin/#string">string</a>            `protobuf:&#34;bytes,6,opt,name=cause,proto3&#34; json:&#34;cause,omitempty&#34;`
-<span id="ErrorDescription.StackTrace"></span>    StackTrace           <a href="http://localhost:6060/pkg/builtin/#string">string</a>            `protobuf:&#34;bytes,7,opt,name=stack_trace,json=stackTrace,proto3&#34; json:&#34;stack_trace,omitempty&#34;`
-<span id="ErrorDescription.Details"></span>    Details              map[<a href="http://localhost:6060/pkg/builtin/#string">string</a>]<a href="http://localhost:6060/pkg/builtin/#string">string</a> `protobuf:&#34;bytes,8,rep,name=details,proto3&#34; json:&#34;details,omitempty&#34; protobuf_key:&#34;bytes,1,opt,name=key,proto3&#34; protobuf_val:&#34;bytes,2,opt,name=value,proto3&#34;`
-<span id="ErrorDescription.XXX_NoUnkeyedLiteral"></span>    XXX_NoUnkeyedLiteral struct{}          `json:&#34;-&#34;`
-<span id="ErrorDescription.XXX_unrecognized"></span>    XXX_unrecognized     []<a href="http://localhost:6060/pkg/builtin/#byte">byte</a>            `json:&#34;-&#34;`
-<span id="ErrorDescription.XXX_sizecache"></span>    XXX_sizecache        <a href="http://localhost:6060/pkg/builtin/#int32">int32</a>             `json:&#34;-&#34;`
+<span id="ErrorDescription.Category"></span>    Category      <a href="http://localhost:6060/pkg/builtin/#string">string</a>            `protobuf:&#34;bytes,1,opt,name=category,proto3&#34; json:&#34;category,omitempty&#34;`
+<span id="ErrorDescription.Code"></span>    Code          <a href="http://localhost:6060/pkg/builtin/#string">string</a>            `protobuf:&#34;bytes,2,opt,name=code,proto3&#34; json:&#34;code,omitempty&#34;`
+<span id="ErrorDescription.CorrelationId"></span>    CorrelationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>            `protobuf:&#34;bytes,3,opt,name=correlation_id,json=correlationId,proto3&#34; json:&#34;correlation_id,omitempty&#34;`
+<span id="ErrorDescription.Status"></span>    Status        <a href="http://localhost:6060/pkg/builtin/#int32">int32</a>             `protobuf:&#34;varint,4,opt,name=status,proto3&#34; json:&#34;status,omitempty&#34;`
+<span id="ErrorDescription.Message"></span>    Message       <a href="http://localhost:6060/pkg/builtin/#string">string</a>            `protobuf:&#34;bytes,5,opt,name=message,proto3&#34; json:&#34;message,omitempty&#34;`
+<span id="ErrorDescription.Cause"></span>    Cause         <a href="http://localhost:6060/pkg/builtin/#string">string</a>            `protobuf:&#34;bytes,6,opt,name=cause,proto3&#34; json:&#34;cause,omitempty&#34;`
+<span id="ErrorDescription.StackTrace"></span>    StackTrace    <a href="http://localhost:6060/pkg/builtin/#string">string</a>            `protobuf:&#34;bytes,7,opt,name=stack_trace,json=stackTrace,proto3&#34; json:&#34;stack_trace,omitempty&#34;`
+<span id="ErrorDescription.Details"></span>    Details       map[<a href="http://localhost:6060/pkg/builtin/#string">string</a>]<a href="http://localhost:6060/pkg/builtin/#string">string</a> `protobuf:&#34;bytes,8,rep,name=details,proto3&#34; json:&#34;details,omitempty&#34; protobuf_key:&#34;bytes,1,opt,name=key,proto3&#34; protobuf_val:&#34;bytes,2,opt,name=value,proto3&#34;`
+    <span class="comment">// contains filtered or unexported fields</span>
 }
 </pre>
 
@@ -418,115 +417,118 @@ CommandableServer is the server API for Commandable service.
 
 			
 				
-				<h3 id="ErrorDescription.Descriptor">func (*ErrorDescription) <a href="http://localhost:6060/src/protos/commandable.pb.go?s=2161:2214#L34">Descriptor</a>
+				<h3 id="ErrorDescription.Descriptor">func (*ErrorDescription) <a href="http://localhost:6060/src/protos/commandable.pb.go?s=3036:3089#L70">Descriptor</a>
 					<a class="permalink" href="index.html#ErrorDescription.Descriptor">&#xb6;</a>
 					
 					
 				</h3>
 				<pre>func (*<a href="index.html#ErrorDescription">ErrorDescription</a>) Descriptor() ([]<a href="http://localhost:6060/pkg/builtin/#byte">byte</a>, []<a href="http://localhost:6060/pkg/builtin/#int">int</a>)</pre>
-				
+				<p>
+Deprecated: Use ErrorDescription.ProtoReflect.Descriptor instead.
+</p>
+
 				
 				
 				
 			
 				
-				<h3 id="ErrorDescription.GetCategory">func (*ErrorDescription) <a href="http://localhost:6060/src/protos/commandable.pb.go?s=2919:2966#L56">GetCategory</a>
+				<h3 id="ErrorDescription.GetCategory">func (*ErrorDescription) <a href="http://localhost:6060/src/protos/commandable.pb.go?s=3157:3204#L74">GetCategory</a>
 					<a class="permalink" href="index.html#ErrorDescription.GetCategory">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (m *<a href="index.html#ErrorDescription">ErrorDescription</a>) GetCategory() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
+				<pre>func (x *<a href="index.html#ErrorDescription">ErrorDescription</a>) GetCategory() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
 				
 				
 				
 				
 			
 				
-				<h3 id="ErrorDescription.GetCause">func (*ErrorDescription) <a href="http://localhost:6060/src/protos/commandable.pb.go?s=3423:3467#L91">GetCause</a>
+				<h3 id="ErrorDescription.GetCause">func (*ErrorDescription) <a href="http://localhost:6060/src/protos/commandable.pb.go?s=3661:3705#L109">GetCause</a>
 					<a class="permalink" href="index.html#ErrorDescription.GetCause">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (m *<a href="index.html#ErrorDescription">ErrorDescription</a>) GetCause() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
+				<pre>func (x *<a href="index.html#ErrorDescription">ErrorDescription</a>) GetCause() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
 				
 				
 				
 				
 			
 				
-				<h3 id="ErrorDescription.GetCode">func (*ErrorDescription) <a href="http://localhost:6060/src/protos/commandable.pb.go?s=3021:3064#L63">GetCode</a>
+				<h3 id="ErrorDescription.GetCode">func (*ErrorDescription) <a href="http://localhost:6060/src/protos/commandable.pb.go?s=3259:3302#L81">GetCode</a>
 					<a class="permalink" href="index.html#ErrorDescription.GetCode">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (m *<a href="index.html#ErrorDescription">ErrorDescription</a>) GetCode() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
+				<pre>func (x *<a href="index.html#ErrorDescription">ErrorDescription</a>) GetCode() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
 				
 				
 				
 				
 			
 				
-				<h3 id="ErrorDescription.GetCorrelationId">func (*ErrorDescription) <a href="http://localhost:6060/src/protos/commandable.pb.go?s=3115:3167#L70">GetCorrelationId</a>
+				<h3 id="ErrorDescription.GetCorrelationId">func (*ErrorDescription) <a href="http://localhost:6060/src/protos/commandable.pb.go?s=3353:3405#L88">GetCorrelationId</a>
 					<a class="permalink" href="index.html#ErrorDescription.GetCorrelationId">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (m *<a href="index.html#ErrorDescription">ErrorDescription</a>) GetCorrelationId() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
+				<pre>func (x *<a href="index.html#ErrorDescription">ErrorDescription</a>) GetCorrelationId() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
 				
 				
 				
 				
 			
 				
-				<h3 id="ErrorDescription.GetDetails">func (*ErrorDescription) <a href="http://localhost:6060/src/protos/commandable.pb.go?s=3625:3682#L105">GetDetails</a>
+				<h3 id="ErrorDescription.GetDetails">func (*ErrorDescription) <a href="http://localhost:6060/src/protos/commandable.pb.go?s=3863:3920#L123">GetDetails</a>
 					<a class="permalink" href="index.html#ErrorDescription.GetDetails">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (m *<a href="index.html#ErrorDescription">ErrorDescription</a>) GetDetails() map[<a href="http://localhost:6060/pkg/builtin/#string">string</a>]<a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
+				<pre>func (x *<a href="index.html#ErrorDescription">ErrorDescription</a>) GetDetails() map[<a href="http://localhost:6060/pkg/builtin/#string">string</a>]<a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
 				
 				
 				
 				
 			
 				
-				<h3 id="ErrorDescription.GetMessage">func (*ErrorDescription) <a href="http://localhost:6060/src/protos/commandable.pb.go?s=3323:3369#L84">GetMessage</a>
+				<h3 id="ErrorDescription.GetMessage">func (*ErrorDescription) <a href="http://localhost:6060/src/protos/commandable.pb.go?s=3561:3607#L102">GetMessage</a>
 					<a class="permalink" href="index.html#ErrorDescription.GetMessage">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (m *<a href="index.html#ErrorDescription">ErrorDescription</a>) GetMessage() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
+				<pre>func (x *<a href="index.html#ErrorDescription">ErrorDescription</a>) GetMessage() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
 				
 				
 				
 				
 			
 				
-				<h3 id="ErrorDescription.GetStackTrace">func (*ErrorDescription) <a href="http://localhost:6060/src/protos/commandable.pb.go?s=3519:3568#L98">GetStackTrace</a>
+				<h3 id="ErrorDescription.GetStackTrace">func (*ErrorDescription) <a href="http://localhost:6060/src/protos/commandable.pb.go?s=3757:3806#L116">GetStackTrace</a>
 					<a class="permalink" href="index.html#ErrorDescription.GetStackTrace">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (m *<a href="index.html#ErrorDescription">ErrorDescription</a>) GetStackTrace() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
+				<pre>func (x *<a href="index.html#ErrorDescription">ErrorDescription</a>) GetStackTrace() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
 				
 				
 				
 				
 			
 				
-				<h3 id="ErrorDescription.GetStatus">func (*ErrorDescription) <a href="http://localhost:6060/src/protos/commandable.pb.go?s=3227:3271#L77">GetStatus</a>
+				<h3 id="ErrorDescription.GetStatus">func (*ErrorDescription) <a href="http://localhost:6060/src/protos/commandable.pb.go?s=3465:3509#L95">GetStatus</a>
 					<a class="permalink" href="index.html#ErrorDescription.GetStatus">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (m *<a href="index.html#ErrorDescription">ErrorDescription</a>) GetStatus() <a href="http://localhost:6060/pkg/builtin/#int32">int32</a></pre>
+				<pre>func (x *<a href="index.html#ErrorDescription">ErrorDescription</a>) GetStatus() <a href="http://localhost:6060/pkg/builtin/#int32">int32</a></pre>
 				
 				
 				
 				
 			
 				
-				<h3 id="ErrorDescription.ProtoMessage">func (*ErrorDescription) <a href="http://localhost:6060/src/protos/commandable.pb.go?s=2115:2154#L33">ProtoMessage</a>
+				<h3 id="ErrorDescription.ProtoMessage">func (*ErrorDescription) <a href="http://localhost:6060/src/protos/commandable.pb.go?s=2601:2640#L55">ProtoMessage</a>
 					<a class="permalink" href="index.html#ErrorDescription.ProtoMessage">&#xb6;</a>
 					
 					
@@ -538,84 +540,36 @@ CommandableServer is the server API for Commandable service.
 				
 			
 				
-				<h3 id="ErrorDescription.Reset">func (*ErrorDescription) <a href="http://localhost:6060/src/protos/commandable.pb.go?s=1963:1997#L31">Reset</a>
+				<h3 id="ErrorDescription.ProtoReflect">func (*ErrorDescription) <a href="http://localhost:6060/src/protos/commandable.pb.go?s=2645:2707#L57">ProtoReflect</a>
+					<a class="permalink" href="index.html#ErrorDescription.ProtoReflect">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (x *<a href="index.html#ErrorDescription">ErrorDescription</a>) ProtoReflect() <a href="http://localhost:6060/pkg/google.golang.org/protobuf/reflect/protoreflect/">protoreflect</a>.<a href="http://localhost:6060/pkg/google.golang.org/protobuf/reflect/protoreflect/#Message">Message</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="ErrorDescription.Reset">func (*ErrorDescription) <a href="http://localhost:6060/src/protos/commandable.pb.go?s=2282:2316#L42">Reset</a>
 					<a class="permalink" href="index.html#ErrorDescription.Reset">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (m *<a href="index.html#ErrorDescription">ErrorDescription</a>) Reset()</pre>
+				<pre>func (x *<a href="index.html#ErrorDescription">ErrorDescription</a>) Reset()</pre>
 				
 				
 				
 				
 			
 				
-				<h3 id="ErrorDescription.String">func (*ErrorDescription) <a href="http://localhost:6060/src/protos/commandable.pb.go?s=2034:2076#L32">String</a>
+				<h3 id="ErrorDescription.String">func (*ErrorDescription) <a href="http://localhost:6060/src/protos/commandable.pb.go?s=2514:2556#L51">String</a>
 					<a class="permalink" href="index.html#ErrorDescription.String">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (m *<a href="index.html#ErrorDescription">ErrorDescription</a>) String() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
-				
-				
-				
-				
-			
-				
-				<h3 id="ErrorDescription.XXX_DiscardUnknown">func (*ErrorDescription) <a href="http://localhost:6060/src/protos/commandable.pb.go?s=2750:2797#L50">XXX_DiscardUnknown</a>
-					<a class="permalink" href="index.html#ErrorDescription.XXX_DiscardUnknown">&#xb6;</a>
-					
-					
-				</h3>
-				<pre>func (m *<a href="index.html#ErrorDescription">ErrorDescription</a>) XXX_DiscardUnknown()</pre>
-				
-				
-				
-				
-			
-				
-				<h3 id="ErrorDescription.XXX_Marshal">func (*ErrorDescription) <a href="http://localhost:6060/src/protos/commandable.pb.go?s=2388:2472#L41">XXX_Marshal</a>
-					<a class="permalink" href="index.html#ErrorDescription.XXX_Marshal">&#xb6;</a>
-					
-					
-				</h3>
-				<pre>func (m *<a href="index.html#ErrorDescription">ErrorDescription</a>) XXX_Marshal(b []<a href="http://localhost:6060/pkg/builtin/#byte">byte</a>, deterministic <a href="http://localhost:6060/pkg/builtin/#bool">bool</a>) ([]<a href="http://localhost:6060/pkg/builtin/#byte">byte</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
-				
-				
-				
-				
-			
-				
-				<h3 id="ErrorDescription.XXX_Merge">func (*ErrorDescription) <a href="http://localhost:6060/src/protos/commandable.pb.go?s=2547:2602#L44">XXX_Merge</a>
-					<a class="permalink" href="index.html#ErrorDescription.XXX_Merge">&#xb6;</a>
-					
-					
-				</h3>
-				<pre>func (m *<a href="index.html#ErrorDescription">ErrorDescription</a>) XXX_Merge(src <a href="http://localhost:6060/pkg/github.com/golang/protobuf/proto/">proto</a>.<a href="http://localhost:6060/pkg/github.com/golang/protobuf/proto/#Message">Message</a>)</pre>
-				
-				
-				
-				
-			
-				
-				<h3 id="ErrorDescription.XXX_Size">func (*ErrorDescription) <a href="http://localhost:6060/src/protos/commandable.pb.go?s=2655:2696#L47">XXX_Size</a>
-					<a class="permalink" href="index.html#ErrorDescription.XXX_Size">&#xb6;</a>
-					
-					
-				</h3>
-				<pre>func (m *<a href="index.html#ErrorDescription">ErrorDescription</a>) XXX_Size() <a href="http://localhost:6060/pkg/builtin/#int">int</a></pre>
-				
-				
-				
-				
-			
-				
-				<h3 id="ErrorDescription.XXX_Unmarshal">func (*ErrorDescription) <a href="http://localhost:6060/src/protos/commandable.pb.go?s=2270:2326#L38">XXX_Unmarshal</a>
-					<a class="permalink" href="index.html#ErrorDescription.XXX_Unmarshal">&#xb6;</a>
-					
-					
-				</h3>
-				<pre>func (m *<a href="index.html#ErrorDescription">ErrorDescription</a>) XXX_Unmarshal(b []<a href="http://localhost:6060/pkg/builtin/#byte">byte</a>) <a href="http://localhost:6060/pkg/builtin/#error">error</a></pre>
+				<pre>func (x *<a href="index.html#ErrorDescription">ErrorDescription</a>) String() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
 				
 				
 				
@@ -624,7 +578,7 @@ CommandableServer is the server API for Commandable service.
 		
 			
 			
-			<h2 id="InvokeReply">type <a href="http://localhost:6060/src/protos/commandable.pb.go?s=5799:6357#L177">InvokeReply</a>
+			<h2 id="InvokeReply">type <a href="http://localhost:6060/src/protos/commandable.pb.go?s=5934:6425#L203">InvokeReply</a>
 				<a class="permalink" href="index.html#InvokeReply">&#xb6;</a>
 				
 				
@@ -634,12 +588,10 @@ The response message containing the invocation response
 </p>
 
 			<pre>type InvokeReply struct {
-<span id="InvokeReply.Error"></span>    Error                *<a href="index.html#ErrorDescription">ErrorDescription</a> `protobuf:&#34;bytes,1,opt,name=error,proto3&#34; json:&#34;error,omitempty&#34;`
-<span id="InvokeReply.ResultEmpty"></span>    ResultEmpty          <a href="http://localhost:6060/pkg/builtin/#bool">bool</a>              `protobuf:&#34;varint,2,opt,name=result_empty,json=resultEmpty,proto3&#34; json:&#34;result_empty,omitempty&#34;`
-<span id="InvokeReply.ResultJson"></span>    ResultJson           <a href="http://localhost:6060/pkg/builtin/#string">string</a>            `protobuf:&#34;bytes,3,opt,name=result_json,json=resultJson,proto3&#34; json:&#34;result_json,omitempty&#34;`
-<span id="InvokeReply.XXX_NoUnkeyedLiteral"></span>    XXX_NoUnkeyedLiteral struct{}          `json:&#34;-&#34;`
-<span id="InvokeReply.XXX_unrecognized"></span>    XXX_unrecognized     []<a href="http://localhost:6060/pkg/builtin/#byte">byte</a>            `json:&#34;-&#34;`
-<span id="InvokeReply.XXX_sizecache"></span>    XXX_sizecache        <a href="http://localhost:6060/pkg/builtin/#int32">int32</a>             `json:&#34;-&#34;`
+<span id="InvokeReply.Error"></span>    Error       *<a href="index.html#ErrorDescription">ErrorDescription</a> `protobuf:&#34;bytes,1,opt,name=error,proto3&#34; json:&#34;error,omitempty&#34;`
+<span id="InvokeReply.ResultEmpty"></span>    ResultEmpty <a href="http://localhost:6060/pkg/builtin/#bool">bool</a>              `protobuf:&#34;varint,2,opt,name=result_empty,json=resultEmpty,proto3&#34; json:&#34;result_empty,omitempty&#34;`
+<span id="InvokeReply.ResultJson"></span>    ResultJson  <a href="http://localhost:6060/pkg/builtin/#string">string</a>            `protobuf:&#34;bytes,3,opt,name=result_json,json=resultJson,proto3&#34; json:&#34;result_json,omitempty&#34;`
+    <span class="comment">// contains filtered or unexported fields</span>
 }
 </pre>
 
@@ -655,55 +607,58 @@ The response message containing the invocation response
 
 			
 				
-				<h3 id="InvokeReply.Descriptor">func (*InvokeReply) <a href="http://localhost:6060/src/protos/commandable.pb.go?s=6537:6585#L189">Descriptor</a>
+				<h3 id="InvokeReply.Descriptor">func (*InvokeReply) <a href="http://localhost:6060/src/protos/commandable.pb.go?s=7151:7199#L241">Descriptor</a>
 					<a class="permalink" href="index.html#InvokeReply.Descriptor">&#xb6;</a>
 					
 					
 				</h3>
 				<pre>func (*<a href="index.html#InvokeReply">InvokeReply</a>) Descriptor() ([]<a href="http://localhost:6060/pkg/builtin/#byte">byte</a>, []<a href="http://localhost:6060/pkg/builtin/#int">int</a>)</pre>
-				
+				<p>
+Deprecated: Use InvokeReply.ProtoReflect.Descriptor instead.
+</p>
+
 				
 				
 				
 			
 				
-				<h3 id="InvokeReply.GetError">func (*InvokeReply) <a href="http://localhost:6060/src/protos/commandable.pb.go?s=7235:7285#L211">GetError</a>
+				<h3 id="InvokeReply.GetError">func (*InvokeReply) <a href="http://localhost:6060/src/protos/commandable.pb.go?s=7267:7317#L245">GetError</a>
 					<a class="permalink" href="index.html#InvokeReply.GetError">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (m *<a href="index.html#InvokeReply">InvokeReply</a>) GetError() *<a href="index.html#ErrorDescription">ErrorDescription</a></pre>
+				<pre>func (x *<a href="index.html#InvokeReply">InvokeReply</a>) GetError() *<a href="index.html#ErrorDescription">ErrorDescription</a></pre>
 				
 				
 				
 				
 			
 				
-				<h3 id="InvokeReply.GetResultEmpty">func (*InvokeReply) <a href="http://localhost:6060/src/protos/commandable.pb.go?s=7338:7381#L218">GetResultEmpty</a>
+				<h3 id="InvokeReply.GetResultEmpty">func (*InvokeReply) <a href="http://localhost:6060/src/protos/commandable.pb.go?s=7370:7413#L252">GetResultEmpty</a>
 					<a class="permalink" href="index.html#InvokeReply.GetResultEmpty">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (m *<a href="index.html#InvokeReply">InvokeReply</a>) GetResultEmpty() <a href="http://localhost:6060/pkg/builtin/#bool">bool</a></pre>
+				<pre>func (x *<a href="index.html#InvokeReply">InvokeReply</a>) GetResultEmpty() <a href="http://localhost:6060/pkg/builtin/#bool">bool</a></pre>
 				
 				
 				
 				
 			
 				
-				<h3 id="InvokeReply.GetResultJson">func (*InvokeReply) <a href="http://localhost:6060/src/protos/commandable.pb.go?s=7442:7486#L225">GetResultJson</a>
+				<h3 id="InvokeReply.GetResultJson">func (*InvokeReply) <a href="http://localhost:6060/src/protos/commandable.pb.go?s=7474:7518#L259">GetResultJson</a>
 					<a class="permalink" href="index.html#InvokeReply.GetResultJson">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (m *<a href="index.html#InvokeReply">InvokeReply</a>) GetResultJson() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
+				<pre>func (x *<a href="index.html#InvokeReply">InvokeReply</a>) GetResultJson() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
 				
 				
 				
 				
 			
 				
-				<h3 id="InvokeReply.ProtoMessage">func (*InvokeReply) <a href="http://localhost:6060/src/protos/commandable.pb.go?s=6496:6530#L188">ProtoMessage</a>
+				<h3 id="InvokeReply.ProtoMessage">func (*InvokeReply) <a href="http://localhost:6060/src/protos/commandable.pb.go?s=6731:6765#L226">ProtoMessage</a>
 					<a class="permalink" href="index.html#InvokeReply.ProtoMessage">&#xb6;</a>
 					
 					
@@ -715,84 +670,36 @@ The response message containing the invocation response
 				
 			
 				
-				<h3 id="InvokeReply.Reset">func (*InvokeReply) <a href="http://localhost:6060/src/protos/commandable.pb.go?s=6359:6388#L186">Reset</a>
+				<h3 id="InvokeReply.ProtoReflect">func (*InvokeReply) <a href="http://localhost:6060/src/protos/commandable.pb.go?s=6770:6827#L228">ProtoReflect</a>
+					<a class="permalink" href="index.html#InvokeReply.ProtoReflect">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (x *<a href="index.html#InvokeReply">InvokeReply</a>) ProtoReflect() <a href="http://localhost:6060/pkg/google.golang.org/protobuf/reflect/protoreflect/">protoreflect</a>.<a href="http://localhost:6060/pkg/google.golang.org/protobuf/reflect/protoreflect/#Message">Message</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="InvokeReply.Reset">func (*InvokeReply) <a href="http://localhost:6060/src/protos/commandable.pb.go?s=6427:6456#L213">Reset</a>
 					<a class="permalink" href="index.html#InvokeReply.Reset">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (m *<a href="index.html#InvokeReply">InvokeReply</a>) Reset()</pre>
+				<pre>func (x *<a href="index.html#InvokeReply">InvokeReply</a>) Reset()</pre>
 				
 				
 				
 				
 			
 				
-				<h3 id="InvokeReply.String">func (*InvokeReply) <a href="http://localhost:6060/src/protos/commandable.pb.go?s=6420:6457#L187">String</a>
+				<h3 id="InvokeReply.String">func (*InvokeReply) <a href="http://localhost:6060/src/protos/commandable.pb.go?s=6649:6686#L222">String</a>
 					<a class="permalink" href="index.html#InvokeReply.String">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (m *<a href="index.html#InvokeReply">InvokeReply</a>) String() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
-				
-				
-				
-				
-			
-				
-				<h3 id="InvokeReply.XXX_DiscardUnknown">func (*InvokeReply) <a href="http://localhost:6060/src/protos/commandable.pb.go?s=7081:7123#L205">XXX_DiscardUnknown</a>
-					<a class="permalink" href="index.html#InvokeReply.XXX_DiscardUnknown">&#xb6;</a>
-					
-					
-				</h3>
-				<pre>func (m *<a href="index.html#InvokeReply">InvokeReply</a>) XXX_DiscardUnknown()</pre>
-				
-				
-				
-				
-			
-				
-				<h3 id="InvokeReply.XXX_Marshal">func (*InvokeReply) <a href="http://localhost:6060/src/protos/commandable.pb.go?s=6749:6828#L196">XXX_Marshal</a>
-					<a class="permalink" href="index.html#InvokeReply.XXX_Marshal">&#xb6;</a>
-					
-					
-				</h3>
-				<pre>func (m *<a href="index.html#InvokeReply">InvokeReply</a>) XXX_Marshal(b []<a href="http://localhost:6060/pkg/builtin/#byte">byte</a>, deterministic <a href="http://localhost:6060/pkg/builtin/#bool">bool</a>) ([]<a href="http://localhost:6060/pkg/builtin/#byte">byte</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
-				
-				
-				
-				
-			
-				
-				<h3 id="InvokeReply.XXX_Merge">func (*InvokeReply) <a href="http://localhost:6060/src/protos/commandable.pb.go?s=6898:6948#L199">XXX_Merge</a>
-					<a class="permalink" href="index.html#InvokeReply.XXX_Merge">&#xb6;</a>
-					
-					
-				</h3>
-				<pre>func (m *<a href="index.html#InvokeReply">InvokeReply</a>) XXX_Merge(src <a href="http://localhost:6060/pkg/github.com/golang/protobuf/proto/">proto</a>.<a href="http://localhost:6060/pkg/github.com/golang/protobuf/proto/#Message">Message</a>)</pre>
-				
-				
-				
-				
-			
-				
-				<h3 id="InvokeReply.XXX_Size">func (*InvokeReply) <a href="http://localhost:6060/src/protos/commandable.pb.go?s=6996:7032#L202">XXX_Size</a>
-					<a class="permalink" href="index.html#InvokeReply.XXX_Size">&#xb6;</a>
-					
-					
-				</h3>
-				<pre>func (m *<a href="index.html#InvokeReply">InvokeReply</a>) XXX_Size() <a href="http://localhost:6060/pkg/builtin/#int">int</a></pre>
-				
-				
-				
-				
-			
-				
-				<h3 id="InvokeReply.XXX_Unmarshal">func (*InvokeReply) <a href="http://localhost:6060/src/protos/commandable.pb.go?s=6641:6692#L193">XXX_Unmarshal</a>
-					<a class="permalink" href="index.html#InvokeReply.XXX_Unmarshal">&#xb6;</a>
-					
-					
-				</h3>
-				<pre>func (m *<a href="index.html#InvokeReply">InvokeReply</a>) XXX_Unmarshal(b []<a href="http://localhost:6060/pkg/builtin/#byte">byte</a>) <a href="http://localhost:6060/pkg/builtin/#error">error</a></pre>
+				<pre>func (x *<a href="index.html#InvokeReply">InvokeReply</a>) String() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
 				
 				
 				
@@ -801,7 +708,7 @@ The response message containing the invocation response
 		
 			
 			
-			<h2 id="InvokeRequest">type <a href="http://localhost:6060/src/protos/commandable.pb.go?s=3795:4425#L113">InvokeRequest</a>
+			<h2 id="InvokeRequest">type <a href="http://localhost:6060/src/protos/commandable.pb.go?s=4033:4614#L131">InvokeRequest</a>
 				<a class="permalink" href="index.html#InvokeRequest">&#xb6;</a>
 				
 				
@@ -811,13 +718,11 @@ The request message containing the invocation request.
 </p>
 
 			<pre>type InvokeRequest struct {
-<span id="InvokeRequest.Method"></span>    Method               <a href="http://localhost:6060/pkg/builtin/#string">string</a>   `protobuf:&#34;bytes,1,opt,name=method,proto3&#34; json:&#34;method,omitempty&#34;`
-<span id="InvokeRequest.CorrelationId"></span>    CorrelationId        <a href="http://localhost:6060/pkg/builtin/#string">string</a>   `protobuf:&#34;bytes,2,opt,name=correlation_id,json=correlationId,proto3&#34; json:&#34;correlation_id,omitempty&#34;`
-<span id="InvokeRequest.ArgsEmpty"></span>    ArgsEmpty            <a href="http://localhost:6060/pkg/builtin/#bool">bool</a>     `protobuf:&#34;varint,3,opt,name=args_empty,json=argsEmpty,proto3&#34; json:&#34;args_empty,omitempty&#34;`
-<span id="InvokeRequest.ArgsJson"></span>    ArgsJson             <a href="http://localhost:6060/pkg/builtin/#string">string</a>   `protobuf:&#34;bytes,4,opt,name=args_json,json=argsJson,proto3&#34; json:&#34;args_json,omitempty&#34;`
-<span id="InvokeRequest.XXX_NoUnkeyedLiteral"></span>    XXX_NoUnkeyedLiteral struct{} `json:&#34;-&#34;`
-<span id="InvokeRequest.XXX_unrecognized"></span>    XXX_unrecognized     []<a href="http://localhost:6060/pkg/builtin/#byte">byte</a>   `json:&#34;-&#34;`
-<span id="InvokeRequest.XXX_sizecache"></span>    XXX_sizecache        <a href="http://localhost:6060/pkg/builtin/#int32">int32</a>    `json:&#34;-&#34;`
+<span id="InvokeRequest.Method"></span>    Method        <a href="http://localhost:6060/pkg/builtin/#string">string</a> `protobuf:&#34;bytes,1,opt,name=method,proto3&#34; json:&#34;method,omitempty&#34;`
+<span id="InvokeRequest.CorrelationId"></span>    CorrelationId <a href="http://localhost:6060/pkg/builtin/#string">string</a> `protobuf:&#34;bytes,2,opt,name=correlation_id,json=correlationId,proto3&#34; json:&#34;correlation_id,omitempty&#34;`
+<span id="InvokeRequest.ArgsEmpty"></span>    ArgsEmpty     <a href="http://localhost:6060/pkg/builtin/#bool">bool</a>   `protobuf:&#34;varint,3,opt,name=args_empty,json=argsEmpty,proto3&#34; json:&#34;args_empty,omitempty&#34;`
+<span id="InvokeRequest.ArgsJson"></span>    ArgsJson      <a href="http://localhost:6060/pkg/builtin/#string">string</a> `protobuf:&#34;bytes,4,opt,name=args_json,json=argsJson,proto3&#34; json:&#34;args_json,omitempty&#34;`
+    <span class="comment">// contains filtered or unexported fields</span>
 }
 </pre>
 
@@ -833,67 +738,70 @@ The request message containing the invocation request.
 
 			
 				
-				<h3 id="InvokeRequest.Descriptor">func (*InvokeRequest) <a href="http://localhost:6060/src/protos/commandable.pb.go?s=4613:4663#L126">Descriptor</a>
+				<h3 id="InvokeRequest.Descriptor">func (*InvokeRequest) <a href="http://localhost:6060/src/protos/commandable.pb.go?s=5352:5402#L170">Descriptor</a>
 					<a class="permalink" href="index.html#InvokeRequest.Descriptor">&#xb6;</a>
 					
 					
 				</h3>
 				<pre>func (*<a href="index.html#InvokeRequest">InvokeRequest</a>) Descriptor() ([]<a href="http://localhost:6060/pkg/builtin/#byte">byte</a>, []<a href="http://localhost:6060/pkg/builtin/#int">int</a>)</pre>
-				
+				<p>
+Deprecated: Use InvokeRequest.ProtoReflect.Descriptor instead.
+</p>
+
 				
 				
 				
 			
 				
-				<h3 id="InvokeRequest.GetArgsEmpty">func (*InvokeRequest) <a href="http://localhost:6060/src/protos/commandable.pb.go?s=5539:5582#L162">GetArgsEmpty</a>
+				<h3 id="InvokeRequest.GetArgsEmpty">func (*InvokeRequest) <a href="http://localhost:6060/src/protos/commandable.pb.go?s=5674:5717#L188">GetArgsEmpty</a>
 					<a class="permalink" href="index.html#InvokeRequest.GetArgsEmpty">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (m *<a href="index.html#InvokeRequest">InvokeRequest</a>) GetArgsEmpty() <a href="http://localhost:6060/pkg/builtin/#bool">bool</a></pre>
+				<pre>func (x *<a href="index.html#InvokeRequest">InvokeRequest</a>) GetArgsEmpty() <a href="http://localhost:6060/pkg/builtin/#bool">bool</a></pre>
 				
 				
 				
 				
 			
 				
-				<h3 id="InvokeRequest.GetArgsJson">func (*InvokeRequest) <a href="http://localhost:6060/src/protos/commandable.pb.go?s=5641:5685#L169">GetArgsJson</a>
+				<h3 id="InvokeRequest.GetArgsJson">func (*InvokeRequest) <a href="http://localhost:6060/src/protos/commandable.pb.go?s=5776:5820#L195">GetArgsJson</a>
 					<a class="permalink" href="index.html#InvokeRequest.GetArgsJson">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (m *<a href="index.html#InvokeRequest">InvokeRequest</a>) GetArgsJson() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
+				<pre>func (x *<a href="index.html#InvokeRequest">InvokeRequest</a>) GetArgsJson() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
 				
 				
 				
 				
 			
 				
-				<h3 id="InvokeRequest.GetCorrelationId">func (*InvokeRequest) <a href="http://localhost:6060/src/protos/commandable.pb.go?s=5430:5479#L155">GetCorrelationId</a>
+				<h3 id="InvokeRequest.GetCorrelationId">func (*InvokeRequest) <a href="http://localhost:6060/src/protos/commandable.pb.go?s=5565:5614#L181">GetCorrelationId</a>
 					<a class="permalink" href="index.html#InvokeRequest.GetCorrelationId">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (m *<a href="index.html#InvokeRequest">InvokeRequest</a>) GetCorrelationId() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
+				<pre>func (x *<a href="index.html#InvokeRequest">InvokeRequest</a>) GetCorrelationId() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
 				
 				
 				
 				
 			
 				
-				<h3 id="InvokeRequest.GetMethod">func (*InvokeRequest) <a href="http://localhost:6060/src/protos/commandable.pb.go?s=5335:5377#L148">GetMethod</a>
+				<h3 id="InvokeRequest.GetMethod">func (*InvokeRequest) <a href="http://localhost:6060/src/protos/commandable.pb.go?s=5470:5512#L174">GetMethod</a>
 					<a class="permalink" href="index.html#InvokeRequest.GetMethod">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (m *<a href="index.html#InvokeRequest">InvokeRequest</a>) GetMethod() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
+				<pre>func (x *<a href="index.html#InvokeRequest">InvokeRequest</a>) GetMethod() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
 				
 				
 				
 				
 			
 				
-				<h3 id="InvokeRequest.ProtoMessage">func (*InvokeRequest) <a href="http://localhost:6060/src/protos/commandable.pb.go?s=4570:4606#L125">ProtoMessage</a>
+				<h3 id="InvokeRequest.ProtoMessage">func (*InvokeRequest) <a href="http://localhost:6060/src/protos/commandable.pb.go?s=4926:4962#L155">ProtoMessage</a>
 					<a class="permalink" href="index.html#InvokeRequest.ProtoMessage">&#xb6;</a>
 					
 					
@@ -905,84 +813,36 @@ The request message containing the invocation request.
 				
 			
 				
-				<h3 id="InvokeRequest.Reset">func (*InvokeRequest) <a href="http://localhost:6060/src/protos/commandable.pb.go?s=4427:4458#L123">Reset</a>
+				<h3 id="InvokeRequest.ProtoReflect">func (*InvokeRequest) <a href="http://localhost:6060/src/protos/commandable.pb.go?s=4967:5026#L157">ProtoReflect</a>
+					<a class="permalink" href="index.html#InvokeRequest.ProtoReflect">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (x *<a href="index.html#InvokeRequest">InvokeRequest</a>) ProtoReflect() <a href="http://localhost:6060/pkg/google.golang.org/protobuf/reflect/protoreflect/">protoreflect</a>.<a href="http://localhost:6060/pkg/google.golang.org/protobuf/reflect/protoreflect/#Message">Message</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="InvokeRequest.Reset">func (*InvokeRequest) <a href="http://localhost:6060/src/protos/commandable.pb.go?s=4616:4647#L142">Reset</a>
 					<a class="permalink" href="index.html#InvokeRequest.Reset">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (m *<a href="index.html#InvokeRequest">InvokeRequest</a>) Reset()</pre>
+				<pre>func (x *<a href="index.html#InvokeRequest">InvokeRequest</a>) Reset()</pre>
 				
 				
 				
 				
 			
 				
-				<h3 id="InvokeRequest.String">func (*InvokeRequest) <a href="http://localhost:6060/src/protos/commandable.pb.go?s=4492:4531#L124">String</a>
+				<h3 id="InvokeRequest.String">func (*InvokeRequest) <a href="http://localhost:6060/src/protos/commandable.pb.go?s=4842:4881#L151">String</a>
 					<a class="permalink" href="index.html#InvokeRequest.String">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (m *<a href="index.html#InvokeRequest">InvokeRequest</a>) String() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
-				
-				
-				
-				
-			
-				
-				<h3 id="InvokeRequest.XXX_DiscardUnknown">func (*InvokeRequest) <a href="http://localhost:6060/src/protos/commandable.pb.go?s=5175:5219#L142">XXX_DiscardUnknown</a>
-					<a class="permalink" href="index.html#InvokeRequest.XXX_DiscardUnknown">&#xb6;</a>
-					
-					
-				</h3>
-				<pre>func (m *<a href="index.html#InvokeRequest">InvokeRequest</a>) XXX_DiscardUnknown()</pre>
-				
-				
-				
-				
-			
-				
-				<h3 id="InvokeRequest.XXX_Marshal">func (*InvokeRequest) <a href="http://localhost:6060/src/protos/commandable.pb.go?s=4831:4912#L133">XXX_Marshal</a>
-					<a class="permalink" href="index.html#InvokeRequest.XXX_Marshal">&#xb6;</a>
-					
-					
-				</h3>
-				<pre>func (m *<a href="index.html#InvokeRequest">InvokeRequest</a>) XXX_Marshal(b []<a href="http://localhost:6060/pkg/builtin/#byte">byte</a>, deterministic <a href="http://localhost:6060/pkg/builtin/#bool">bool</a>) ([]<a href="http://localhost:6060/pkg/builtin/#byte">byte</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
-				
-				
-				
-				
-			
-				
-				<h3 id="InvokeRequest.XXX_Merge">func (*InvokeRequest) <a href="http://localhost:6060/src/protos/commandable.pb.go?s=4984:5036#L136">XXX_Merge</a>
-					<a class="permalink" href="index.html#InvokeRequest.XXX_Merge">&#xb6;</a>
-					
-					
-				</h3>
-				<pre>func (m *<a href="index.html#InvokeRequest">InvokeRequest</a>) XXX_Merge(src <a href="http://localhost:6060/pkg/github.com/golang/protobuf/proto/">proto</a>.<a href="http://localhost:6060/pkg/github.com/golang/protobuf/proto/#Message">Message</a>)</pre>
-				
-				
-				
-				
-			
-				
-				<h3 id="InvokeRequest.XXX_Size">func (*InvokeRequest) <a href="http://localhost:6060/src/protos/commandable.pb.go?s=5086:5124#L139">XXX_Size</a>
-					<a class="permalink" href="index.html#InvokeRequest.XXX_Size">&#xb6;</a>
-					
-					
-				</h3>
-				<pre>func (m *<a href="index.html#InvokeRequest">InvokeRequest</a>) XXX_Size() <a href="http://localhost:6060/pkg/builtin/#int">int</a></pre>
-				
-				
-				
-				
-			
-				
-				<h3 id="InvokeRequest.XXX_Unmarshal">func (*InvokeRequest) <a href="http://localhost:6060/src/protos/commandable.pb.go?s=4719:4772#L130">XXX_Unmarshal</a>
-					<a class="permalink" href="index.html#InvokeRequest.XXX_Unmarshal">&#xb6;</a>
-					
-					
-				</h3>
-				<pre>func (m *<a href="index.html#InvokeRequest">InvokeRequest</a>) XXX_Unmarshal(b []<a href="http://localhost:6060/pkg/builtin/#byte">byte</a>) <a href="http://localhost:6060/pkg/builtin/#error">error</a></pre>
+				<pre>func (x *<a href="index.html#InvokeRequest">InvokeRequest</a>) String() <a href="http://localhost:6060/pkg/builtin/#string">string</a></pre>
 				
 				
 				
@@ -991,13 +851,13 @@ The request message containing the invocation request.
 		
 			
 			
-			<h2 id="UnimplementedCommandableServer">type <a href="http://localhost:6060/src/protos/commandable.pb.go?s=12212:12258#L312">UnimplementedCommandableServer</a>
+			<h2 id="UnimplementedCommandableServer">type <a href="http://localhost:6060/src/protos/commandable_grpc.pb.go?s=1641:1687#L40">UnimplementedCommandableServer</a>
 				<a class="permalink" href="index.html#UnimplementedCommandableServer">&#xb6;</a>
 				
 				
 			</h2>
 			<p>
-UnimplementedCommandableServer can be embedded to have forward compatible implementations.
+UnimplementedCommandableServer must be embedded to have forward compatible implementations.
 </p>
 
 			<pre>type UnimplementedCommandableServer struct {
@@ -1016,16 +876,45 @@ UnimplementedCommandableServer can be embedded to have forward compatible implem
 
 			
 				
-				<h3 id="UnimplementedCommandableServer.Invoke">func (*UnimplementedCommandableServer) <a href="http://localhost:6060/src/protos/commandable.pb.go?s=12260:12368#L315">Invoke</a>
+				<h3 id="UnimplementedCommandableServer.Invoke">func (UnimplementedCommandableServer) <a href="http://localhost:6060/src/protos/commandable_grpc.pb.go?s=1689:1788#L43">Invoke</a>
 					<a class="permalink" href="index.html#UnimplementedCommandableServer.Invoke">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (*<a href="index.html#UnimplementedCommandableServer">UnimplementedCommandableServer</a>) Invoke(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, req *<a href="index.html#InvokeRequest">InvokeRequest</a>) (*<a href="index.html#InvokeReply">InvokeReply</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
+				<pre>func (<a href="index.html#UnimplementedCommandableServer">UnimplementedCommandableServer</a>) Invoke(<a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, *<a href="index.html#InvokeRequest">InvokeRequest</a>) (*<a href="index.html#InvokeReply">InvokeReply</a>, <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
 				
 				
 				
 				
+			
+		
+			
+			
+			<h2 id="UnsafeCommandableServer">type <a href="http://localhost:6060/src/protos/commandable_grpc.pb.go?s=2176:2261#L51">UnsafeCommandableServer</a>
+				<a class="permalink" href="index.html#UnsafeCommandableServer">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+UnsafeCommandableServer may be embedded to opt out of forward compatibility for this service.
+Use of this interface is not recommended, as added methods to CommandableServer will
+result in compilation errors.
+</p>
+
+			<pre>type UnsafeCommandableServer interface {
+    <span class="comment">// contains filtered or unexported methods</span>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
 			
 		
 	
@@ -1039,13 +928,13 @@ UnimplementedCommandableServer can be embedded to have forward compatible implem
 
 
 <div id="footer">
-Build version go1.13.15.<br>
+Build version go1.16.15.<br>
 Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
 the content of this page is licensed under the
 Creative Commons Attribution 3.0 License,
 and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
-<a href="http://localhost:6060/doc/tos.html">Terms of Service</a> |
-<a href="http://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
 </div>
 
 </div><!-- .container -->

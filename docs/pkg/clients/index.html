@@ -14,7 +14,7 @@
 
 
 
-<script>var goVersion = "go1.13.15";</script>
+<script>var goVersion = "go1.16.15";</script>
 <script src="../../lib/godoc/godocs.js" defer></script>
 </head>
 <body>
@@ -143,13 +143,16 @@
 					<dd>&nbsp; &nbsp; <a href="index.html#GrpcClient.Call">func (c *GrpcClient) Call(method string, correlationId string, request interface{}, response interface{}) error</a></dd>
 				
 					
+					<dd>&nbsp; &nbsp; <a href="index.html#GrpcClient.CallWithContext">func (c *GrpcClient) CallWithContext(ctx context.Context, correlationId string, method string, request interface{}, response interface{}) error</a></dd>
+				
+					
 					<dd>&nbsp; &nbsp; <a href="index.html#GrpcClient.Close">func (c *GrpcClient) Close(correlationId string) error</a></dd>
 				
 					
 					<dd>&nbsp; &nbsp; <a href="index.html#GrpcClient.Configure">func (c *GrpcClient) Configure(config *cconf.ConfigParams)</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#GrpcClient.Instrument">func (c *GrpcClient) Instrument(correlationId string, name string) *ccount.Timing</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#GrpcClient.Instrument">func (c *GrpcClient) Instrument(correlationId string, name string) *ccount.CounterTiming</a></dd>
 				
 					
 					<dd>&nbsp; &nbsp; <a href="index.html#GrpcClient.InstrumentError">func (c *GrpcClient) InstrumentError(correlationId string, name string, inErr error, inRes interface{}) (result interface{}, err error)</a></dd>
@@ -193,7 +196,7 @@
 		
 			
 			
-			<h2 id="CommandableGrpcClient">type <a href="http://localhost:6060/src/clients/CommandableGrpcClient.go?s=2308:2391#L57">CommandableGrpcClient</a>
+			<h2 id="CommandableGrpcClient">type <a href="http://localhost:6060/src/clients/CommandableGrpcClient.go?s=2371:2458#L57">CommandableGrpcClient</a>
 				<a class="permalink" href="index.html#CommandableGrpcClient">&#xb6;</a>
 				
 				
@@ -274,7 +277,7 @@ Example:
 
 			
 				
-				<h3 id="NewCommandableGrpcClient">func <a href="http://localhost:6060/src/clients/CommandableGrpcClient.go?s=2517:2582#L66">NewCommandableGrpcClient</a>
+				<h3 id="NewCommandableGrpcClient">func <a href="http://localhost:6060/src/clients/CommandableGrpcClient.go?s=2589:2654#L66">NewCommandableGrpcClient</a>
 					<a class="permalink" href="index.html#NewCommandableGrpcClient">&#xb6;</a>
 					
 					
@@ -293,7 +296,7 @@ Parameters:
 
 			
 				
-				<h3 id="CommandableGrpcClient.CallCommand">func (*CommandableGrpcClient) <a href="http://localhost:6060/src/clients/CommandableGrpcClient.go?s=3240:3401#L82">CallCommand</a>
+				<h3 id="CommandableGrpcClient.CallCommand">func (*CommandableGrpcClient) <a href="http://localhost:6060/src/clients/CommandableGrpcClient.go?s=3328:3489#L82">CallCommand</a>
 					<a class="permalink" href="index.html#CommandableGrpcClient.CallCommand">&#xb6;</a>
 					
 					
@@ -321,7 +324,7 @@ Retruns: result or error.
 		
 			
 			
-			<h2 id="GrpcClient">type <a href="http://localhost:6060/src/clients/GrpcClient.go?s=2563:3277#L69">GrpcClient</a>
+			<h2 id="GrpcClient">type <a href="http://localhost:6060/src/clients/GrpcClient.go?s=2641:3380#L69">GrpcClient</a>
 				<a class="permalink" href="index.html#GrpcClient">&#xb6;</a>
 				
 				
@@ -406,7 +409,8 @@ result, err := client.GetData(&#34;123&#34;, &#34;1&#34;)
 
     <span class="comment">//	The GRPC client.</span>
 <span id="GrpcClient.Client"></span>    Client <a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-grpc-go/protos/">grpcproto</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-grpc-go/protos/#CommandableClient">CommandableClient</a>
-
+    <span class="comment">// The GRPC connection</span>
+<span id="GrpcClient.Connection"></span>    Connection *<a href="http://localhost:6060/pkg/google.golang.org/grpc/">grpc</a>.<a href="http://localhost:6060/pkg/google.golang.org/grpc/#ClientConn">ClientConn</a>
     <span class="comment">//	The connection resolver.</span>
 <span id="GrpcClient.ConnectionResolver"></span>    ConnectionResolver *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-rpc-go/connect/">rpccon</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-rpc-go/connect/#HttpConnectionResolver">HttpConnectionResolver</a>
     <span class="comment">//	The logger.</span>
@@ -435,7 +439,7 @@ result, err := client.GetData(&#34;123&#34;, &#34;1&#34;)
 
 			
 				
-				<h3 id="NewGrpcClient">func <a href="http://localhost:6060/src/clients/GrpcClient.go?s=3445:3488#L101">NewGrpcClient</a>
+				<h3 id="NewGrpcClient">func <a href="http://localhost:6060/src/clients/GrpcClient.go?s=3555:3598#L101">NewGrpcClient</a>
 					<a class="permalink" href="index.html#NewGrpcClient">&#xb6;</a>
 					
 					
@@ -458,7 +462,7 @@ Returns *GrpcClient
 
 			
 				
-				<h3 id="GrpcClient.AddFilterParams">func (*GrpcClient) <a href="http://localhost:6060/src/clients/GrpcClient.go?s=9575:9691#L275">AddFilterParams</a>
+				<h3 id="GrpcClient.AddFilterParams">func (*GrpcClient) <a href="http://localhost:6060/src/clients/GrpcClient.go?s=10507:10623#L292">AddFilterParams</a>
 					<a class="permalink" href="index.html#GrpcClient.AddFilterParams">&#xb6;</a>
 					
 					
@@ -480,7 +484,7 @@ Return invocation parameters with added filter parameters.
 				
 			
 				
-				<h3 id="GrpcClient.AddInterceptors">func (*GrpcClient) <a href="http://localhost:6060/src/clients/GrpcClient.go?s=6961:7030#L187">AddInterceptors</a>
+				<h3 id="GrpcClient.AddInterceptors">func (*GrpcClient) <a href="http://localhost:6060/src/clients/GrpcClient.go?s=7164:7233#L187">AddInterceptors</a>
 					<a class="permalink" href="index.html#GrpcClient.AddInterceptors">&#xb6;</a>
 					
 					
@@ -502,7 +506,7 @@ interceptor functions (Stream or Unary use grpc.WithUnaryInterceptor() or grpc.W
 				
 			
 				
-				<h3 id="GrpcClient.AddPagingParams">func (*GrpcClient) <a href="http://localhost:6060/src/clients/GrpcClient.go?s=10120:10236#L292">AddPagingParams</a>
+				<h3 id="GrpcClient.AddPagingParams">func (*GrpcClient) <a href="http://localhost:6060/src/clients/GrpcClient.go?s=11069:11185#L309">AddPagingParams</a>
 					<a class="permalink" href="index.html#GrpcClient.AddPagingParams">&#xb6;</a>
 					
 					
@@ -523,7 +527,7 @@ Return invocation parameters with added paging parameters.
 				
 			
 				
-				<h3 id="GrpcClient.Call">func (*GrpcClient) <a href="http://localhost:6060/src/clients/GrpcClient.go?s=8983:9094#L262">Call</a>
+				<h3 id="GrpcClient.Call">func (*GrpcClient) <a href="http://localhost:6060/src/clients/GrpcClient.go?s=9261:9372#L262">Call</a>
 					<a class="permalink" href="index.html#GrpcClient.Call">&#xb6;</a>
 					
 					
@@ -551,7 +555,35 @@ Returns error
 				
 			
 				
-				<h3 id="GrpcClient.Close">func (*GrpcClient) <a href="http://localhost:6060/src/clients/GrpcClient.go?s=8500:8554#L243">Close</a>
+				<h3 id="GrpcClient.CallWithContext">func (*GrpcClient) <a href="http://localhost:6060/src/clients/GrpcClient.go?s=9959:10102#L281">CallWithContext</a>
+					<a class="permalink" href="index.html#GrpcClient.CallWithContext">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="index.html#GrpcClient">GrpcClient</a>) CallWithContext(ctx <a href="http://localhost:6060/pkg/context/">context</a>.<a href="http://localhost:6060/pkg/context/#Context">Context</a>, correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, method <a href="http://localhost:6060/pkg/builtin/#string">string</a>, request interface{}, response interface{}) <a href="http://localhost:6060/pkg/builtin/#error">error</a></pre>
+				<p>
+CallWithContext method are calls a remote method via gRPC protocol.
+Parameters:
+</p>
+<pre>- ctx context
+- correlationId string
+transaction id to trace execution through call chain.
+- method string//   gRPC method name
+- request interface{}
+ request query parameters.
+- response interface{}
+- response body object.
+</pre>
+<p>
+Returns error
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="GrpcClient.Close">func (*GrpcClient) <a href="http://localhost:6060/src/clients/GrpcClient.go?s=8759:8813#L243">Close</a>
 					<a class="permalink" href="index.html#GrpcClient.Close">&#xb6;</a>
 					
 					
@@ -573,7 +605,7 @@ Returns error
 				
 			
 				
-				<h3 id="GrpcClient.Configure">func (*GrpcClient) <a href="http://localhost:6060/src/clients/GrpcClient.go?s=4292:4350#L129">Configure</a>
+				<h3 id="GrpcClient.Configure">func (*GrpcClient) <a href="http://localhost:6060/src/clients/GrpcClient.go?s=4430:4488#L129">Configure</a>
 					<a class="permalink" href="index.html#GrpcClient.Configure">&#xb6;</a>
 					
 					
@@ -592,12 +624,12 @@ configuration parameters to be set.
 				
 			
 				
-				<h3 id="GrpcClient.Instrument">func (*GrpcClient) <a href="http://localhost:6060/src/clients/GrpcClient.go?s=5483:5564#L153">Instrument</a>
+				<h3 id="GrpcClient.Instrument">func (*GrpcClient) <a href="http://localhost:6060/src/clients/GrpcClient.go?s=5645:5733#L153">Instrument</a>
 					<a class="permalink" href="index.html#GrpcClient.Instrument">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#GrpcClient">GrpcClient</a>) Instrument(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, name <a href="http://localhost:6060/pkg/builtin/#string">string</a>) *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-components-go/count/">ccount</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-components-go/count/#Timing">Timing</a></pre>
+				<pre>func (c *<a href="index.html#GrpcClient">GrpcClient</a>) Instrument(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>, name <a href="http://localhost:6060/pkg/builtin/#string">string</a>) *<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-components-go/count/">ccount</a>.<a href="http://localhost:6060/pkg/github.com/pip-services3-go/pip-services3-components-go/count/#CounterTiming">CounterTiming</a></pre>
 				<p>
 Instrument method are adds instrumentation to log calls and measure call time.
 It returns a Timing object that is used to end the time measurement.
@@ -614,7 +646,7 @@ Returns: Timing object to end the time measurement.
 				
 			
 				
-				<h3 id="GrpcClient.InstrumentError">func (*GrpcClient) <a href="http://localhost:6060/src/clients/GrpcClient.go?s=6096:6231#L166">InstrumentError</a>
+				<h3 id="GrpcClient.InstrumentError">func (*GrpcClient) <a href="http://localhost:6060/src/clients/GrpcClient.go?s=6278:6413#L166">InstrumentError</a>
 					<a class="permalink" href="index.html#GrpcClient.InstrumentError">&#xb6;</a>
 					
 					
@@ -638,7 +670,7 @@ input result and error.
 				
 			
 				
-				<h3 id="GrpcClient.IsOpen">func (*GrpcClient) <a href="http://localhost:6060/src/clients/GrpcClient.go?s=6537:6571#L178">IsOpen</a>
+				<h3 id="GrpcClient.IsOpen">func (*GrpcClient) <a href="http://localhost:6060/src/clients/GrpcClient.go?s=6731:6765#L178">IsOpen</a>
 					<a class="permalink" href="index.html#GrpcClient.IsOpen">&#xb6;</a>
 					
 					
@@ -655,7 +687,7 @@ true if the component has been opened and false otherwise.
 				
 			
 				
-				<h3 id="GrpcClient.Open">func (*GrpcClient) <a href="http://localhost:6060/src/clients/GrpcClient.go?s=7269:7322#L197">Open</a>
+				<h3 id="GrpcClient.Open">func (*GrpcClient) <a href="http://localhost:6060/src/clients/GrpcClient.go?s=7482:7535#L197">Open</a>
 					<a class="permalink" href="index.html#GrpcClient.Open">&#xb6;</a>
 					
 					
@@ -678,7 +710,7 @@ error or nil
 				
 			
 				
-				<h3 id="GrpcClient.SetReferences">func (*GrpcClient) <a href="http://localhost:6060/src/clients/GrpcClient.go?s=4953:5016#L142">SetReferences</a>
+				<h3 id="GrpcClient.SetReferences">func (*GrpcClient) <a href="http://localhost:6060/src/clients/GrpcClient.go?s=5104:5167#L142">SetReferences</a>
 					<a class="permalink" href="index.html#GrpcClient.SetReferences">&#xb6;</a>
 					
 					
@@ -707,13 +739,13 @@ references to locate the component dependencies.
 
 
 <div id="footer">
-Build version go1.13.15.<br>
+Build version go1.16.15.<br>
 Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
 the content of this page is licensed under the
 Creative Commons Attribution 3.0 License,
 and code is licensed under a <a href="http://localhost:6060/LICENSE">BSD license</a>.<br>
-<a href="http://localhost:6060/doc/tos.html">Terms of Service</a> |
-<a href="http://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
 </div>
 
 </div><!-- .container -->
